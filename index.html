@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Portfolio - Minimal Geometric Journal</title>
+  <meta name="description" content="Minimal geometric portfolio and journal focused on process, reflection, and growth.">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="/src/main.ts"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="brand">Anas</div>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#journal">Journal</a></li>
+        <li><a href="#now">Now</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section id="home" class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Origin -> Experiments -> Becoming</p>
+        <h1>Minimal forms, honest notes, ongoing work.</h1>
+        <p>This site tracks design process and self-discovery without performance. Craft over noise.</p>
+        <div class="hero-ctas">
+          <a class="button" href="#work">View process work</a>
+          <a class="button button-ghost" href="#journal">Read journal</a>
+        </div>
+      </div>
+      <div class="hero-scene" aria-hidden="true">
+        <div class="line"></div>
+        <div class="orbit">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="section">
+      <h2>Work</h2>
+      <p>Each project includes problem, intent, process, outcome, and reflection.</p>
+      <div class="cards">
+        <article class="card">
+          <h3>Project 01</h3>
+          <p class="meta">Question -> Attempt -> Failure -> Insight -> Next step</p>
+        </article>
+        <article class="card">
+          <h3>Project 02</h3>
+          <p class="meta">Question -> Attempt -> Failure -> Insight -> Next step</p>
+        </article>
+        <article class="card">
+          <h3>Project 03</h3>
+          <p class="meta">Question -> Attempt -> Failure -> Insight -> Next step</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h2>About</h2>
+      <p>I am not building perfect image here. I am collecting proof of how I think, make, fail, and learn.</p>
+    </section>
+
+    <section id="journal" class="section">
+      <h2>Journal</h2>
+      <p>Process notes, design philosophy, and self-discovery logs.</p>
+      <div class="journal">
+        <div class="journal-list" aria-label="Journal entries">
+          <div class="journal-list-header">
+            <div class="journal-list-title">Entries</div>
+            <div class="journal-list-meta" id="journal-count"></div>
+          </div>
+          <ol id="journal-list"></ol>
+        </div>
+        <article class="journal-reader" aria-label="Selected entry">
+          <div class="journal-reader-header">
+            <div class="journal-reader-title">Reading</div>
+            <button class="journal-close" id="journal-close" type="button">Close</button>
+          </div>
+          <div id="journal-reader-content" class="prose">
+            <p class="muted">Pick entry. Reader show here.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="now" class="section">
+      <h2>Now</h2>
+      <p>Current focus, active experiments, and next constraints to explore.</p>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <p>Open for thoughtful collaboration and conversation.</p>
+    </section>
+  </main>
+</body>
+</html>
