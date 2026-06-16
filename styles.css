@@ -217,6 +217,21 @@ button {
   line-height: 1;
 }
 
+.sync {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--line);
+  font-size: 0.85rem;
+}
+
+.sync .muted {
+  margin-right: var(--space-1);
+}
+
 .log-head {
   display: flex;
   justify-content: space-between;

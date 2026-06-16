@@ -6,7 +6,12 @@
   <title>Anas — working in the open</title>
   <meta name="description" content="Anas. Building software by directing AI, and starting an n=1 exploration of coherence and inner experience. No ground yet.">
   <link rel="stylesheet" href="./styles.css">
-  <script type="module" src="/src/main.ts"></script>
+  <!--
+    #nobuild: no bundler, no compile step. The browser runs app.js directly as an
+    ES module. If this app ever needs a dependency, you map it here instead of npm:
+    <script type="importmap">{ "imports": { "lib": "https://cdn.example/lib.js" } }</script>
+  -->
+  <script type="module" src="./app.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -65,6 +70,13 @@
           <span id="save-status" class="muted" role="status"></span>
         </div>
       </form>
+
+      <div class="sync" aria-label="Private sync, only you">
+        <span class="muted">Sync (mine):</span>
+        <button type="button" id="unlock" class="ghost">Unlock &amp; load</button>
+        <button type="button" id="backup" class="ghost">Download encrypted</button>
+        <span id="sync-status" class="muted" role="status"></span>
+      </div>
 
       <div class="log-head">
         <h2>Log</h2>
