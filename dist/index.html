@@ -3,102 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Personal Portfolio - Minimal Geometric Journal</title>
-  <meta name="description" content="Minimal geometric portfolio and journal focused on process, reflection, and growth.">
-  <script type="module" crossorigin src="/assets/index-CYts1GAT.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-DKQbauKy.css">
+  <title>Anas — working in the open</title>
+  <meta name="description" content="Anas. Building software by directing AI, and starting an n=1 exploration of coherence and inner experience. No ground yet.">
+  <script type="module" crossorigin src="/assets/index-BaT-NbOW.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-B64jRVz2.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="brand">Anas</div>
-    <nav aria-label="Primary">
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#work">Work</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#journal">Journal</a></li>
-        <li><a href="#now">Now</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
 
   <main id="main">
-    <section id="home" class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">Origin -> Experiments -> Becoming</p>
-        <h1>Minimal forms, honest notes, ongoing work.</h1>
-        <p>This site tracks design process and self-discovery without performance. Craft over noise.</p>
-        <div class="hero-ctas">
-          <a class="button" href="#work">View process work</a>
-          <a class="button button-ghost" href="#journal">Read journal</a>
+    <header class="intro">
+      <p class="kicker">Anas — working in the open</p>
+      <p class="lede">
+        Right now I build working software — CRMs, scrapers, small business tools — mostly by
+        directing AI and thinking clearly about the problem. I won't call that engineering; it isn't.
+      </p>
+      <p class="lede">
+        What I keep circling is the interior: meditation, parts work, how a person moves toward
+        coherence and sets down suffering that isn't necessary. I have an idea there I don't have the
+        ground for yet. So I'm starting at n=1 — myself — in the open.
+      </p>
+    </header>
+
+    <section class="tool" id="checkin" aria-labelledby="checkin-title">
+      <div class="tool-head">
+        <h1 id="checkin-title">Coherence check-in</h1>
+        <p class="muted">n=1. Private to this browser. The first brick.</p>
+      </div>
+
+      <form id="checkin-form" class="form" novalidate>
+        <div class="field">
+          <label for="felt">What's here right now? (felt sense, before words)</label>
+          <textarea id="felt" name="felt" rows="3" placeholder="the body, not the story"></textarea>
         </div>
-      </div>
-      <div class="hero-scene" aria-hidden="true">
-        <div class="line"></div>
-        <div class="orbit">
-          <div class="circle"></div>
+
+        <div class="field">
+          <span class="field-label">Parts present</span>
+          <div id="parts" class="parts" aria-live="polite"></div>
+          <button type="button" id="add-part" class="ghost">+ name a part</button>
         </div>
-      </div>
-    </section>
 
-    <section id="work" class="section">
-      <h2>Work</h2>
-      <p>Each project includes problem, intent, process, outcome, and reflection.</p>
-      <div class="cards">
-        <article class="card">
-          <h3>Project 01</h3>
-          <p class="meta">Question -> Attempt -> Failure -> Insight -> Next step</p>
-        </article>
-        <article class="card">
-          <h3>Project 02</h3>
-          <p class="meta">Question -> Attempt -> Failure -> Insight -> Next step</p>
-        </article>
-        <article class="card">
-          <h3>Project 03</h3>
-          <p class="meta">Question -> Attempt -> Failure -> Insight -> Next step</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="about" class="section">
-      <h2>About</h2>
-      <p>I am not building perfect image here. I am collecting proof of how I think, make, fail, and learn.</p>
-    </section>
-
-    <section id="journal" class="section">
-      <h2>Journal</h2>
-      <p>Process notes, design philosophy, and self-discovery logs.</p>
-      <div class="journal">
-        <div class="journal-list" aria-label="Journal entries">
-          <div class="journal-list-header">
-            <div class="journal-list-title">Entries</div>
-            <div class="journal-list-meta" id="journal-count"></div>
+        <div class="field">
+          <label for="coherence">
+            Coherence reading
+            <span class="muted" id="coherence-out">50</span>
+          </label>
+          <input type="range" id="coherence" name="coherence" min="0" max="100" value="50">
+          <div class="scale-ends">
+            <span>effortful / off</span>
+            <span>effortless / aligned</span>
           </div>
-          <ol id="journal-list"></ol>
         </div>
-        <article class="journal-reader" aria-label="Selected entry">
-          <div class="journal-reader-header">
-            <div class="journal-reader-title">Reading</div>
-            <button class="journal-close" id="journal-close" type="button">Close</button>
-          </div>
-          <div id="journal-reader-content" class="prose">
-            <p class="muted">Pick entry. Reader show here.</p>
-          </div>
-        </article>
+
+        <div class="field">
+          <label for="suffering">One unnecessary suffering I can set down right now</label>
+          <textarea id="suffering" name="suffering" rows="2" placeholder="optional"></textarea>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="primary">Save check-in</button>
+          <span id="save-status" class="muted" role="status"></span>
+        </div>
+      </form>
+
+      <div class="log-head">
+        <h2>Log</h2>
+        <p class="muted" id="log-summary"></p>
       </div>
+      <ol id="log" class="log" aria-label="Past check-ins"></ol>
     </section>
 
-    <section id="now" class="section">
-      <h2>Now</h2>
-      <p>Current focus, active experiments, and next constraints to explore.</p>
+    <section class="direction" aria-labelledby="direction-title">
+      <h2 id="direction-title">The direction (no ground yet)</h2>
+      <p>
+        Most therapy is carried in language. The felt sense underneath isn't verbal. I want a
+        structure that holds inner experience more faithfully than words do — and patterns that help a
+        specific person reach coherence and drop illegitimate suffering.
+      </p>
+      <p>
+        I can't build that for everyone. I can start by structuring my own experience and seeing
+        what's actually there. The check-in above is the first brick. It will probably be wrong in
+        useful ways.
+      </p>
     </section>
 
-    <section id="contact" class="section">
-      <h2>Contact</h2>
-      <p>Open for thoughtful collaboration and conversation.</p>
-    </section>
+    <footer class="contact">
+      <p>
+        If this resonates — or you think it's nonsense — tell me.
+        <a id="contact-link" href="mailto:hello@example.com">hello@example.com</a>
+      </p>
+      <p class="muted">Replace the address above with your real one.</p>
+    </footer>
   </main>
 </body>
 </html>

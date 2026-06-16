@@ -1,144 +1,219 @@
-import { marked } from "marked";
-
-type Entry = {
-  slug: string;
-  title: string;
-  date: string | null;
-  tags: string[];
-  markdown: string;
+type Part = {
+  name: string;
+  note: string;
 };
 
-const journalModules = import.meta.glob("../content/journal/*.md", {
-  query: "?raw",
-  import: "default",
-}) as Record<string, () => Promise<string>>;
+type CheckIn = {
+  id: string;
+  ts: number;
+  felt: string;
+  parts: Part[];
+  coherence: number;
+  suffering: string;
+};
 
-function extractFront(mk: string): { title: string; date: string | null; tags: string[] } {
-  const title = (mk.match(/^#\s+(.+)$/m)?.[1] ?? "Untitled").trim();
-  const date = (mk.match(/^Date:\s*(.+)\s*$/m)?.[1] ?? null)?.trim() || null;
-  const tagsLine = (mk.match(/^Tags:\s*(.+)\s*$/m)?.[1] ?? "").trim();
-  const tags = tagsLine ? tagsLine.split(",").map((t) => t.trim()).filter(Boolean) : [];
-  return { title, date, tags };
-}
+const STORAGE_KEY = "coherence-checkins-v1";
 
-function slugFromPath(p: string) {
-  const base = p.split("/").pop() ?? p;
-  return base.replace(/\.md$/, "");
-}
-
-async function loadEntries(): Promise<Entry[]> {
-  const paths = Object.keys(journalModules);
-  const loaded = await Promise.all(
-    paths.map(async (p) => {
-      const markdown = await journalModules[p]();
-      const { title, date, tags } = extractFront(markdown);
-      return { slug: slugFromPath(p), title, date, tags, markdown };
-    }),
-  );
-
-  loaded.sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""));
-  return loaded;
-}
-
-function el<T extends HTMLElement>(id: string) {
+function el<T extends HTMLElement>(id: string): T {
   const node = document.getElementById(id);
   if (!node) throw new Error(`Missing element #${id}`);
   return node as T;
 }
 
-function renderList(entries: Entry[]) {
-  const list = el<HTMLOListElement>("journal-list");
-  const count = el<HTMLDivElement>("journal-count");
-  count.textContent = `${entries.length} total`;
-  list.innerHTML = "";
-
-  for (const entry of entries) {
-    const li = document.createElement("li");
-    li.className = "journal-item";
-
-    const a = document.createElement("a");
-    a.href = `#journal/${encodeURIComponent(entry.slug)}`;
-    a.className = "journal-link";
-
-    const title = document.createElement("div");
-    title.className = "journal-item-title";
-    title.textContent = entry.title;
-
-    const meta = document.createElement("div");
-    meta.className = "journal-item-meta";
-    const tags = entry.tags.slice(0, 3).join(" · ");
-    meta.textContent = [entry.date ?? "—", tags].filter(Boolean).join("  /  ");
-
-    a.appendChild(title);
-    a.appendChild(meta);
-    li.appendChild(a);
-    list.appendChild(li);
+function loadCheckIns(): CheckIn[] {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw) as CheckIn[];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
   }
 }
 
-function setActiveSlug(slug: string | null) {
-  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>(".journal-link"));
-  for (const link of links) {
-    const isActive = link.getAttribute("href") === `#journal/${encodeURIComponent(slug ?? "")}`;
-    link.setAttribute("aria-current", isActive ? "true" : "false");
-  }
+function saveCheckIns(entries: CheckIn[]) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
 }
 
-function renderEntry(entry: Entry | null) {
-  const reader = el<HTMLDivElement>("journal-reader-content");
-  if (!entry) {
-    reader.innerHTML = `<p class="muted">Pick entry. Reader show here.</p>`;
-    setActiveSlug(null);
+function formatDate(ts: number): string {
+  return new Date(ts).toLocaleString(undefined, {
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
+// Draft parts being composed in the form, before the check-in is saved.
+let draftParts: Part[] = [];
+
+function renderDraftParts() {
+  const wrap = el<HTMLDivElement>("parts");
+  wrap.innerHTML = "";
+
+  draftParts.forEach((part, index) => {
+    const row = document.createElement("div");
+    row.className = "part-row";
+
+    const name = document.createElement("input");
+    name.type = "text";
+    name.value = part.name;
+    name.placeholder = "name (e.g. the critic)";
+    name.setAttribute("aria-label", `Part ${index + 1} name`);
+    name.addEventListener("input", () => {
+      draftParts[index].name = name.value;
+    });
+
+    const note = document.createElement("input");
+    note.type = "text";
+    note.value = part.note;
+    note.placeholder = "what it wants / fears";
+    note.setAttribute("aria-label", `Part ${index + 1} note`);
+    note.addEventListener("input", () => {
+      draftParts[index].note = note.value;
+    });
+
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.className = "ghost remove-part";
+    remove.textContent = "×";
+    remove.setAttribute("aria-label", `Remove part ${index + 1}`);
+    remove.addEventListener("click", () => {
+      draftParts.splice(index, 1);
+      renderDraftParts();
+    });
+
+    row.append(name, note, remove);
+    wrap.appendChild(row);
+  });
+}
+
+function renderLog(entries: CheckIn[]) {
+  const log = el<HTMLOListElement>("log");
+  const summary = el<HTMLParagraphElement>("log-summary");
+  log.innerHTML = "";
+
+  if (entries.length === 0) {
+    summary.textContent = "No check-ins yet.";
     return;
   }
 
-  const html = marked.parse(entry.markdown, { gfm: true, breaks: false }) as string;
-  reader.innerHTML = html;
-  setActiveSlug(entry.slug);
-}
+  const avg = Math.round(
+    entries.reduce((sum, e) => sum + e.coherence, 0) / entries.length,
+  );
+  summary.textContent = `${entries.length} check-in${entries.length === 1 ? "" : "s"} · avg coherence ${avg}`;
 
-function getSlugFromHash(): string | null {
-  const h = window.location.hash || "";
-  const m = h.match(/^#journal\/(.+)$/);
-  if (!m) return null;
-  try {
-    return decodeURIComponent(m[1]);
-  } catch {
-    return m[1];
+  const sorted = [...entries].sort((a, b) => b.ts - a.ts);
+
+  for (const entry of sorted) {
+    const li = document.createElement("li");
+    li.className = "log-item";
+
+    const meta = document.createElement("div");
+    meta.className = "log-meta";
+    meta.innerHTML = `<span>${formatDate(entry.ts)}</span><span class="reading">${entry.coherence}</span>`;
+
+    li.appendChild(meta);
+
+    if (entry.felt.trim()) {
+      const felt = document.createElement("p");
+      felt.className = "log-felt";
+      felt.textContent = entry.felt.trim();
+      li.appendChild(felt);
+    }
+
+    if (entry.parts.length) {
+      const parts = document.createElement("ul");
+      parts.className = "log-parts";
+      for (const part of entry.parts) {
+        const item = document.createElement("li");
+        const name = part.name.trim() || "unnamed";
+        item.textContent = part.note.trim() ? `${name} — ${part.note.trim()}` : name;
+        parts.appendChild(item);
+      }
+      li.appendChild(parts);
+    }
+
+    if (entry.suffering.trim()) {
+      const suffering = document.createElement("p");
+      suffering.className = "log-suffering";
+      suffering.textContent = `set down: ${entry.suffering.trim()}`;
+      li.appendChild(suffering);
+    }
+
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.className = "ghost remove-entry";
+    remove.textContent = "delete";
+    remove.addEventListener("click", () => {
+      const next = loadCheckIns().filter((e) => e.id !== entry.id);
+      saveCheckIns(next);
+      renderLog(next);
+    });
+    li.appendChild(remove);
+
+    log.appendChild(li);
   }
 }
 
-function ensureReaderVisible() {
-  document.querySelector(".journal-reader")?.classList.add("is-open");
+function newId(): string {
+  if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
+    return crypto.randomUUID();
+  }
+  return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
 }
 
-function ensureReaderHidden() {
-  document.querySelector(".journal-reader")?.classList.remove("is-open");
-}
+function main() {
+  const form = el<HTMLFormElement>("checkin-form");
+  const felt = el<HTMLTextAreaElement>("felt");
+  const coherence = el<HTMLInputElement>("coherence");
+  const coherenceOut = el<HTMLSpanElement>("coherence-out");
+  const suffering = el<HTMLTextAreaElement>("suffering");
+  const addPart = el<HTMLButtonElement>("add-part");
+  const status = el<HTMLSpanElement>("save-status");
 
-async function main() {
-  const entries = await loadEntries();
-  renderList(entries);
-
-  const closeBtn = el<HTMLButtonElement>("journal-close");
-  closeBtn.addEventListener("click", () => {
-    ensureReaderHidden();
-    window.location.hash = "#journal";
+  coherence.addEventListener("input", () => {
+    coherenceOut.textContent = coherence.value;
   });
 
-  const onRoute = () => {
-    const slug = getSlugFromHash();
-    const entry = slug ? entries.find((e) => e.slug === slug) ?? null : null;
-    renderEntry(entry);
-    if (entry) ensureReaderVisible();
-  };
+  addPart.addEventListener("click", () => {
+    draftParts.push({ name: "", note: "" });
+    renderDraftParts();
+    const wrap = el<HTMLDivElement>("parts");
+    wrap.querySelector<HTMLInputElement>(".part-row:last-child input")?.focus();
+  });
 
-  window.addEventListener("hashchange", onRoute);
-  onRoute();
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const entry: CheckIn = {
+      id: newId(),
+      ts: Date.now(),
+      felt: felt.value,
+      parts: draftParts
+        .map((p) => ({ name: p.name.trim(), note: p.note.trim() }))
+        .filter((p) => p.name || p.note),
+      coherence: Number(coherence.value),
+      suffering: suffering.value,
+    };
+
+    const next = [...loadCheckIns(), entry];
+    saveCheckIns(next);
+
+    form.reset();
+    draftParts = [];
+    renderDraftParts();
+    coherenceOut.textContent = coherence.value;
+    renderLog(next);
+
+    status.textContent = "saved";
+    window.setTimeout(() => {
+      status.textContent = "";
+    }, 2000);
+  });
+
+  renderDraftParts();
+  renderLog(loadCheckIns());
 }
 
-main().catch((err) => {
-  // eslint-disable-next-line no-console
-  console.error(err);
-});
-
+main();
