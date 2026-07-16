@@ -1,9 +1,11 @@
 // #nobuild: plain ES module, runs in the browser with no compile step.
 // Data lives locally (localStorage). Cross-device sync = an encrypted file
 // (data/checkins.enc) you commit to the repo; only your passphrase decrypts it.
+// This module is loaded from /personal/, so fetch paths resolve against the site
+// root with "../".
 
 const STORAGE_KEY = "coherence-checkins-v1";
-const SYNC_PATH = "./data/checkins.enc";
+const SYNC_PATH = "../data/checkins.enc";
 
 function el(id) {
   const node = document.getElementById(id);

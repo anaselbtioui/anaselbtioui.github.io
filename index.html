@@ -3,106 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anas — working in the open</title>
-  <meta name="description" content="Anas. Building software by directing AI, and starting an n=1 exploration of coherence and inner experience. No ground yet.">
+  <title>Anas — working software, built by directing AI</title>
+  <meta name="description" content="Anas builds working software — CRMs, scrapers, small business tools — by directing AI and thinking clearly about the problem.">
   <link rel="stylesheet" href="./styles.css">
-  <!--
-    #nobuild: no bundler, no compile step. The browser runs app.js directly as an
-    ES module. If this app ever needs a dependency, you map it here instead of npm:
-    <script type="importmap">{ "imports": { "lib": "https://cdn.example/lib.js" } }</script>
-  -->
-  <script type="module" src="./app.js"></script>
+  <!-- #nobuild: no bundler, no compile step. Static HTML + shared styles.css.
+       Projects render from content/*.md via the manifest. -->
+  <script type="module" src="./portfolio.js"></script>
 </head>
-<body>
+<body class="portfolio">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <main id="main">
     <header class="intro">
-      <p class="kicker">Anas — working in the open</p>
+      <p class="kicker">Anas — selected work</p>
+      <h1 class="hero">Working software, built by directing AI and thinking clearly about the problem.</h1>
       <p class="lede">
         Right now I build working software — CRMs, scrapers, small business tools — mostly by
         directing AI and thinking clearly about the problem. I won't call that engineering; it isn't.
-      </p>
-      <p class="lede">
-        What I keep circling is the interior: meditation, parts work, how a person moves toward
-        coherence and sets down suffering that isn't necessary. I have an idea there I don't have the
-        ground for yet. So I'm starting at n=1 — myself — in the open.
+        What follows is proof of how I frame a problem, make trade-offs, and ship.
       </p>
     </header>
 
-    <section class="tool" id="checkin" aria-labelledby="checkin-title">
-      <div class="tool-head">
-        <h1 id="checkin-title">Coherence check-in</h1>
-        <p class="muted">n=1. Private to this browser. The first brick.</p>
+    <section class="work" aria-labelledby="work-title">
+      <div class="section-head">
+        <h2 id="work-title">Projects</h2>
+        <p class="muted" id="work-summary">3 in progress — process-first, not screenshots.</p>
       </div>
 
-      <form id="checkin-form" class="form" novalidate>
-        <div class="field">
-          <label for="felt">What's here right now? (felt sense, before words)</label>
-          <textarea id="felt" name="felt" rows="3" placeholder="the body, not the story"></textarea>
-        </div>
-
-        <div class="field">
-          <span class="field-label">Parts present</span>
-          <div id="parts" class="parts" aria-live="polite"></div>
-          <button type="button" id="add-part" class="ghost">+ name a part</button>
-        </div>
-
-        <div class="field">
-          <label for="coherence">
-            Coherence reading
-            <span class="muted" id="coherence-out">50</span>
-          </label>
-          <input type="range" id="coherence" name="coherence" min="0" max="100" value="50">
-          <div class="scale-ends">
-            <span>effortful / off</span>
-            <span>effortless / aligned</span>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="suffering">One unnecessary suffering I can set down right now</label>
-          <textarea id="suffering" name="suffering" rows="2" placeholder="optional"></textarea>
-        </div>
-
-        <div class="actions">
-          <button type="submit" class="primary">Save check-in</button>
-          <span id="save-status" class="muted" role="status"></span>
-        </div>
-      </form>
-
-      <div class="sync" aria-label="Private sync, only you">
-        <span class="muted">Sync (mine):</span>
-        <button type="button" id="unlock" class="ghost">Unlock &amp; load</button>
-        <button type="button" id="backup" class="ghost">Download encrypted</button>
-        <span id="sync-status" class="muted" role="status"></span>
-      </div>
-
-      <div class="log-head">
-        <h2>Log</h2>
-        <p class="muted" id="log-summary"></p>
-      </div>
-      <ol id="log" class="log" aria-label="Past check-ins"></ol>
-    </section>
-
-    <section class="direction" aria-labelledby="direction-title">
-      <h2 id="direction-title">The direction (no ground yet)</h2>
-      <p>
-        Most therapy is carried in language. The felt sense underneath isn't verbal. I want a
-        structure that holds inner experience more faithfully than words do — and patterns that help a
-        specific person reach coherence and drop illegitimate suffering.
-      </p>
-      <p>
-        I can't build that for everyone. I can start by structuring my own experience and seeing
-        what's actually there. The check-in above is the first brick. It will probably be wrong in
-        useful ways.
-      </p>
+      <ol id="project-grid" class="grid" aria-label="Project archive">
+        <li class="card is-draft"><p class="muted">Loading projects…</p></li>
+      </ol>
+      <p class="muted note">Projects render from <code>content/projects/*.md</code> — problem, intent, process, outcome, reflection.</p>
     </section>
 
     <footer class="contact">
       <p>
-        If this resonates — or you think it's nonsense — tell me.
-        <a id="contact-link" href="mailto:anaselbtioui@gmail.com">anaselbtioui@gmail.com</a>
+        Want something built, or want to talk shop?
+        <a href="mailto:anaselbtioui@gmail.com">anaselbtioui@gmail.com</a>
+      </p>
+      <p class="offclock">
+        Off the clock I run an n=1 experiment on coherence and inner experience.
+        <a href="./personal/">the personal space →</a>
       </p>
     </footer>
   </main>
