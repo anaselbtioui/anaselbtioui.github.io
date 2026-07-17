@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Anas">
+  <defs>
+    <radialGradient id="sphere" cx="38%" cy="32%" r="62%">
+      <stop offset="0%" stop-color="#c5ced8"/>
+      <stop offset="42%" stop-color="#6a7888"/>
+      <stop offset="78%" stop-color="#2a3542"/>
+      <stop offset="100%" stop-color="#151a20"/>
+    </radialGradient>
+  </defs>
+  <rect width="32" height="32" fill="#1a1e23"/>
+  <circle cx="16" cy="16" r="11" fill="url(#sphere)"/>
+</svg>
