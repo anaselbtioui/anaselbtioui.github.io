@@ -6,8 +6,24 @@
 //   cover    — optional image path (e.g. "/content/projects/media/crm.png").
 //              Present => gallery card with image; absent => editorial text card.
 //   featured — optional; true makes the card span the full grid width (hero).
+// PLACEHOLDER projects for layout testing — replace with real work before ship.
 export const projects = [
-  // { path: "/content/projects/2026-XX-XX-slug.md", cover: "/content/projects/media/slug.png", featured: true },
+  {
+    path: "/content/projects/2025-11-12-harbor-crm.md",
+    cover: "/content/projects/media/harbor-crm.jpg",
+    featured: true,
+  },
+  {
+    path: "/content/projects/2025-08-03-ledger-scrape.md",
+    cover: "/content/projects/media/ledger-scrape.jpg",
+  },
+  {
+    path: "/content/projects/2026-02-18-shelf-voice.md",
+    cover: "/content/projects/media/shelf-voice.jpg",
+  },
+  {
+    path: "/content/projects/2025-04-22-quiet-desk.md",
+  },
 ];
 
 export const journal = [

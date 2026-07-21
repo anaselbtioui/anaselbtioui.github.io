@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" aria-hidden="true">
+  <defs>
+    <path id="l" d="M0 0C7-5 16-20 18-38C20-56 12-74 0-86C-12-74-20-56-18-38C-16-20-7-5 0 0Z"/>
+    <path id="lb" d="M0 0C9-4 20-16 24-34C30-38 36-48 30-58C22-70 10-80 0-88C-10-80-22-70-30-58C-36-48-30-38-24-34C-20-16-9-4 0 0Z"/>
+  </defs>
+  <!-- Light field — multiply darkens where leaves sit (Lefos-style dappled cast) -->
+  <rect width="1600" height="1000" fill="#f2f0eb"/>
+  <g fill="#1a1c20" opacity="0.92">
+    <!-- Dense upper canopy -->
+    <use href="#lb" transform="translate(80 60) rotate(-24) scale(2.4)"/>
+    <use href="#l" transform="translate(200 40) rotate(18) scale(2.1)"/>
+    <use href="#lb" transform="translate(340 70) rotate(-40) scale(1.9)"/>
+    <use href="#l" transform="translate(480 30) rotate(8) scale(2.3)"/>
+    <use href="#lb" transform="translate(620 55) rotate(32) scale(2)"/>
+    <use href="#l" transform="translate(760 25) rotate(-16) scale(2.5)"/>
+    <use href="#lb" transform="translate(920 50) rotate(22) scale(2.2)"/>
+    <use href="#l" transform="translate(1080 35) rotate(-28) scale(2.4)"/>
+    <use href="#lb" transform="translate(1240 60) rotate(14) scale(2.1)"/>
+    <use href="#l" transform="translate(1400 40) rotate(-36) scale(2.3)"/>
+    <use href="#lb" transform="translate(1520 80) rotate(28) scale(1.8)"/>
+
+    <use href="#l" transform="translate(120 160) rotate(44) scale(1.7)"/>
+    <use href="#lb" transform="translate(280 140) rotate(-22) scale(1.85)"/>
+    <use href="#l" transform="translate(420 180) rotate(36) scale(1.6)"/>
+    <use href="#lb" transform="translate(580 130) rotate(-48) scale(1.9)"/>
+    <use href="#l" transform="translate(740 160) rotate(12) scale(1.75)"/>
+    <use href="#lb" transform="translate(900 145) rotate(-18) scale(2)"/>
+    <use href="#l" transform="translate(1060 175) rotate(40) scale(1.65)"/>
+    <use href="#lb" transform="translate(1220 150) rotate(-32) scale(1.95)"/>
+    <use href="#l" transform="translate(1380 165) rotate(20) scale(1.7)"/>
+
+    <!-- Mid field — dappled gaps -->
+    <use href="#l" transform="translate(60 280) rotate(-55) scale(1.5)"/>
+    <use href="#lb" transform="translate(220 300) rotate(25) scale(1.4)"/>
+    <use href="#l" transform="translate(400 270) rotate(-12) scale(1.55)"/>
+    <use href="#lb" transform="translate(560 310) rotate(48) scale(1.35)"/>
+    <use href="#l" transform="translate(720 285) rotate(-38) scale(1.6)"/>
+    <use href="#lb" transform="translate(900 300) rotate(16) scale(1.45)"/>
+    <use href="#l" transform="translate(1080 275) rotate(-26) scale(1.5)"/>
+    <use href="#lb" transform="translate(1260 305) rotate(34) scale(1.4)"/>
+    <use href="#l" transform="translate(1460 290) rotate(-42) scale(1.55)"/>
+
+    <use href="#lb" transform="translate(140 400) rotate(18) scale(1.3)"/>
+    <use href="#l" transform="translate(320 420) rotate(-30) scale(1.25)"/>
+    <use href="#lb" transform="translate(500 390) rotate(42) scale(1.35)"/>
+    <use href="#l" transform="translate(700 415) rotate(-8) scale(1.2)"/>
+    <use href="#lb" transform="translate(880 400) rotate(28) scale(1.4)"/>
+    <use href="#l" transform="translate(1100 425) rotate(-44) scale(1.3)"/>
+    <use href="#lb" transform="translate(1320 395) rotate(10) scale(1.35)"/>
+    <use href="#l" transform="translate(1500 410) rotate(-22) scale(1.25)"/>
+
+    <!-- Lower fringe -->
+    <use href="#l" transform="translate(100 520) rotate(36) scale(1.15)"/>
+    <use href="#lb" transform="translate(280 540) rotate(-28) scale(1.1)"/>
+    <use href="#l" transform="translate(480 510) rotate(14) scale(1.2)"/>
+    <use href="#lb" transform="translate(680 535) rotate(-40) scale(1.05)"/>
+    <use href="#l" transform="translate(900 520) rotate(24) scale(1.15)"/>
+    <use href="#lb" transform="translate(1120 545) rotate(-16) scale(1.1)"/>
+    <use href="#l" transform="translate(1340 515) rotate(32) scale(1.2)"/>
+    <use href="#lb" transform="translate(1520 540) rotate(-34) scale(1.05)"/>
+
+    <use href="#l" transform="translate(180 640) rotate(-20) scale(0.95)"/>
+    <use href="#lb" transform="translate(420 660) rotate(40) scale(0.9)"/>
+    <use href="#l" transform="translate(700 645) rotate(-48) scale(1)"/>
+    <use href="#lb" transform="translate(980 655) rotate(18) scale(0.95)"/>
+    <use href="#l" transform="translate(1280 640) rotate(-26) scale(1)"/>
+    <use href="#lb" transform="translate(1480 665) rotate(30) scale(0.9)"/>
+
+    <!-- Soft scattered motes -->
+    <use href="#l" transform="translate(360 750) rotate(22) scale(0.75)"/>
+    <use href="#lb" transform="translate(640 780) rotate(-36) scale(0.7)"/>
+    <use href="#l" transform="translate(960 760) rotate(14) scale(0.8)"/>
+    <use href="#lb" transform="translate(1200 790) rotate(-20) scale(0.7)"/>
+    <use href="#l" transform="translate(240 820) rotate(48) scale(0.65)"/>
+    <use href="#lb" transform="translate(800 830) rotate(-12) scale(0.7)"/>
+    <use href="#l" transform="translate(1400 810) rotate(26) scale(0.65)"/>
+  </g>
+</svg>

@@ -1,6 +1,7 @@
 // #nobuild: case strips — type · title · problem line; cover optional upgrade.
 import { projects } from "./content/manifest.js";
 import { fetchEntry } from "./md.js";
+import { projectSlug } from "./case.js";
 
 function padIndex(n) {
   return String(n).padStart(2, "0");
@@ -13,16 +14,27 @@ function caseNode(entry, index) {
   if (entry.cover) li.classList.add("has-cover");
   li.style.setProperty("--i", String(index));
 
+  const slug = projectSlug(entry.path);
+  const href = `./case.html#${encodeURIComponent(slug)}`;
+
+  const link = document.createElement("a");
+  link.className = "case-link";
+  link.href = href;
+  link.setAttribute(
+    "aria-label",
+    `${entry.title}. Open case study.`,
+  );
+
   if (entry.cover) {
     const figure = document.createElement("figure");
     figure.className = "case-cover";
     const img = document.createElement("img");
     img.src = entry.cover;
-    img.alt = entry.title;
+    img.alt = "";
     img.loading = "lazy";
     img.decoding = "async";
     figure.appendChild(img);
-    li.appendChild(figure);
+    link.appendChild(figure);
   }
 
   const body = document.createElement("div");
@@ -58,7 +70,8 @@ function caseNode(entry, index) {
   meta.textContent = entry.date || "—";
 
   body.append(indexEl, main, meta);
-  li.appendChild(body);
+  link.appendChild(body);
+  li.appendChild(link);
   return li;
 }
 
@@ -67,9 +80,9 @@ function emptyState() {
     <div class="case-body">
       <span class="case-index">00</span>
       <div class="case-main">
-        <p class="case-type">Not published yet</p>
-        <h3 class="case-title">No cases on the shelf</h3>
-        <p class="case-summary">Write a project in <code>content/projects/</code>, then add its path to <code>content/manifest.js</code>. Empty is honest; fake covers are not.</p>
+        <p class="case-type">Nothing yet</p>
+        <h3 class="case-title">No projects</h3>
+        <p class="case-summary">Add a file in <code>content/projects/</code> and list it in <code>content/manifest.js</code>.</p>
       </div>
       <span class="case-meta">draft</span>
     </div>
@@ -83,7 +96,7 @@ async function renderProjects() {
 
   if (projects.length === 0) {
     grid.innerHTML = emptyState();
-    if (summary) summary.textContent = "00 · empty";
+    if (summary) summary.textContent = "0";
     return;
   }
 
@@ -121,10 +134,159 @@ function wireReveals() {
         }
       }
     },
-    { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
+    { rootMargin: "0px 0px -6% 0px", threshold: 0.08 },
   );
 
   nodes.forEach((n) => io.observe(n));
 }
 
 wireReveals();
+
+/** Key bright plate out → muted leaf shadows + soft refraction twin. */
+function wireCanopyShadows() {
+  const root = document.querySelector(".folio-canopy");
+  const video = document.querySelector(".folio-canopy-video");
+  const canvas = document.querySelector(".folio-canopy-canvas");
+  const refract = document.querySelector(".folio-canopy-refract");
+  if (!root || !video || !canvas || !refract) return;
+
+  const reduced =
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced) {
+    root.hidden = true;
+    return;
+  }
+
+  const ctx = canvas.getContext("2d", { alpha: true });
+  const rctx = refract.getContext("2d", { alpha: true });
+  const work = document.createElement("canvas");
+  const light = document.createElement("canvas");
+  const wctx = work.getContext("2d", {
+    willReadFrequently: true,
+    alpha: true,
+  });
+  const lctx = light.getContext("2d", {
+    willReadFrequently: true,
+    alpha: true,
+  });
+  if (!ctx || !rctx || !wctx || !lctx) return;
+
+  // Dark leaf cast + cool refraction fringe
+  const SH_R = 0;
+  const SH_G = 0;
+  const SH_B = 0;
+  const LT_R = 186;
+  const LT_G = 202;
+  const LT_B = 218;
+  const MAX_A = 165;
+  const LIGHT_A = 0.45;
+  const HI_FRAC = 0.12;
+  const LO_FRAC = 0.72;
+
+  function drawCover(destCtx, src, dw, dh) {
+    const sw = src.videoWidth || src.width;
+    const sh = src.videoHeight || src.height;
+    if (!sw || !sh) return;
+    const scale = Math.max(dw / sw, dh / sh) * 1.04;
+    const tw = sw * scale;
+    const th = sh * scale;
+    destCtx.drawImage(src, (dw - tw) * 0.5, (dh - th) * 0.3, tw, th);
+  }
+
+  function sizeCanvases() {
+    const w = root.clientWidth || window.innerWidth;
+    const h = root.clientHeight || window.innerHeight;
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    const cw = Math.max(1, Math.floor(w * dpr));
+    const ch = Math.max(1, Math.floor(h * dpr));
+    canvas.width = cw;
+    canvas.height = ch;
+    refract.width = cw;
+    refract.height = ch;
+    work.width = Math.max(1, Math.floor(w * 0.4));
+    work.height = Math.max(1, Math.floor(h * 0.4));
+    light.width = work.width;
+    light.height = work.height;
+  }
+
+  function keyFrame() {
+    if (video.readyState < 2 || work.width < 2) return;
+    if (!video.videoWidth || !video.videoHeight) return;
+
+    wctx.clearRect(0, 0, work.width, work.height);
+    drawCover(wctx, video, work.width, work.height);
+    let img;
+    try {
+      img = wctx.getImageData(0, 0, work.width, work.height);
+    } catch {
+      return;
+    }
+
+    const d = img.data;
+    let maxY = 0;
+    let minY = 255;
+    for (let i = 0; i < d.length; i += 4) {
+      const y = 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
+      if (y > maxY) maxY = y;
+      if (y < minY) minY = y;
+    }
+
+    const range = Math.max(1, maxY - minY);
+    const HI = maxY - range * HI_FRAC;
+    const LO = maxY - range * LO_FRAC;
+    const span = Math.max(1, HI - LO);
+
+    const lightImg = lctx.createImageData(work.width, work.height);
+    const ld = lightImg.data;
+
+    for (let i = 0; i < d.length; i += 4) {
+      const y = 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
+      let a = 0;
+      if (y <= LO) a = MAX_A;
+      else if (y < HI) a = Math.round(MAX_A * (1 - (y - LO) / span));
+
+      d[i] = SH_R;
+      d[i + 1] = SH_G;
+      d[i + 2] = SH_B;
+      d[i + 3] = a;
+
+      ld[i] = LT_R;
+      ld[i + 1] = LT_G;
+      ld[i + 2] = LT_B;
+      ld[i + 3] = Math.round(a * LIGHT_A);
+    }
+    wctx.putImageData(img, 0, 0);
+    lctx.putImageData(lightImg, 0, 0);
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = "high";
+    ctx.drawImage(work, 0, 0, canvas.width, canvas.height);
+
+    rctx.clearRect(0, 0, refract.width, refract.height);
+    rctx.imageSmoothingEnabled = true;
+    rctx.imageSmoothingQuality = "high";
+    rctx.drawImage(light, 0, 0, refract.width, refract.height);
+  }
+
+  let raf = 0;
+  function loop() {
+    keyFrame();
+    raf = requestAnimationFrame(loop);
+  }
+
+  sizeCanvases();
+  window.addEventListener("resize", sizeCanvases, { passive: true });
+
+  const start = () => {
+    video.playbackRate = 1;
+    video.play().catch(() => {});
+    if (!raf) loop();
+  };
+
+  if (video.readyState >= 2) start();
+  else video.addEventListener("loadeddata", start, { once: true });
+}
+
+wireCanopyShadows();

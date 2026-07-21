@@ -3,21 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anas — working software, built by directing AI</title>
-  <meta name="description" content="Anas builds working software — CRMs, scrapers, small business tools — by directing AI and thinking clearly about the problem.">
+  <title>Anas — software with AI</title>
+  <meta name="description" content="Anas builds software with AI. CRMs, scrapers, and tools for small businesses.">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="icon" href="./favicon.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="./apple-touch-icon.png">
   <meta name="theme-color" content="#1a1e23">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=8">
-  <!-- #nobuild: Nordic grey-blue + open hairlines + serif display; CSS motion only. -->
-  <script type="module" src="./portfolio.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css?v=46">
+  <!-- #nobuild: Fraunces + Outfit; canopy shadows keyed on canvas. -->
+  <script type="module" src="./portfolio.js?v=53"></script>
 </head>
 <body class="portfolio">
   <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="folio-canopy" aria-hidden="true">
+    <video
+      class="folio-canopy-video"
+      src="./leaves-1.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    ></video>
+    <canvas class="folio-canopy-canvas"></canvas>
+    <canvas class="folio-canopy-refract"></canvas>
+  </div>
 
   <main id="main" class="folio">
     <header class="folio-top">
@@ -25,31 +39,42 @@
     </header>
 
     <header class="intro">
-      <p class="manifesto">Clarity over spectacle.</p>
-      <h1 class="hero">Working software, built by directing AI.</h1>
-      <p class="lede">
-        CRMs, scrapers, small business tools — mostly by directing AI and thinking
-        clearly about the problem. Proof below: how I frame a problem, make trade-offs, and ship.
-      </p>
+      <h1 class="hero">I build software with AI.</h1>
     </header>
 
     <section class="work" id="work" aria-labelledby="work-title">
       <div class="section-head">
-        <h2 id="work-title">Selected work</h2>
+        <h2 id="work-title">Work</h2>
         <p class="muted" id="work-summary">Loading…</p>
       </div>
 
-      <ol id="project-grid" class="cases" aria-label="Project archive">
+      <ol id="project-grid" class="cases" aria-label="Projects">
         <li class="case is-draft empty"><p class="muted">Loading…</p></li>
       </ol>
     </section>
 
     <footer class="contact reveal" id="contact">
-      <p class="contact-lead">Want something built, or want to talk shop?</p>
       <a class="mail hit" href="mailto:anaselbtioui@gmail.com">anaselbtioui@gmail.com</a>
+      <nav class="socials" aria-label="Social">
+        <a
+          class="social hit"
+          href="https://github.com/anaselbtioui"
+          target="_blank"
+          rel="noopener noreferrer"
+        >GitHub</a>
+        <a
+          class="social hit"
+          href="https://www.linkedin.com/in/anas-elbtioui"
+          target="_blank"
+          rel="noopener noreferrer"
+        >LinkedIn</a>
+      </nav>
       <p class="offclock">
-        Off the clock: an n=1 experiment on coherence.
-        <a href="./personal/">Enter the personal space →</a>
+        <a href="./personal/">Personal →</a>
+      </p>
+      <p class="folio-credit">
+        Design inspiration:
+        <a href="https://lefos.com" target="_blank" rel="noopener noreferrer">Lefos</a>
       </p>
     </footer>
   </main>
