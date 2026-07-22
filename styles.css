@@ -56,6 +56,16 @@ html:has(body.portfolio) {
   scroll-padding-top: 1.25rem;
 }
 
+/* Lenis — wheel inertia; keep native feel under reduced-motion */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+html.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
 /* Portfolio skin: Nordic grey-blue + grain; dark blue accent used sparingly. */
 body.portfolio {
   --bg: #1a1e23;
@@ -78,8 +88,8 @@ body.portfolio {
   --line-strong: rgba(230, 233, 237, 0.055);
   --rule-inset: 0;
   --rule-gap: 0.65rem;
-  --dock-glow: rgba(210, 218, 228, 0.09);
-  --dock-glow-hot: rgba(230, 236, 242, 0.14);
+  --dock-glow: rgba(255, 232, 200, 0.11);
+  --dock-glow-hot: rgba(255, 244, 220, 0.26);
   --shadow-1: 0 1px 0 rgba(255, 255, 255, 0.04);
   --shadow-2: 0 16px 40px rgba(0, 0, 0, 0.32);
   --img-outline: rgba(255, 255, 255, 0.1);
@@ -164,18 +174,18 @@ body.portfolio *::-webkit-scrollbar-corner {
   background: transparent;
 }
 
-/* Film grain — over blended canopy + type */
+/* Paper texture — tiled texture.png over canopy + type */
 body.portfolio::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 5;
-  opacity: 0.11;
+  opacity: 0.22;
   mix-blend-mode: soft-light;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-image: url("./texture.png");
   background-repeat: repeat;
-  background-size: 140px 140px;
+  background-size: 160px 160px;
 }
 
 /* Canopy above folio — multiply so leaf casts darken type too */
@@ -200,7 +210,7 @@ body.portfolio::before {
   inset: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.48;
+  opacity: 0.72;
   mix-blend-mode: multiply;
 }
 
@@ -210,7 +220,7 @@ body.portfolio::before {
   inset: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.22;
+  opacity: 0.3;
   mix-blend-mode: soft-light;
   /* Optical offset toward corner light */
   transform: translate(0.45%, -0.35%);
@@ -635,6 +645,307 @@ body.portfolio .kicker {
   text-wrap: balance;
 }
 
+/* Shared warm lamp + grit — hover lit; ambient stays soft always-on */
+.has-lamp {
+  position: relative;
+  isolation: isolate;
+}
+
+.lamp,
+.lamp-motes {
+  position: absolute;
+  left: var(--lamp-x, 50%);
+  top: var(--lamp-y, 50%);
+  width: min(16rem, 110%);
+  height: min(9rem, 160%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition-property: opacity, filter;
+  transition-duration: var(--dur-move);
+  transition-timing-function: var(--ease);
+}
+
+.lamp {
+  z-index: 0;
+  opacity: 0;
+  filter: blur(20px);
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(255, 248, 230, 0.55) 0%,
+      rgba(255, 236, 200, 0.22) 22%,
+      transparent 58%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      var(--dock-glow-hot) 0%,
+      var(--dock-glow) 42%,
+      transparent 70%
+    );
+}
+
+.lamp-motes {
+  z-index: 1;
+  opacity: 0;
+  background-image: url("./texture.png"), url("./texture.png");
+  background-repeat: repeat, repeat;
+  background-size: 96px 96px, 168px 168px;
+  background-position: 0 0, 28px 36px;
+  mix-blend-mode: multiply;
+  filter: invert(1) contrast(2.1) brightness(0.42);
+  -webkit-mask-image: radial-gradient(
+    circle at 50% 50%,
+    #000 0%,
+    #000 18%,
+    rgba(0, 0, 0, 0.6) 40%,
+    transparent 64%
+  );
+  mask-image: radial-gradient(
+    circle at 50% 50%,
+    #000 0%,
+    #000 18%,
+    rgba(0, 0, 0, 0.6) 40%,
+    transparent 64%
+  );
+  animation: lamp-motes 17s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+@keyframes lamp-motes {
+  0% {
+    background-position: 0 0, 28px 36px;
+  }
+  28% {
+    background-position: 11px -7px, 16px 48px;
+  }
+  55% {
+    background-position: -9px 10px, 42px 18px;
+  }
+  78% {
+    background-position: 7px 5px, 22px -6px;
+  }
+  100% {
+    background-position: 0 0, 28px 36px;
+  }
+}
+
+.has-lamp:is(:hover, :focus-within) .lamp:not(.lamp--ambient) {
+  opacity: 0.62;
+  filter: blur(14px);
+}
+
+.has-lamp:is(:hover, :focus-within) .lamp-motes:not(.lamp-motes--ambient) {
+  opacity: 0.74;
+  animation-play-state: running;
+  animation-duration: 11s;
+}
+
+/* Ambient — dock bulb always soft, brightens on hover */
+.lamp--ambient {
+  opacity: 0.34;
+  filter: blur(22px);
+}
+
+.lamp-motes--ambient {
+  opacity: 0.58;
+  animation-play-state: running;
+}
+
+.has-lamp:is(:hover, :focus-within) .lamp--ambient {
+  opacity: 0.52;
+  filter: blur(18px);
+}
+
+.has-lamp:is(:hover, :focus-within) .lamp-motes--ambient {
+  opacity: 0.78;
+}
+
+/* Dock pool sits under the nav — fixed, not cursor-tracked */
+.lamp--dock,
+.lamp-motes--dock {
+  left: 50%;
+  top: 100%;
+  width: min(21rem, 72vw);
+  height: min(21rem, 72vw);
+  transform: translate(-50%, -28%);
+  transition-property: opacity, filter, transform;
+}
+
+.has-lamp:is(:hover, :focus-within) .lamp--dock,
+.has-lamp:is(:hover, :focus-within) .lamp-motes--dock {
+  transform: translate(-50%, -26%) scale(1.04);
+}
+
+/* Case zone — paper always on; spotlight lifts type + reveals dark fiber */
+.zone-paper {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+  background-image: url("./texture.png");
+  background-repeat: repeat;
+  background-size: 140px 140px;
+  opacity: 0.28;
+  mix-blend-mode: soft-light;
+}
+
+.lamp-clip {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  overflow: hidden;
+  pointer-events: none;
+  /* Soft feather at zone rim — no hard knife-edge chop */
+  -webkit-mask-image:
+    linear-gradient(
+      to right,
+      transparent 0,
+      #000 1.5rem,
+      #000 calc(100% - 1.5rem),
+      transparent 100%
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 0,
+      #000 1.35rem,
+      #000 calc(100% - 1.35rem),
+      transparent 100%
+    );
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(
+      to right,
+      transparent 0,
+      #000 1.5rem,
+      #000 calc(100% - 1.5rem),
+      transparent 100%
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 0,
+      #000 1.35rem,
+      #000 calc(100% - 1.35rem),
+      transparent 100%
+    );
+  mask-composite: intersect;
+}
+
+.case.has-lamp .lamp-clip .lamp,
+.case.has-lamp .lamp-clip .lamp-lift,
+.case.has-lamp .lamp-clip .lamp-fiber,
+.case.has-lamp .lamp-clip .lamp-motes {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transform: none;
+  filter: none;
+  --spot-r: min(16rem, 52vw);
+}
+
+/* Warm pool */
+.case.has-lamp .lamp-clip .lamp {
+  background: radial-gradient(
+    circle var(--spot-r) at var(--lamp-x, 50%) var(--lamp-y, 50%),
+    rgba(255, 248, 230, 0.32) 0%,
+    rgba(255, 236, 200, 0.12) 38%,
+    transparent 78%
+  );
+  mix-blend-mode: soft-light;
+}
+
+/* Lift glyphs toward paper-white under the beam */
+.case.has-lamp .lamp-clip .lamp-lift {
+  opacity: 0;
+  background: radial-gradient(
+    circle var(--spot-r) at var(--lamp-x, 50%) var(--lamp-y, 50%),
+    rgba(255, 252, 245, 0.4) 0%,
+    rgba(255, 248, 235, 0.14) 34%,
+    transparent 70%
+  );
+  mix-blend-mode: screen;
+  transition-property: opacity;
+  transition-duration: var(--dur-move);
+  transition-timing-function: var(--ease);
+}
+
+/* Darker carton fiber — shadow cast where light hits */
+.case.has-lamp .lamp-clip .lamp-fiber {
+  opacity: 0;
+  background-image: url("./texture.png");
+  background-repeat: repeat;
+  background-size: 110px 110px;
+  mix-blend-mode: multiply;
+  filter: contrast(2) brightness(0.32) saturate(0.7);
+  -webkit-mask-image: radial-gradient(
+    circle var(--spot-r) at var(--lamp-x, 50%) var(--lamp-y, 50%),
+    #000 0%,
+    #000 28%,
+    rgba(0, 0, 0, 0.7) 50%,
+    transparent 74%
+  );
+  mask-image: radial-gradient(
+    circle var(--spot-r) at var(--lamp-x, 50%) var(--lamp-y, 50%),
+    #000 0%,
+    #000 28%,
+    rgba(0, 0, 0, 0.7) 50%,
+    transparent 74%
+  );
+  transition-property: opacity;
+  transition-duration: var(--dur-move);
+  transition-timing-function: var(--ease);
+}
+
+.case.has-lamp .lamp-clip .lamp-motes {
+  background-image: url("./texture.png"), url("./texture.png");
+  background-repeat: repeat, repeat;
+  background-size: 88px 88px, 150px 150px;
+  background-position: 0 0, 28px 36px;
+  mix-blend-mode: multiply;
+  filter: invert(1) contrast(2.2) brightness(0.38);
+  -webkit-mask-image: radial-gradient(
+    circle var(--spot-r) at var(--lamp-x, 50%) var(--lamp-y, 50%),
+    #000 0%,
+    #000 22%,
+    rgba(0, 0, 0, 0.55) 48%,
+    transparent 74%
+  );
+  mask-image: radial-gradient(
+    circle var(--spot-r) at var(--lamp-x, 50%) var(--lamp-y, 50%),
+    #000 0%,
+    #000 22%,
+    rgba(0, 0, 0, 0.55) 48%,
+    transparent 74%
+  );
+}
+
+.case.has-lamp:is(:hover, :focus-within) .lamp-clip .lamp {
+  opacity: 0.38;
+}
+
+.case.has-lamp:is(:hover, :focus-within) .lamp-clip .lamp-lift {
+  opacity: 0.32;
+}
+
+.case.has-lamp:is(:hover, :focus-within) .lamp-clip .lamp-fiber {
+  opacity: 0.82;
+}
+
+.case.has-lamp:is(:hover, :focus-within) .lamp-clip .lamp-motes {
+  opacity: 0.55;
+}
+
+.case.has-lamp .case-link {
+  position: relative;
+  z-index: 1;
+}
+
+.case.empty .zone-paper,
+.case.empty .lamp-clip {
+  display: none;
+}
+
 /* Dock — full-bleed hairline + soft light from below dock */
 .folio-dock-wrap {
   position: fixed;
@@ -646,40 +957,9 @@ body.portfolio .kicker {
   justify-content: center;
   pointer-events: none;
   overflow: visible;
+  isolation: isolate;
   animation: dock-rise var(--dur-scroll) var(--ease-out) both;
   animation-delay: 120ms;
-}
-
-/* Light source under the dock — blooms down from underside, not clipped to dock height */
-.folio-dock-wrap::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 100%;
-  bottom: auto;
-  width: min(44rem, 120vw);
-  height: 11rem;
-  transform: translate(-50%, -12%);
-  background: radial-gradient(
-    ellipse 72% 58% at 50% 0%,
-    var(--dock-glow-hot) 0%,
-    var(--dock-glow) 32%,
-    transparent 72%
-  );
-  opacity: 0.28;
-  filter: blur(14px);
-  pointer-events: none;
-  z-index: 0;
-  transition-property: opacity, filter, transform;
-  transition-duration: var(--dur-move);
-  transition-timing-function: var(--ease);
-}
-
-.folio-dock-wrap:has(.folio-dock:hover)::after,
-.folio-dock-wrap:has(.folio-dock:focus-within)::after {
-  opacity: 0.55;
-  filter: blur(11px);
-  transform: translate(-50%, -8%) scaleY(1.12);
 }
 
 .folio-dock {
@@ -964,9 +1244,6 @@ body.portfolio .section-head h2 {
   border: none;
   animation: rise-in var(--dur-scroll) var(--ease-out) both;
   animation-delay: calc(var(--i, 0) * 90ms + 260ms);
-  transition-property: background-color;
-  transition-duration: var(--dur-read);
-  transition-timing-function: var(--ease);
 }
 
 .case-link {
@@ -1010,29 +1287,6 @@ body.portfolio .section-head h2 {
   }
 }
 
-/* Accent tick — short vertical; never meets the hairline */
-.case::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 32%;
-  bottom: 32%;
-  width: 0;
-  background: var(--accent);
-  transition-property: width;
-  transition-duration: var(--dur-read);
-  transition-timing-function: var(--ease);
-  z-index: 1;
-}
-
-.case:hover {
-  background-color: rgba(255, 255, 255, 0.02);
-}
-
-.case:hover::before {
-  width: 1px;
-}
-
 .case-body {
   display: grid;
   grid-template-columns: 3.75rem minmax(0, 1fr);
@@ -1041,9 +1295,6 @@ body.portfolio .section-head h2 {
   align-items: start;
   padding: clamp(1.5rem, 3vw, 2.35rem) 0;
   min-height: 40px;
-  transition-property: transform;
-  transition-duration: var(--dur-read);
-  transition-timing-function: var(--ease);
 }
 
 .case-meta {
@@ -1058,10 +1309,6 @@ body.portfolio .section-head h2 {
   font-variant-numeric: tabular-nums;
 }
 
-.case:hover .case-body {
-  transform: translateX(4px);
-}
-
 .case-index {
   font-family: var(--font-mono);
   font-size: 0.9rem;
@@ -1069,13 +1316,6 @@ body.portfolio .section-head h2 {
   letter-spacing: 0.04em;
   font-variant-numeric: tabular-nums;
   padding-top: 0.55rem;
-  transition-property: transform, color;
-  transition-duration: var(--dur-read);
-  transition-timing-function: var(--ease);
-}
-
-.case:hover .case-index {
-  transform: translateX(-2px);
 }
 
 .case-main {
@@ -1100,13 +1340,6 @@ body.portfolio .section-head h2 {
   line-height: 1.12;
   margin: 0;
   text-wrap: balance;
-  transition-property: color;
-  transition-duration: var(--dur-read);
-  transition-timing-function: var(--ease);
-}
-
-.case:hover .case-title {
-  color: var(--accent-mist);
 }
 
 .case-summary {
@@ -1119,9 +1352,11 @@ body.portfolio .section-head h2 {
 
 .case-cover {
   margin: 0;
-  aspect-ratio: 21 / 9;
+  width: 100%;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
   background: var(--surface);
+  align-self: start;
 }
 
 .case-cover img {
@@ -1131,43 +1366,52 @@ body.portfolio .section-head h2 {
   display: block;
   outline: 1px solid var(--img-outline);
   outline-offset: -1px;
-  transition-property: transform;
-  transition-duration: var(--dur-move);
-  transition-timing-function: var(--ease);
+  filter: grayscale(0.35) contrast(1.02);
+  opacity: 0.82;
 }
 
-.case:hover .case-cover img {
-  transform: scale(1.03);
-}
-
+/* Side plate — not a banner card */
 .case.has-cover .case-body {
-  padding-top: var(--space-2);
+  grid-template-columns: 3.75rem minmax(0, 1fr) clamp(5.25rem, 22%, 7.75rem);
+  grid-template-rows: auto auto;
+  padding-top: clamp(1.5rem, 3vw, 2.35rem);
+}
+
+.case.has-cover .case-cover {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+}
+
+.case.has-cover .case-meta {
+  grid-column: 2;
+}
+
+@media (max-width: 640px) {
+  .case.has-cover .case-body {
+    grid-template-columns: 3rem minmax(0, 1fr);
+  }
+
+  .case.has-cover .case-cover {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    aspect-ratio: 16 / 10;
+    max-width: 12rem;
+    margin-top: var(--space-1);
+  }
 }
 
 @media (min-width: 860px) {
   .case.featured {
     grid-column: 1 / -1;
   }
+
+  .case.featured.has-cover .case-body {
+    grid-template-columns: 3.75rem minmax(0, 1fr) clamp(7rem, 16%, 11rem);
+  }
 }
 
 .case.is-draft {
   animation: none;
-}
-
-.case.empty:hover {
-  background-color: transparent;
-}
-
-.case.empty:hover::before {
-  width: 0;
-}
-
-.case.empty:hover .case-body {
-  transform: none;
-}
-
-.case.empty:hover .case-title {
-  color: var(--fg);
 }
 
 /* ---- dedicated case study page ---------------------------------------- */
@@ -1483,10 +1727,6 @@ body.portfolio .contact .offclock {
     text-align: left;
     padding-top: 0;
   }
-
-  .case:hover .case-body {
-    transform: translateX(3px);
-  }
 }
 
 @media (max-width: 540px) {
@@ -1505,6 +1745,7 @@ body.portfolio .contact .offclock {
 
   body.portfolio .folio-top,
   body.portfolio .folio-dock-wrap,
+  body.portfolio .lamp-motes,
   body.portfolio .intro > *,
   body.portfolio .case {
     animation: none !important;
@@ -1514,11 +1755,24 @@ body.portfolio .contact .offclock {
     display: none;
   }
 
-  body.portfolio .folio-dock-wrap::after {
+  body.portfolio .lamp--ambient {
     transition: none;
     filter: blur(14px);
     opacity: 0.28;
     transform: translate(-50%, -12%);
+  }
+
+  body.portfolio .lamp-motes--ambient {
+    opacity: 0.4;
+  }
+
+  body.portfolio .has-lamp:is(:hover, :focus-within) .lamp:not(.lamp--ambient) {
+    opacity: 0.28;
+    filter: blur(14px);
+  }
+
+  body.portfolio .has-lamp:is(:hover, :focus-within) .lamp-motes:not(.lamp-motes--ambient) {
+    opacity: 0.4;
   }
 
   body.portfolio .contact.reveal:not(.is-in) > * {
