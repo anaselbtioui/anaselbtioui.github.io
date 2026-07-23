@@ -1,6 +1,7 @@
 // #nobuild: dedicated case study page — ?p=slug from manifest path.
 import { projects } from "./content/manifest.js";
 import { fetchEntry } from "./md.js";
+import { wireFolioRail } from "./folio-rail.js";
 
 export function projectSlug(path) {
   const file = path.split("/").pop() || "";
@@ -123,13 +124,16 @@ async function renderCase() {
       fill(pager.querySelector(".case-pager-link.prev:not(.is-empty)"), prev);
       fill(pager.querySelector(".case-pager-link.next:not(.is-empty)"), next);
     }
+    window.dispatchEvent(new Event("resize"));
   } catch (err) {
     host.removeAttribute("aria-busy");
     host.innerHTML = `<p class="muted">Could not load case study. <a href="./#work">Back to work</a>.</p>`;
     console.error(err);
+    window.dispatchEvent(new Event("resize"));
   }
 }
 
 if (document.getElementById("case-article")) {
+  wireFolioRail();
   renderCase();
 }

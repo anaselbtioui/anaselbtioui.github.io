@@ -2,6 +2,8 @@
 import { projects } from "./content/manifest.js";
 import { fetchEntry } from "./md.js";
 import { projectSlug } from "./case.js";
+import { wireFolioRail } from "./folio-rail.js";
+import { wireCanopyShadows } from "./canopy.js?v=13";
 
 function padIndex(n) {
   return String(n).padStart(2, "0");
@@ -135,7 +137,7 @@ async function renderProjects() {
   entries.forEach((entry, i) => grid.appendChild(caseNode(entry, i)));
   if (summary) summary.textContent = padIndex(entries.length);
   wireZoneLamps(grid);
-  refreshFolioSnaps();
+  window.dispatchEvent(new Event("resize"));
 }
 
 function wireZoneLamps(root) {
@@ -173,43 +175,18 @@ function wireZoneLamps(root) {
 
 renderProjects();
 
-/** Controlled scroll: Lenis + snap to intro / cases / contact. */
+/** Mild Lenis inertia — no snap (snap fought sections). */
 let folioLenis = null;
-let folioSnap = null;
-const folioSnapRemovers = [];
 
 const folioScrollEase = (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t));
 
-function clearFolioSnaps() {
-  while (folioSnapRemovers.length) {
-    const remove = folioSnapRemovers.pop();
-    try {
-      remove();
-    } catch {
-      /* ignore */
-    }
-  }
-}
-
-function refreshFolioSnaps() {
-  if (!folioSnap) return;
-  clearFolioSnaps();
-
-  const nodes = [
-    document.querySelector(".intro"),
-    document.querySelector(".work .section-head"),
-    ...document.querySelectorAll(".case.has-lamp"),
-    document.querySelector("#contact"),
-  ].filter(Boolean);
-
-  for (const el of nodes) {
-    folioSnapRemovers.push(
-      folioSnap.addElement(el, { align: ["start"] }),
-    );
-  }
-}
-
 async function wireSmoothScroll() {
+  const railApi = {
+    getY: () => window.scrollY || 0,
+    scrollTo: (y) => window.scrollTo(0, y),
+  };
+  const rail = wireFolioRail(railApi);
+
   if (
     !document.body.classList.contains("portfolio") ||
     window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -218,24 +195,21 @@ async function wireSmoothScroll() {
   }
 
   try {
-    const [{ default: Lenis }, { default: Snap }] = await Promise.all([
-      import("https://cdn.jsdelivr.net/npm/lenis@1.3.4/+esm"),
-      import("https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis-snap.mjs"),
-    ]);
+    const { default: Lenis } = await import(
+      "https://cdn.jsdelivr.net/npm/lenis@1.3.4/+esm"
+    );
 
     folioLenis = new Lenis({
-      duration: 1.2,
+      duration: 1.05,
       easing: folioScrollEase,
       smoothWheel: true,
       touchMultiplier: 1.35,
     });
 
-    folioSnap = new Snap(folioLenis, {
-      type: "mandatory",
-      duration: 1.2,
-      easing: folioScrollEase,
-      debounce: 60,
-      velocityThreshold: 0.15,
+    railApi.getY = () => folioLenis.scroll;
+    railApi.scrollTo = (y) => folioLenis.scrollTo(y, { immediate: true });
+    folioLenis.on("scroll", () => {
+      rail?.update();
     });
 
     const raf = (time) => {
@@ -243,8 +217,7 @@ async function wireSmoothScroll() {
       requestAnimationFrame(raf);
     };
     requestAnimationFrame(raf);
-
-    refreshFolioSnaps();
+    rail?.update();
 
     document.querySelectorAll('.folio-dock a[href^="#"]').forEach((a) => {
       a.addEventListener("click", (e) => {
@@ -255,14 +228,13 @@ async function wireSmoothScroll() {
         e.preventDefault();
         folioLenis.scrollTo(target, {
           offset: -20,
-          duration: 1.25,
+          duration: 1.1,
           easing: folioScrollEase,
-          lock: true,
         });
       });
     });
   } catch {
-    /* keep CSS scroll-behavior fallback */
+    /* keep CSS scroll-behavior fallback + rail */
   }
 }
 
@@ -297,152 +269,5 @@ function wireReveals() {
 }
 
 wireReveals();
-
-/** Key bright plate out → muted leaf shadows + soft refraction twin. */
-function wireCanopyShadows() {
-  const root = document.querySelector(".folio-canopy");
-  const video = document.querySelector(".folio-canopy-video");
-  const canvas = document.querySelector(".folio-canopy-canvas");
-  const refract = document.querySelector(".folio-canopy-refract");
-  if (!root || !video || !canvas || !refract) return;
-
-  const reduced =
-    window.matchMedia &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reduced) {
-    root.hidden = true;
-    return;
-  }
-
-  const ctx = canvas.getContext("2d", { alpha: true });
-  const rctx = refract.getContext("2d", { alpha: true });
-  const work = document.createElement("canvas");
-  const light = document.createElement("canvas");
-  const wctx = work.getContext("2d", {
-    willReadFrequently: true,
-    alpha: true,
-  });
-  const lctx = light.getContext("2d", {
-    willReadFrequently: true,
-    alpha: true,
-  });
-  if (!ctx || !rctx || !wctx || !lctx) return;
-
-  // Dark leaf cast + cool refraction fringe
-  const SH_R = 0;
-  const SH_G = 0;
-  const SH_B = 0;
-  const LT_R = 186;
-  const LT_G = 202;
-  const LT_B = 218;
-  const MAX_A = 230;
-  const LIGHT_A = 0.52;
-  const HI_FRAC = 0.08;
-  const LO_FRAC = 0.82;
-
-  function drawCover(destCtx, src, dw, dh) {
-    const sw = src.videoWidth || src.width;
-    const sh = src.videoHeight || src.height;
-    if (!sw || !sh) return;
-    const scale = Math.max(dw / sw, dh / sh) * 1.04;
-    const tw = sw * scale;
-    const th = sh * scale;
-    destCtx.drawImage(src, (dw - tw) * 0.5, (dh - th) * 0.3, tw, th);
-  }
-
-  function sizeCanvases() {
-    const w = root.clientWidth || window.innerWidth;
-    const h = root.clientHeight || window.innerHeight;
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-    const cw = Math.max(1, Math.floor(w * dpr));
-    const ch = Math.max(1, Math.floor(h * dpr));
-    canvas.width = cw;
-    canvas.height = ch;
-    refract.width = cw;
-    refract.height = ch;
-    work.width = Math.max(1, Math.floor(w * 0.4));
-    work.height = Math.max(1, Math.floor(h * 0.4));
-    light.width = work.width;
-    light.height = work.height;
-  }
-
-  function keyFrame() {
-    if (video.readyState < 2 || work.width < 2) return;
-    if (!video.videoWidth || !video.videoHeight) return;
-
-    wctx.clearRect(0, 0, work.width, work.height);
-    drawCover(wctx, video, work.width, work.height);
-    let img;
-    try {
-      img = wctx.getImageData(0, 0, work.width, work.height);
-    } catch {
-      return;
-    }
-
-    const d = img.data;
-    let maxY = 0;
-    let minY = 255;
-    for (let i = 0; i < d.length; i += 4) {
-      const y = 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
-      if (y > maxY) maxY = y;
-      if (y < minY) minY = y;
-    }
-
-    const range = Math.max(1, maxY - minY);
-    const HI = maxY - range * HI_FRAC;
-    const LO = maxY - range * LO_FRAC;
-    const span = Math.max(1, HI - LO);
-
-    const lightImg = lctx.createImageData(work.width, work.height);
-    const ld = lightImg.data;
-
-    for (let i = 0; i < d.length; i += 4) {
-      const y = 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
-      let a = 0;
-      if (y <= LO) a = MAX_A;
-      else if (y < HI) a = Math.round(MAX_A * (1 - (y - LO) / span));
-
-      d[i] = SH_R;
-      d[i + 1] = SH_G;
-      d[i + 2] = SH_B;
-      d[i + 3] = a;
-
-      ld[i] = LT_R;
-      ld[i + 1] = LT_G;
-      ld[i + 2] = LT_B;
-      ld[i + 3] = Math.round(a * LIGHT_A);
-    }
-    wctx.putImageData(img, 0, 0);
-    lctx.putImageData(lightImg, 0, 0);
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = "high";
-    ctx.drawImage(work, 0, 0, canvas.width, canvas.height);
-
-    rctx.clearRect(0, 0, refract.width, refract.height);
-    rctx.imageSmoothingEnabled = true;
-    rctx.imageSmoothingQuality = "high";
-    rctx.drawImage(light, 0, 0, refract.width, refract.height);
-  }
-
-  let raf = 0;
-  function loop() {
-    keyFrame();
-    raf = requestAnimationFrame(loop);
-  }
-
-  sizeCanvases();
-  window.addEventListener("resize", sizeCanvases, { passive: true });
-
-  const start = () => {
-    video.playbackRate = 1;
-    video.play().catch(() => {});
-    if (!raf) loop();
-  };
-
-  if (video.readyState >= 2) start();
-  else video.addEventListener("loadeddata", start, { once: true });
-}
 
 wireCanopyShadows();

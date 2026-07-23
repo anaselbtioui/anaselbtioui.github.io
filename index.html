@@ -12,32 +12,28 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=66">
-  <!-- #nobuild: Fraunces + Outfit; canopy shadows keyed on canvas. -->
-  <script type="module" src="./portfolio.js?v=66"></script>
+  <link rel="stylesheet" href="./styles.css?v=85">
+  <!-- #nobuild: Fraunces + Outfit; Lefos-style soft canopy multiply. -->
+  <script type="module" src="./portfolio.js?v=86"></script>
 </head>
 <body class="portfolio">
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="folio-canopy" aria-hidden="true">
+  <div class="folio-canopy" aria-hidden="true" data-fx="on">
     <video
       class="folio-canopy-video"
-      src="./leaves-1.mp4"
-      autoplay
       muted
       loop
       playsinline
+      autoplay
       preload="auto"
-    ></video>
-    <canvas class="folio-canopy-canvas"></canvas>
-    <canvas class="folio-canopy-refract"></canvas>
+    >
+      <source src="./shadows-loop.webm" type="video/webm">
+      <source src="./shadows-loop.mp4" type="video/mp4">
+    </video>
   </div>
 
   <main id="main" class="folio">
-    <header class="folio-top">
-      <p class="kicker">Anas</p>
-    </header>
-
     <header class="intro">
       <h1 class="hero">I build software with AI.</h1>
     </header>
@@ -83,9 +79,18 @@
     <span class="lamp lamp--ambient lamp--dock" aria-hidden="true"></span>
     <span class="lamp-motes lamp-motes--ambient lamp-motes--dock" aria-hidden="true"></span>
     <nav class="folio-dock" aria-label="Site">
+      <a class="folio-dock-brand" href="./#main">Anas</a>
       <a href="#work">Works</a>
       <a href="#contact">Contact</a>
       <a href="./personal/">Personal</a>
+      <button
+        type="button"
+        class="folio-dock-fx"
+        data-folio-fx
+        aria-pressed="true"
+        aria-label="Toggle leaf shadows"
+        title="Shadows"
+      >FX</button>
     </nav>
   </div>
 </body>

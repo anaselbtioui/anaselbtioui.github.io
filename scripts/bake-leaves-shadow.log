@@ -1,0 +1,121 @@
+=== Tools ===
+/usr/bin/ffmpeg
+/usr/bin/ffprobe
+/home/anas/.nvm/versions/node/v24.16.0/bin/node
+ffmpeg version 8.0.1-3ubuntu2 Copyright (c) 2000-2025 the FFmpeg developers
+v24.16.0
+
+=== Input: /home/anas/_code/_personal/personal_portfolio/leaves.mp4 ===
+codec_name=h264
+width=360
+height=640
+r_frame_rate=30000/1001
+duration=11.044367
+size=3179963
+
+=== ffmpeg VP9 → /home/anas/_code/_personal/personal_portfolio/leaves-shadow.webm ===
+ffmpeg -y -i "/home/anas/_code/_personal/personal_portfolio/leaves.mp4" -vf "scale='if(gt(iw\,ih)\,720\,-2)':'if(gt(iw\,ih)\,-2\,720)':flags=lanczos,fps=14,format=rgba,geq=r='0':g='0':b='0':a='if(lte((0.2126*r(X,Y)+0.7152*g(X,Y)+0.0722*b(X,Y)),40),255,if(lt((0.2126*r(X,Y)+0.7152*g(X,Y)+0.0722*b(X,Y)),200),255*(200-(0.2126*r(X,Y)+0.7152*g(X,Y)+0.0722*b(X,Y)))/160,0))'" -c:v libvpx-vp9 -pix_fmt yuva420p -auto-alt-ref 0 -b:v 0 -crf 28 -an "/home/anas/_code/_personal/personal_portfolio/leaves-shadow.webm"
+ffmpeg version 8.0.1-3ubuntu2 Copyright (c) 2000-2025 the FFmpeg developers
+  built with gcc 15 (Ubuntu 15.2.0-13ubuntu3)
+  configuration: --prefix=/usr --extra-version=3ubuntu2 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --disable-pocketsphinx --disable-libcaca --disable-libmfx --disable-omx --enable-gnutls --enable-libaom --enable-libass --enable-libbs2b --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libharfbuzz --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg --enable-openal --enable-opencl --enable-opengl --disable-sndio --enable-libvpl --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-ladspa --enable-libbluray --enable-libdvdnav --enable-libdvdread --enable-libjack --enable-libjxl --enable-libpulse --enable-librabbitmq --enable-librist --enable-libsrt --enable-libssh --enable-libsvtav1 --enable-libx264 --enable-libzmq --enable-libzvbi --enable-lv2 --enable-sdl2 --enable-libplacebo --enable-librav1e --enable-librsvg --enable-shared
+  libavutil      60.  8.100 / 60.  8.100
+  libavcodec     62. 11.100 / 62. 11.100
+  libavformat    62.  3.100 / 62.  3.100
+  libavdevice    62.  1.100 / 62.  1.100
+  libavfilter    11.  4.100 / 11.  4.100
+  libswscale      9.  1.100 /  9.  1.100
+  libswresample   6.  1.100 /  6.  1.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/anas/_code/_personal/personal_portfolio/leaves.mp4':
+  Metadata:
+    major_brand     : iso5
+    minor_version   : 512
+    compatible_brands: iso5iso6mp41
+    encoder         : Lavf60.16.100
+  Duration: 00:00:11.04, start: 0.000000, bitrate: 2303 kb/s
+  Stream #0:0[0x1](eng): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 360x640, 2300 kb/s, 29.97 fps, 29.97 tbr, 30k tbn (default)
+    Metadata:
+      handler_name    : ?Mainconcept Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc60.31.102 libx264
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> vp9 (libvpx-vp9))
+Press [q] to stop, [?] for help
+[libvpx-vp9 @ 0x5bcab2bddf80] v1.16.0
+Output #0, webm, to '/home/anas/_code/_personal/personal_portfolio/leaves-shadow.webm':
+  Metadata:
+    major_brand     : iso5
+    minor_version   : 512
+    compatible_brands: iso5iso6mp41
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: vp9, yuva420p(tv, bt709, progressive), 406x720, q=2-31, 14 fps, 1k tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 libvpx-vp9
+      handler_name    : ?Mainconcept Video Media Handler
+      vendor_id       : [0][0][0][0]
+      alpha_mode      : 1
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+frame=    0 fps=0.0 q=0.0 size=       0KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:00.50    frame=    2 fps=2.0 q=28.0 size=       1KiB time=00:00:00.14 bitrate=  38.0kbits/s speed=0.143x elapsed=0:00:01.00    frame=    6 fps=4.0 q=28.0 size=       1KiB time=00:00:00.42 bitrate=  12.7kbits/s speed=0.286x elapsed=0:00:01.50    frame=    9 fps=4.5 q=16.0 size=       1KiB time=00:00:00.64 bitrate=   8.4kbits/s speed=0.321x elapsed=0:00:02.00    frame=   12 fps=4.8 q=28.0 size=       1KiB time=00:00:00.85 bitrate=   6.3kbits/s speed=0.343x elapsed=0:00:02.50    frame=   15 fps=5.0 q=26.0 size=       1KiB time=00:00:01.07 bitrate=   5.1kbits/s speed=0.357x elapsed=0:00:03.00    frame=   18 fps=5.1 q=28.0 size=       1KiB time=00:00:01.28 bitrate=   4.2kbits/s speed=0.367x elapsed=0:00:03.50    frame=   21 fps=5.2 q=16.0 size=       1KiB time=00:00:01.50 bitrate=   3.6kbits/s speed=0.375x elapsed=0:00:04.00    frame=   24 fps=5.3 q=28.0 size=       1KiB time=00:00:01.71 bitrate=   3.2kbits/s speed=0.381x elapsed=0:00:04.50    frame=   26 fps=5.2 q=28.0 size=       1KiB time=00:00:01.85 bitrate=   2.9kbits/s speed=0.371x elapsed=0:00:05.00    frame=   29 fps=5.3 q=23.0 size=       1KiB time=00:00:02.07 bitrate=   2.6kbits/s speed=0.377x elapsed=0:00:05.50    frame=   32 fps=5.3 q=28.0 size=       1KiB time=00:00:02.28 bitrate=   2.4kbits/s speed=0.381x elapsed=0:00:06.00    frame=   35 fps=5.4 q=26.0 size=       1KiB time=00:00:02.50 bitrate=   2.2kbits/s speed=0.385x elapsed=0:00:06.50    frame=   38 fps=5.4 q=28.0 size=       1KiB time=00:00:02.71 bitrate=   2.0kbits/s speed=0.388x elapsed=0:00:07.00    frame=   40 fps=5.3 q=28.0 size=       1KiB time=00:00:02.85 bitrate=   1.9kbits/s speed=0.381x elapsed=0:00:07.50    frame=   43 fps=5.4 q=26.0 size=       1KiB time=00:00:03.07 bitrate=   1.8kbits/s speed=0.384x elapsed=0:00:08.00    frame=   46 fps=5.4 q=28.0 size=       1KiB time=00:00:03.28 bitrate=   1.7kbits/s speed=0.386x elapsed=0:00:08.50    frame=   48 fps=5.3 q=28.0 size=       1KiB time=00:00:03.42 bitrate=   1.6kbits/s speed=0.381x elapsed=0:00:09.00    frame=   51 fps=5.4 q=16.0 size=       1KiB time=00:00:03.64 bitrate=   1.5kbits/s speed=0.383x elapsed=0:00:09.50    frame=   54 fps=5.4 q=28.0 size=       1KiB time=00:00:03.85 bitrate=   1.4kbits/s speed=0.386x elapsed=0:00:10.00    frame=   57 fps=5.4 q=16.0 size=       1KiB time=00:00:04.07 bitrate=   1.3kbits/s speed=0.388x elapsed=0:00:10.50    frame=   59 fps=5.4 q=26.0 size=       1KiB time=00:00:04.21 bitrate=   1.3kbits/s speed=0.383x elapsed=0:00:11.00    frame=   62 fps=5.4 q=28.0 size=       1KiB time=00:00:04.42 bitrate=   1.2kbits/s speed=0.385x elapsed=0:00:11.50    frame=   65 fps=5.4 q=16.0 size=       1KiB time=00:00:04.64 bitrate=   1.2kbits/s speed=0.387x elapsed=0:00:12.00    frame=   68 fps=5.4 q=28.0 size=       1KiB time=00:00:04.85 bitrate=   1.1kbits/s speed=0.388x elapsed=0:00:12.50    frame=   70 fps=5.4 q=28.0 size=       1KiB time=00:00:05.00 bitrate=   1.1kbits/s speed=0.385x elapsed=0:00:13.00    frame=   74 fps=5.5 q=28.0 size=    1792KiB time=00:00:05.28 bitrate=2777.3kbits/s speed=0.391x elapsed=0:00:13.50    frame=   76 fps=5.4 q=28.0 size=    1792KiB time=00:00:05.42 bitrate=2704.2kbits/s speed=0.388x elapsed=0:00:14.00    frame=   79 fps=5.4 q=26.0 size=    1792KiB time=00:00:05.64 bitrate=2601.5kbits/s speed=0.389x elapsed=0:00:14.50    frame=   82 fps=5.5 q=28.0 size=    1792KiB time=00:00:05.85 bitrate=2506.4kbits/s speed=0.39x elapsed=0:00:15.00    frame=   85 fps=5.5 q=23.0 size=    1792KiB time=00:00:06.07 bitrate=2417.9kbits/s speed=0.392x elapsed=0:00:15.50    frame=   88 fps=5.5 q=28.0 size=    1792KiB time=00:00:06.28 bitrate=2335.5kbits/s speed=0.393x elapsed=0:00:16.00    frame=   90 fps=5.5 q=28.0 size=    1792KiB time=00:00:06.42 bitrate=2283.6kbits/s speed=0.39x elapsed=0:00:16.50    frame=   93 fps=5.5 q=23.0 size=    1792KiB time=00:00:06.64 bitrate=2209.9kbits/s speed=0.391x elapsed=0:00:17.00    frame=   96 fps=5.5 q=28.0 size=    1792KiB time=00:00:06.85 bitrate=2140.8kbits/s speed=0.392x elapsed=0:00:17.50    frame=   98 fps=5.4 q=28.0 size=    1792KiB time=00:00:07.00 bitrate=2097.2kbits/s speed=0.389x elapsed=0:00:18.00    frame=  100 fps=5.4 q=28.0 size=    1792KiB time=00:00:07.14 bitrate=2055.2kbits/s speed=0.386x elapsed=0:00:18.50    frame=  103 fps=5.4 q=26.0 size=    1792KiB time=00:00:07.35 bitrate=1995.3kbits/s speed=0.387x elapsed=0:00:19.00    frame=  105 fps=5.4 q=16.0 size=    1792KiB time=00:00:07.50 bitrate=1957.3kbits/s speed=0.385x elapsed=0:00:19.50    frame=  108 fps=5.4 q=28.0 size=    1792KiB time=00:00:07.71 bitrate=1903.0kbits/s speed=0.386x elapsed=0:00:20.00    frame=  110 fps=5.4 q=28.0 size=    1792KiB time=00:00:07.85 bitrate=1868.4kbits/s speed=0.383x elapsed=0:00:20.50    frame=  113 fps=5.4 q=16.0 size=    1792KiB time=00:00:08.07 bitrate=1818.8kbits/s speed=0.384x elapsed=0:00:21.00    frame=  115 fps=5.3 q=26.0 size=    1792KiB time=00:00:08.21 bitrate=1787.1kbits/s speed=0.382x elapsed=0:00:21.50    frame=  118 fps=5.4 q=28.0 size=    1792KiB time=00:00:08.42 bitrate=1741.7kbits/s speed=0.383x elapsed=0:00:22.00    frame=  120 fps=5.3 q=28.0 size=    1792KiB time=00:00:08.57 bitrate=1712.7kbits/s speed=0.381x elapsed=0:00:22.50    frame=  123 fps=5.3 q=26.0 size=    1792KiB time=00:00:08.78 bitrate=1670.9kbits/s speed=0.382x elapsed=0:00:23.00    frame=  126 fps=5.4 q=28.0 size=    1792KiB time=00:00:09.00 bitrate=1631.1kbits/s speed=0.383x elapsed=0:00:23.50    frame=  129 fps=5.4 q=7.0 size=    1792KiB time=00:00:09.21 bitrate=1593.2kbits/s speed=0.384x elapsed=0:00:24.00    frame=  131 fps=5.3 q=26.0 size=    3584KiB time=00:00:09.35 bitrate=3137.7kbits/s speed=0.382x elapsed=0:00:24.50    frame=  131 fps=5.2 q=26.0 size=    3584KiB time=00:00:09.35 bitrate=3137.7kbits/s speed=0.374x elapsed=0:00:25.00    frame=  131 fps=5.1 q=26.0 size=    3584KiB time=00:00:09.35 bitrate=3137.7kbits/s speed=0.367x elapsed=0:00:25.50    frame=  131 fps=5.0 q=26.0 size=    3584KiB time=00:00:09.35 bitrate=3137.7kbits/s speed=0.36x elapsed=0:00:26.00    frame=  131 fps=4.9 q=26.0 size=    3584KiB time=00:00:09.35 bitrate=3137.7kbits/s speed=0.353x elapsed=0:00:26.50    frame=  132 fps=4.9 q=26.0 size=    3584KiB time=00:00:09.42 bitrate=3114.0kbits/s speed=0.349x elapsed=0:00:27.00    frame=  132 fps=4.8 q=26.0 size=    3584KiB time=00:00:09.42 bitrate=3114.0kbits/s speed=0.343x elapsed=0:00:27.50    frame=  132 fps=4.7 q=26.0 size=    3584KiB time=00:00:09.42 bitrate=3114.0kbits/s speed=0.337x elapsed=0:00:28.00    [out#0/webm @ 0x5bcab2be2c40] video:4KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 129531.282472%
+frame=  155 fps=5.5 q=26.0 Lsize=    4630KiB time=00:00:11.07 bitrate=3425.5kbits/s speed=0.392x elapsed=0:00:28.27    
+
+=== ffmpeg VP9 → /home/anas/_code/_personal/personal_portfolio/leaves-shadow-light.webm ===
+ffmpeg -y -i "/home/anas/_code/_personal/personal_portfolio/leaves.mp4" -vf "scale='if(gt(iw\,ih)\,720\,-2)':'if(gt(iw\,ih)\,-2\,720)':flags=lanczos,fps=14,format=rgba,geq=r='186':g='202':b='218':a='if(lte((0.2126*r(X,Y)+0.7152*g(X,Y)+0.0722*b(X,Y)),40),255*0.36,if(lt((0.2126*r(X,Y)+0.7152*g(X,Y)+0.0722*b(X,Y)),200),255*(200-(0.2126*r(X,Y)+0.7152*g(X,Y)+0.0722*b(X,Y)))/160*0.36,0))'" -c:v libvpx-vp9 -pix_fmt yuva420p -auto-alt-ref 0 -b:v 0 -crf 28 -an "/home/anas/_code/_personal/personal_portfolio/leaves-shadow-light.webm"
+ffmpeg version 8.0.1-3ubuntu2 Copyright (c) 2000-2025 the FFmpeg developers
+  built with gcc 15 (Ubuntu 15.2.0-13ubuntu3)
+  configuration: --prefix=/usr --extra-version=3ubuntu2 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --disable-pocketsphinx --disable-libcaca --disable-libmfx --disable-omx --enable-gnutls --enable-libaom --enable-libass --enable-libbs2b --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libharfbuzz --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg --enable-openal --enable-opencl --enable-opengl --disable-sndio --enable-libvpl --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-ladspa --enable-libbluray --enable-libdvdnav --enable-libdvdread --enable-libjack --enable-libjxl --enable-libpulse --enable-librabbitmq --enable-librist --enable-libsrt --enable-libssh --enable-libsvtav1 --enable-libx264 --enable-libzmq --enable-libzvbi --enable-lv2 --enable-sdl2 --enable-libplacebo --enable-librav1e --enable-librsvg --enable-shared
+  libavutil      60.  8.100 / 60.  8.100
+  libavcodec     62. 11.100 / 62. 11.100
+  libavformat    62.  3.100 / 62.  3.100
+  libavdevice    62.  1.100 / 62.  1.100
+  libavfilter    11.  4.100 / 11.  4.100
+  libswscale      9.  1.100 /  9.  1.100
+  libswresample   6.  1.100 /  6.  1.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/anas/_code/_personal/personal_portfolio/leaves.mp4':
+  Metadata:
+    major_brand     : iso5
+    minor_version   : 512
+    compatible_brands: iso5iso6mp41
+    encoder         : Lavf60.16.100
+  Duration: 00:00:11.04, start: 0.000000, bitrate: 2303 kb/s
+  Stream #0:0[0x1](eng): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 360x640, 2300 kb/s, 29.97 fps, 29.97 tbr, 30k tbn (default)
+    Metadata:
+      handler_name    : ?Mainconcept Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc60.31.102 libx264
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> vp9 (libvpx-vp9))
+Press [q] to stop, [?] for help
+[libvpx-vp9 @ 0x5b598cb28f80] v1.16.0
+Output #0, webm, to '/home/anas/_code/_personal/personal_portfolio/leaves-shadow-light.webm':
+  Metadata:
+    major_brand     : iso5
+    minor_version   : 512
+    compatible_brands: iso5iso6mp41
+    encoder         : Lavf62.3.100
+  Stream #0:0(eng): Video: vp9, yuva420p(tv, bt709, progressive), 406x720, q=2-31, 14 fps, 1k tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 libvpx-vp9
+      handler_name    : ?Mainconcept Video Media Handler
+      vendor_id       : [0][0][0][0]
+      alpha_mode      : 1
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+frame=    0 fps=0.0 q=0.0 size=       0KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:00.50    frame=    3 fps=3.0 q=26.0 size=       1KiB time=00:00:00.21 bitrate=  25.3kbits/s speed=0.214x elapsed=0:00:01.00    frame=    7 fps=4.7 q=26.0 size=       1KiB time=00:00:00.50 bitrate=  10.8kbits/s speed=0.333x elapsed=0:00:01.50    frame=   11 fps=5.5 q=16.0 size=       1KiB time=00:00:00.78 bitrate=   6.9kbits/s speed=0.393x elapsed=0:00:02.00    frame=   15 fps=6.0 q=26.0 size=       1KiB time=00:00:01.07 bitrate=   5.1kbits/s speed=0.428x elapsed=0:00:02.50    frame=   18 fps=6.0 q=28.0 size=       1KiB time=00:00:01.28 bitrate=   4.2kbits/s speed=0.428x elapsed=0:00:03.00    frame=   22 fps=6.3 q=28.0 size=       1KiB time=00:00:01.57 bitrate=   3.5kbits/s speed=0.449x elapsed=0:00:03.50    frame=   25 fps=6.2 q=16.0 size=       1KiB time=00:00:01.78 bitrate=   3.0kbits/s speed=0.446x elapsed=0:00:04.00    frame=   29 fps=6.4 q=23.0 size=       1KiB time=00:00:02.07 bitrate=   2.6kbits/s speed=0.46x elapsed=0:00:04.50    frame=   32 fps=6.4 q=28.0 size=       1KiB time=00:00:02.28 bitrate=   2.4kbits/s speed=0.457x elapsed=0:00:05.00    frame=   36 fps=6.5 q=28.0 size=       1KiB time=00:00:02.57 bitrate=   2.1kbits/s speed=0.467x elapsed=0:00:05.50    frame=   39 fps=6.5 q=26.0 size=       1KiB time=00:00:02.78 bitrate=   1.9kbits/s speed=0.464x elapsed=0:00:06.00    frame=   43 fps=6.6 q=26.0 size=       1KiB time=00:00:03.07 bitrate=   1.8kbits/s speed=0.472x elapsed=0:00:06.50    frame=   46 fps=6.6 q=28.0 size=       1KiB time=00:00:03.28 bitrate=   1.7kbits/s speed=0.469x elapsed=0:00:07.00    frame=   50 fps=6.7 q=28.0 size=       1KiB time=00:00:03.57 bitrate=   1.5kbits/s speed=0.476x elapsed=0:00:07.50    frame=   54 fps=6.7 q=28.0 size=       1KiB time=00:00:03.85 bitrate=   1.4kbits/s speed=0.482x elapsed=0:00:08.00    frame=   57 fps=6.7 q=16.0 size=       1KiB time=00:00:04.07 bitrate=   1.3kbits/s speed=0.479x elapsed=0:00:08.50    frame=   61 fps=6.8 q=16.0 size=       1KiB time=00:00:04.35 bitrate=   1.2kbits/s speed=0.484x elapsed=0:00:09.00    frame=   64 fps=6.7 q=28.0 size=       1KiB time=00:00:04.57 bitrate=   1.2kbits/s speed=0.481x elapsed=0:00:09.50    frame=   68 fps=6.8 q=28.0 size=       1KiB time=00:00:04.85 bitrate=   1.1kbits/s speed=0.486x elapsed=0:00:10.00    frame=   72 fps=6.9 q=28.0 size=       1KiB time=00:00:05.14 bitrate=   1.1kbits/s speed=0.49x elapsed=0:00:10.50    frame=   76 fps=6.9 q=28.0 size=     768KiB time=00:00:05.42 bitrate=1159.0kbits/s speed=0.493x elapsed=0:00:11.00    frame=   79 fps=6.9 q=26.0 size=     768KiB time=00:00:05.64 bitrate=1114.9kbits/s speed=0.491x elapsed=0:00:11.50    frame=   83 fps=6.9 q=26.0 size=     768KiB time=00:00:05.92 bitrate=1061.2kbits/s speed=0.494x elapsed=0:00:12.00    frame=   86 fps=6.9 q=28.0 size=     768KiB time=00:00:06.14 bitrate=1024.2kbits/s speed=0.491x elapsed=0:00:12.50    frame=   89 fps=6.8 q=16.0 size=     768KiB time=00:00:06.35 bitrate= 989.7kbits/s speed=0.489x elapsed=0:00:13.00    frame=   92 fps=6.8 q=28.0 size=     768KiB time=00:00:06.57 bitrate= 957.4kbits/s speed=0.487x elapsed=0:00:13.50    frame=   95 fps=6.8 q=26.0 size=     768KiB time=00:00:06.78 bitrate= 927.2kbits/s speed=0.485x elapsed=0:00:14.00    frame=   98 fps=6.8 q=28.0 size=     768KiB time=00:00:07.00 bitrate= 898.8kbits/s speed=0.483x elapsed=0:00:14.50    frame=  101 fps=6.7 q=16.0 size=     768KiB time=00:00:07.21 bitrate= 872.1kbits/s speed=0.481x elapsed=0:00:15.00    frame=  104 fps=6.7 q=28.0 size=     768KiB time=00:00:07.42 bitrate= 846.9kbits/s speed=0.479x elapsed=0:00:15.50    frame=  107 fps=6.7 q=26.0 size=     768KiB time=00:00:07.64 bitrate= 823.2kbits/s speed=0.477x elapsed=0:00:16.00    frame=  110 fps=6.7 q=28.0 size=     768KiB time=00:00:07.85 bitrate= 800.7kbits/s speed=0.476x elapsed=0:00:16.50    frame=  113 fps=6.6 q=16.0 size=     768KiB time=00:00:08.07 bitrate= 779.5kbits/s speed=0.475x elapsed=0:00:17.00    frame=  116 fps=6.6 q=28.0 size=     768KiB time=00:00:08.28 bitrate= 759.3kbits/s speed=0.473x elapsed=0:00:17.50    frame=  120 fps=6.7 q=28.0 size=     768KiB time=00:00:08.57 bitrate= 734.0kbits/s speed=0.476x elapsed=0:00:18.00    frame=  123 fps=6.6 q=26.0 size=     768KiB time=00:00:08.78 bitrate= 716.1kbits/s speed=0.475x elapsed=0:00:18.50    frame=  127 fps=6.7 q=26.0 size=     768KiB time=00:00:09.07 bitrate= 693.5kbits/s speed=0.477x elapsed=0:00:19.00    frame=  131 fps=6.7 q=26.0 size=    1280KiB time=00:00:09.35 bitrate=1120.6kbits/s speed=0.48x elapsed=0:00:19.50    frame=  131 fps=6.5 q=26.0 size=    1280KiB time=00:00:09.35 bitrate=1120.6kbits/s speed=0.468x elapsed=0:00:20.00    frame=  131 fps=6.4 q=26.0 size=    1280KiB time=00:00:09.35 bitrate=1120.6kbits/s speed=0.456x elapsed=0:00:20.50    frame=  131 fps=6.2 q=26.0 size=    1280KiB time=00:00:09.35 bitrate=1120.6kbits/s speed=0.445x elapsed=0:00:21.00    frame=  131 fps=6.1 q=26.0 size=    1280KiB time=00:00:09.35 bitrate=1120.6kbits/s speed=0.435x elapsed=0:00:21.50    frame=  131 fps=6.0 q=26.0 size=    1280KiB time=00:00:09.35 bitrate=1120.6kbits/s speed=0.425x elapsed=0:00:22.01    [out#0/webm @ 0x5b598caa7d40] video:4KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 52517.007359%
+frame=  155 fps=6.9 q=26.0 Lsize=    1885KiB time=00:00:11.07 bitrate=1395.0kbits/s speed=0.493x elapsed=0:00:22.46    
+
+=== Output ===
+-rw-rw-r-- 1 anas anas 4.6M Jul 23 15:35 /home/anas/_code/_personal/personal_portfolio/leaves-shadow.webm
+width=406
+height=720
+pix_fmt=yuv420p
+r_frame_rate=14/1
+duration=11.071000
+size=4740616
+-rw-rw-r-- 1 anas anas 1.9M Jul 23 15:36 /home/anas/_code/_personal/personal_portfolio/leaves-shadow-light.webm
+width=406
+height=720
+pix_fmt=yuv420p
+r_frame_rate=14/1
+duration=11.071000
+size=1930518
+Done. Log: /home/anas/_code/_personal/personal_portfolio/scripts/bake-leaves-shadow.log
