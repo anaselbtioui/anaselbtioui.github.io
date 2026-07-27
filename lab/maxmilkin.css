@@ -1,0 +1,274 @@
+/* #nobuild: Max Milkin cue lab — sage/ink restraint. */
+
+body.lab-max {
+  --lab-fg: #10120F;
+  --lab-muted: #3b4039;
+  --lab-line: rgba(16, 18, 15, 0.14);
+  --lab-accent: #3b4039;
+  --max-sage: #C2CABB;
+  --max-ink: #10120F;
+  background: var(--max-sage);
+  color: var(--max-ink);
+  font-family: "Space Grotesk", system-ui, sans-serif;
+}
+
+body.lab-max .lab-title,
+body.lab-max .cue-meta h3 {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  letter-spacing: -0.03em;
+}
+
+body.lab-max .mono-ui,
+body.lab-max .max-mono,
+body.lab-max .lab-kicker,
+body.lab-max .lab-nav a,
+body.lab-max .cue-meta code {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+.max-stage {
+  border: 1px solid var(--lab-line);
+  background: var(--max-sage);
+  min-height: 12rem;
+  padding: 2rem 1.5rem;
+  margin-bottom: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.max-manifesto {
+  margin: 0;
+  max-width: 18ch;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.max-meta {
+  margin: 0;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--lab-muted);
+}
+
+.swatch-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+.swatch {
+  min-height: 7rem;
+  padding: 0.75rem;
+  border: 1px solid var(--lab-line);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.2rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.swatch.ink { background: #10120F; color: #C2CABB; }
+.swatch.sage { background: #C2CABB; color: #10120F; }
+
+.max-type {
+  border: 1px solid var(--lab-line);
+  padding: 1.35rem 1.2rem;
+  background: rgba(255, 255, 255, 0.22);
+}
+.max-display {
+  margin: 0 0 0.65rem;
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.max-mono {
+  margin: 0;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--lab-muted);
+}
+
+.case-strips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--lab-line);
+}
+.case-strips li {
+  padding: 1rem 1.1rem;
+  border-bottom: 1px solid var(--lab-line);
+  display: grid;
+  gap: 0.35rem;
+}
+.case-strips li:last-child { border-bottom: 0; }
+.case-strips .max-display {
+  margin: 0;
+  font-size: 1.45rem;
+}
+.max-line {
+  color: var(--lab-muted);
+  font-size: 0.92rem;
+}
+
+/* Live case strips — archive proof plates (not stamps) */
+.max-live-cases li {
+  grid-template-columns: minmax(16rem, 42%) minmax(0, 1fr);
+  column-gap: clamp(1.25rem, 3vw, 2rem);
+  row-gap: 0.35rem;
+  align-items: center;
+  padding: clamp(1.15rem, 2.5vw, 1.75rem) clamp(1rem, 2vw, 1.35rem);
+}
+.max-live-cases .max-case-img {
+  grid-row: 1 / span 3;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  filter: saturate(0.7) contrast(0.95);
+}
+.max-live-cases .max-case-pic {
+  grid-row: 1 / span 3;
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+.max-live-cases .max-case-pic .max-case-img {
+  grid-row: auto;
+  filter: none;
+  outline: 1px solid rgba(16, 18, 15, 0.35);
+}
+.max-live-cases .max-mono { grid-column: 2; }
+.max-live-cases .max-display { grid-column: 2; }
+.max-live-cases .max-line { grid-column: 2; max-width: 36ch; }
+@media (max-width: 640px) {
+  .max-live-cases li {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .max-live-cases .max-case-pic,
+  .max-live-cases .max-case-img {
+    grid-row: auto;
+    grid-column: 1;
+  }
+  .max-live-cases .max-mono,
+  .max-live-cases .max-display,
+  .max-live-cases .max-line {
+    grid-column: 1;
+  }
+}
+
+.stagger-demo {
+  display: flex;
+  gap: 0.75rem;
+  border: 1px solid var(--lab-line);
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.22);
+}
+.stagger-demo span {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: max-rise 520ms cubic-bezier(0.2, 0, 0, 1) forwards;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@keyframes max-rise {
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger-demo span {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+.nav-compare {
+  display: grid;
+  gap: 0.65rem;
+  border: 1px solid var(--lab-line);
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.22);
+}
+.nav-compare .bad { text-decoration: line-through; opacity: 0.55; }
+.nav-compare .good { color: var(--max-ink); }
+
+/* Live home composition */
+.max-live {
+  border: 1px solid var(--lab-line);
+  background: var(--max-sage);
+  min-height: min(78vh, 40rem);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.max-live-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: clamp(2.5rem, 8vh, 5rem);
+}
+.max-live-mark {
+  font-size: 1.1rem;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+}
+.max-live-nav nav {
+  display: flex;
+  gap: 1.25rem;
+}
+.max-live-nav a {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--lab-muted);
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+}
+.max-live-nav a:hover { color: var(--max-ink); }
+.max-live-hero {
+  margin-bottom: clamp(2.5rem, 8vh, 4.5rem);
+}
+.max-live-hero .max-manifesto {
+  max-width: 14ch;
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  margin-bottom: 1rem;
+}
+.max-live-cases {
+  margin-top: auto;
+}
+.max-live-foot {
+  margin: 1.5rem 0 0;
+  color: var(--lab-muted);
+}
+.max-live-in {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: max-rise 560ms cubic-bezier(0.2, 0, 0, 1) forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .max-live-in {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}

@@ -82,8 +82,8 @@ html.lenis.lenis-smooth {
 body.portfolio {
   --bg: #1a1e23;
   --surface: #23282e;
-  --fg: #d4d0c8;
-  --muted: #8a867e;
+  --fg: #e6e9ed;
+  --muted: #8b929c;
   --accent: #3d5c78;
   --accent-mist: #7d8fa3;
   --card-radius: 0;
@@ -100,8 +100,8 @@ body.portfolio {
   --line-strong: rgba(230, 233, 237, 0.055);
   --rule-inset: 0;
   --rule-gap: 0.65rem;
-  --dock-glow: rgba(255, 232, 200, 0.11);
-  --dock-glow-hot: rgba(255, 244, 220, 0.26);
+  --dock-glow: rgba(210, 218, 228, 0.09);
+  --dock-glow-hot: rgba(230, 236, 242, 0.14);
   --shadow-1: 0 1px 0 rgba(255, 255, 255, 0.04);
   --shadow-2: 0 16px 40px rgba(0, 0, 0, 0.32);
   --img-outline: rgba(255, 255, 255, 0.1);
@@ -115,20 +115,17 @@ body.portfolio {
   background-image:
     radial-gradient(
       ellipse 140% 110% at 108% -18%,
-      rgba(110, 142, 172, 0.2) 0%,
-      rgba(85, 115, 145, 0.12) 18%,
-      rgba(60, 85, 112, 0.07) 36%,
-      rgba(40, 55, 72, 0.035) 54%,
-      rgba(26, 30, 35, 0.012) 72%,
+      rgba(90, 118, 145, 0.14) 0%,
+      rgba(70, 95, 120, 0.08) 22%,
+      rgba(50, 70, 92, 0.04) 44%,
+      rgba(35, 48, 62, 0.015) 66%,
       var(--bg) 100%
     ),
     radial-gradient(
-      ellipse 130% 105% at -12% 118%,
-      rgba(4, 6, 9, 0.55) 0%,
-      rgba(8, 10, 14, 0.32) 22%,
-      rgba(12, 14, 18, 0.16) 42%,
-      rgba(18, 21, 25, 0.07) 62%,
-      rgba(24, 27, 32, 0.025) 80%,
+      ellipse 125% 100% at -10% 115%,
+      rgba(8, 10, 14, 0.28) 0%,
+      rgba(12, 14, 18, 0.14) 28%,
+      rgba(16, 18, 22, 0.06) 52%,
       var(--bg) 100%
     );
   background-attachment: fixed;
@@ -181,45 +178,18 @@ body.portfolio {
   cursor: grabbing;
 }
 
-/* Paper grain — fine random tile (set --folio-grain via canopy.js) */
+/* Paper grain — Nordic matte grit */
 body.portfolio::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 5;
-  opacity: 0.06;
-  mix-blend-mode: soft-light;
-  background-image: var(--folio-grain, none);
+  opacity: 0.1;
+  mix-blend-mode: overlay;
+  background-image: url("./texture.png");
   background-repeat: repeat;
-  background-size: 128px 128px;
-}
-
-/* Lefos-style canopy — one soft multiply plate */
-.folio-canopy {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 4;
-  overflow: hidden;
-  contain: strict;
-  transform: translateZ(0);
-}
-
-.folio-canopy[data-fx="off"] {
-  visibility: hidden;
-}
-
-.folio-canopy-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 35%;
-  opacity: 0.58;
-  mix-blend-mode: multiply;
-  pointer-events: none;
+  background-size: 180px 180px;
 }
 
 a {
@@ -584,7 +554,7 @@ body.portfolio .folio {
   row-gap: clamp(2.75rem, 7vw, 5.5rem);
 }
 
-/* Shared warm lamp + grit — hover lit; ambient stays soft always-on */
+/* Cool mist lamp + grit — hover lit; ambient stays soft always-on */
 .has-lamp {
   position: relative;
   isolation: isolate;
@@ -611,8 +581,8 @@ body.portfolio .folio {
   background:
     radial-gradient(
       circle at 50% 50%,
-      rgba(255, 248, 230, 0.55) 0%,
-      rgba(255, 236, 200, 0.22) 22%,
+      rgba(230, 236, 242, 0.42) 0%,
+      rgba(210, 218, 228, 0.16) 22%,
       transparent 58%
     ),
     radial-gradient(
@@ -783,24 +753,24 @@ body.portfolio .folio {
   --spot-r: min(16rem, 52vw);
 }
 
-/* Warm pool */
+/* Cool mist pool */
 .case.has-lamp .lamp-clip .lamp {
   background: radial-gradient(
     circle var(--spot-r) at var(--lamp-x, 50%) var(--lamp-y, 50%),
-    rgba(255, 248, 230, 0.32) 0%,
-    rgba(255, 236, 200, 0.12) 38%,
+    rgba(230, 236, 242, 0.28) 0%,
+    rgba(210, 218, 228, 0.1) 38%,
     transparent 78%
   );
   mix-blend-mode: soft-light;
 }
 
-/* Lift glyphs toward paper-white under the beam */
+/* Lift glyphs toward cool mist-white under the beam */
 .case.has-lamp .lamp-clip .lamp-lift {
   opacity: 0;
   background: radial-gradient(
     circle var(--spot-r) at var(--lamp-x, 50%) var(--lamp-y, 50%),
-    rgba(255, 252, 245, 0.4) 0%,
-    rgba(255, 248, 235, 0.14) 34%,
+    rgba(236, 242, 248, 0.36) 0%,
+    rgba(220, 228, 236, 0.12) 34%,
     transparent 70%
   );
   mix-blend-mode: screen;
@@ -979,48 +949,6 @@ body.portfolio .folio {
 
 .folio-dock a:active {
   transform: scale(0.96);
-}
-
-.folio-dock-fx {
-  position: relative;
-  z-index: 2;
-  appearance: none;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 40px;
-  min-width: 40px;
-  padding: 0 1.05rem;
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  transition-property: color, transform, opacity;
-  transition-duration: var(--dur-read);
-  transition-timing-function: var(--ease);
-}
-
-.folio-dock-fx:hover,
-.folio-dock-fx:focus-visible {
-  color: var(--fg);
-}
-
-.folio-dock-fx:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 1px var(--accent);
-}
-
-.folio-dock-fx:active {
-  transform: scale(0.96);
-}
-
-.folio-dock-fx[aria-pressed="false"] {
-  opacity: 0.45;
 }
 
 /* Brand in dock — same voice as old kicker (muted italic Fraunces) + dot */
@@ -1435,13 +1363,13 @@ body.portfolio .section-head h2 {
 /* ---- dedicated case study page ---------------------------------------- */
 
 body.case-page {
-  /* no canopy on long-read */
+  padding-bottom: calc(7.25rem + env(safe-area-inset-bottom, 0px));
 }
 
 body.case-page .case-folio {
   width: min(42rem, 92vw);
   margin: 0 auto;
-  padding: var(--space-4) 0 var(--space-5);
+  padding: var(--space-4) 0 calc(var(--space-5) + 2rem);
   display: block;
 }
 
@@ -1748,8 +1676,7 @@ body.portfolio .contact .offclock {
 }
 
 @media (max-width: 540px) {
-  .folio-dock a,
-  .folio-dock-fx {
+  .folio-dock a {
     padding: 0 0.85rem;
     font-size: 0.65rem;
   }
@@ -1774,10 +1701,6 @@ body.portfolio .contact .offclock {
   body.portfolio .intro > *,
   body.portfolio .case {
     animation: none !important;
-  }
-
-  body.portfolio .folio-canopy {
-    display: none;
   }
 
   body.portfolio .lamp--ambient {

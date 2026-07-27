@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3XN — live case spine</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#faf9f2">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Outfit:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./lab-base.css?v=9">
+  <link rel="stylesheet" href="./3xn.css?v=5">
+</head>
+<body class="lab lab-3xn">
+  <a class="skip" href="#live">Skip to live case</a>
+
+  <main class="lab-shell">
+    <p class="lab-kicker">Lab · 3XN</p>
+    <h1 class="lab-title">3XN · live</h1>
+    <p class="lab-lede">
+      Rebuild from SAP Garden case study: full-bleed hero → intro+meta column →
+      quote / image / text-left / text-right / image-pair modules.
+      Stand-ins: Outfit (Du Nord) · Fraunces (ID00). Quiet paper optional — off by default.
+      Imagery: authored local stills (`lab/media/`, I.no-stock).
+    </p>
+    <nav class="lab-nav" aria-label="Lab">
+      <a href="./">← Labs</a>
+      <a href="../">Portfolio</a>
+      <a href="../docs/inspiration-study-3xn.md">Study</a>
+      <a href="./lefos.html">Lefos</a>
+      <a href="./maxmilkin.html">Max</a>
+      <a href="./sacred.html">Sacred</a>
+    </nav>
+    <p class="live-banner" id="live">Live composition · case study spine</p>
+  </main>
+
+  <article class="x3xn-case" aria-label="3XN case study live demo">
+    <!-- 1. Full-bleed hero + thesis overlay -->
+    <section class="x3xn-hero">
+      <img
+        class="x3xn-hero-img"
+        src="./media/x3xn-hero.webp?v=1"
+        alt=""
+        width="2400"
+        height="1350"
+      >
+      <h2 class="x3xn-hero-thesis">How to respectfully blend a sports arena into a historical setting</h2>
+    </section>
+
+    <div class="x3xn-case-inner">
+      <!-- 2. Intro + Information meta (same measure) -->
+      <header class="x3xn-intro">
+        <h1 class="x3xn-intro-title">SAP Garden</h1>
+        <p class="x3xn-intro-body">
+          SAP Garden echoes the same democratic ideals as its historic surroundings,
+          uniting sports and local community in a state-of-the-art sports arena.
+          It is the new home of ice hockey team EHC Red Bull Munich and basketball club FC Bayern Munich.
+        </p>
+        <p class="x3xn-intro-body">
+          The bowl can gather up to 10,700 spectators for ice hockey and 11,500 for basketball.
+          Beyond the sports facilities, the arena offers VIP areas, shops, and public space.
+        </p>
+        <h4 class="x3xn-info-label">Information</h4>
+        <ul class="x3xn-meta">
+          <li><strong>Client:</strong> Red Bull Stadion München GmbH</li>
+          <li><strong>Location:</strong> Olympic Park, Munich, Germany</li>
+          <li><strong>Size:</strong> 62.500 m²</li>
+          <li><strong>Collaborators:</strong> CL MAP, Latz + Partner</li>
+          <li><strong>Status:</strong> Completed 2024</li>
+          <li><strong>Program:</strong> Sports arena</li>
+        </ul>
+      </header>
+
+      <!-- 3. Quote -->
+      <section class="x3xn-mod x3xn-quote">
+        <span class="x3xn-mod-pin">module-quote</span>
+        <blockquote>
+          “We are pleased to be opening the new SAP Garden arena, marking a new era for sport
+          in the city of Munich. The project has been a meaningful opportunity for us to extend
+          the architectural legacy of the Olympic Park.”
+        </blockquote>
+        <cite>— Jan Ammundsen, Senior Partner at 3XN</cite>
+      </section>
+
+      <!-- 4. Large image -->
+      <figure class="x3xn-mod x3xn-figure tall">
+        <span class="x3xn-mod-pin">module-image</span>
+        <img
+          src="./media/x3xn-mod-01.webp?v=1"
+          alt=""
+          width="2000"
+          height="1250"
+          loading="lazy"
+        >
+      </figure>
+
+      <!-- 5. Text LEFT -->
+      <section class="x3xn-mod x3xn-text left">
+        <div class="x3xn-text-inner">
+          <span class="x3xn-mod-pin">module-text · left</span>
+          <h2>Melting into its historic context</h2>
+          <p>
+            Adding a new structure into a protected landscape posed a complex design challenge:
+            how to respect the integrity of the park while accommodating the spatial demands of a modern arena.
+          </p>
+          <p>
+            The sports facilities are nestled in green terrain which rolls and undulates around them —
+            human scale first, spectacle second.
+          </p>
+        </div>
+      </section>
+
+      <!-- 6. Double image -->
+      <section class="x3xn-mod x3xn-pair" aria-label="Double image module">
+        <span class="x3xn-mod-pin">module-double_image</span>
+        <img
+          src="./media/x3xn-pair-a.webp?v=1"
+          alt=""
+          width="1200"
+          height="750"
+          loading="lazy"
+        >
+        <img
+          src="./media/x3xn-pair-b.webp?v=1"
+          alt=""
+          width="1200"
+          height="750"
+          loading="lazy"
+        >
+      </section>
+
+      <!-- 7. Gallery + text -->
+      <section class="x3xn-mod x3xn-gallery">
+        <div class="x3xn-text-inner">
+          <span class="x3xn-mod-pin">module-image_gallery_slider</span>
+          <h2>A unique geometry</h2>
+          <p>
+            The façade is dynamic and welcoming with vertical pilaster strips that swing upwards
+            and accentuate glass-panelled entrances. Each strip is unique in geometry.
+          </p>
+        </div>
+        <div class="x3xn-gallery-track">
+          <img src="./media/x3xn-gal-a.webp?v=1" alt="" width="900" height="675" loading="lazy">
+          <img src="./media/x3xn-gal-b.webp?v=1" alt="" width="900" height="675" loading="lazy">
+        </div>
+      </section>
+
+      <!-- 8. Text RIGHT -->
+      <section class="x3xn-mod x3xn-text right">
+        <div class="x3xn-text-inner">
+          <span class="x3xn-mod-pin">module-text · right</span>
+          <h2>Place for the public</h2>
+          <p>
+            Designed as a catalyst for activity — on game days and off days.
+            Merchandise, e-sport community space, restaurant with bowls overlooking the park.
+          </p>
+          <p>
+            Text sits in a narrow column while media owns width. Side flips keep the scroll alive.
+          </p>
+        </div>
+      </section>
+
+      <!-- 9. Another quote -->
+      <section class="x3xn-mod x3xn-quote">
+        <span class="x3xn-mod-pin">module-quote</span>
+        <blockquote>
+          “We focused very much on what will happen on the ice or on the parquet floor.
+          What happens here is the reason why you come to the building.”
+        </blockquote>
+        <cite>— Jan Ammundsen, Senior Partner at 3XN</cite>
+      </section>
+
+      <!-- 10. Large image -->
+      <figure class="x3xn-mod x3xn-figure">
+        <span class="x3xn-mod-pin">module-image</span>
+        <img
+          src="./media/x3xn-mod-02.webp?v=1"
+          alt=""
+          width="2000"
+          height="1250"
+          loading="lazy"
+        >
+      </figure>
+
+      <!-- 11. Related -->
+      <section class="x3xn-mod x3xn-related">
+        <span class="x3xn-mod-pin">related-projects</span>
+        <h2>Related projects</h2>
+        <div class="x3xn-related-grid">
+          <a href="https://3xn.com/project/sap-garden" rel="noopener">
+            <img src="./media/x3xn-rel-a.webp?v=1" alt="" width="1000" height="625" loading="lazy">
+            <h3>Royal Arena</h3>
+            <p>Copenhagen, Denmark</p>
+          </a>
+          <a href="https://3xn.com/project/sap-garden" rel="noopener">
+            <img src="./media/x3xn-rel-b.webp?v=1" alt="" width="1000" height="625" loading="lazy">
+            <h3>Horsens Stadion</h3>
+            <p>Horsens, Denmark</p>
+          </a>
+        </div>
+      </section>
+
+      <p class="x3xn-case-foot">
+        <span>S.case-hero-bleed</span>
+        <span>S.intro-meta-column</span>
+        <span>S.module-quote</span>
+        <span>S.module-text-rail</span>
+        <span>S.module-image-pair</span>
+        <span>T.sans-head-serif-body</span>
+        <span>T.reading-contrast-ladder</span>
+      </p>
+    </div>
+  </article>
+
+  <div class="lab-shell">
+    <details class="cue-ref">
+      <summary>Cue reference + source notes</summary>
+      <div class="cue-grid">
+        <article class="cue">
+          <header class="cue-meta">
+            <code>source</code>
+            <h3>From 3xn.com/project/sap-garden</h3>
+            <p>
+              Measured 2026-07-27: hero 100vw×~100vh · intro/meta ~706px · text rails
+              <code>col-lg-4</code> left/right · quotes ~60% width serif · cream <code>#faf9f2</code> · no film grain.
+            </p>
+          </header>
+        </article>
+        <article class="cue">
+          <header class="cue-meta"><code>avoid</code><h3>Flat cue-only lab</h3></header>
+          <div class="flow-compare">
+            <div class="flow-bad"><span class="tag">old lab</span><div class="fake-card">swatch</div><div class="fake-card">swatch</div></div>
+            <div class="x3xn-plane"><span class="tag">now</span><p class="x3xn-body" style="margin-top:0.5rem">Scroll the live spine above — modules do the teaching.</p></div>
+          </div>
+        </article>
+      </div>
+    </details>
+
+    <footer class="lab-foot">
+      <p class="mono-ui">Rebuild · <a href="../docs/inspiration-study-3xn.md">inspiration-study-3xn.md</a> · <a href="https://3xn.com/project/sap-garden" rel="noopener">SAP Garden</a></p>
+    </footer>
+  </div>
+</body>
+</html>

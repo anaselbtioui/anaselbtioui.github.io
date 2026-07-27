@@ -1,0 +1,378 @@
+/* #nobuild: shared chrome for per-inspiration cue labs. */
+
+:root {
+  --lab-fg: #f0f2f3;
+  --lab-muted: #9fa4ab;
+  --lab-line: rgba(240, 242, 243, 0.12);
+  --lab-accent: #4b607c;
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body.lab {
+  min-height: 100vh;
+  color: var(--lab-fg);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.skip {
+  position: absolute;
+  left: -999px;
+  top: 0;
+}
+.skip:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 99;
+  background: var(--lab-fg);
+  color: #111;
+  padding: 0.5rem 0.75rem;
+}
+
+a {
+  color: var(--lab-muted);
+  text-underline-offset: 3px;
+}
+a:hover {
+  color: var(--lab-fg);
+}
+
+.mono-ui {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--lab-muted);
+}
+
+.lab-shell {
+  width: min(64rem, 92vw);
+  margin: 0 auto;
+  padding: 2.5rem 0 4rem;
+}
+
+.lab-kicker {
+  margin: 0 0 0.55rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lab-muted);
+}
+
+.lab-title {
+  margin: 0 0 0.65rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.lab-lede {
+  margin: 0 0 1.25rem;
+  max-width: 48ch;
+  color: var(--lab-muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  line-height: 1.55;
+}
+
+.lab-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.25rem;
+  margin-bottom: 2rem;
+}
+.lab-nav a {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.cue-grid {
+  display: grid;
+  gap: 2.25rem;
+}
+
+.cue {
+  padding-top: 1.35rem;
+  border-top: 1px solid var(--lab-line);
+}
+.cue-meta code {
+  display: inline-block;
+  margin-bottom: 0.35rem;
+  color: var(--lab-accent);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+.cue-meta h3 {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+.cue-meta p {
+  margin: 0 0 1rem;
+  color: var(--lab-muted);
+  max-width: 54ch;
+  font-size: 0.8rem;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-wrap: pretty;
+}
+
+.lab-foot {
+  margin-top: 2.5rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid var(--lab-line);
+}
+.lab-foot p {
+  margin: 0;
+  max-width: 56ch;
+}
+.lab-foot a {
+  color: var(--lab-fg);
+}
+
+.hub-list {
+  display: grid;
+  gap: 0.85rem;
+}
+.hub-card {
+  display: block;
+  text-decoration: none;
+  border: 1px solid var(--lab-line);
+  padding: 1.15rem 1.25rem;
+  min-height: 40px;
+  transition-property: border-color, background-color;
+  transition-duration: 200ms;
+  transition-timing-function: var(--ease);
+}
+.hub-card:hover {
+  border-color: rgba(240, 242, 243, 0.28);
+}
+.hub-card strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--lab-fg);
+  margin-bottom: 0.35rem;
+}
+.hub-card span {
+  color: var(--lab-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Live composition vs cue reference */
+.live-banner {
+  margin: 0 0 1rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--lab-accent);
+}
+.cue-ref {
+  margin: 3rem 0 1rem;
+  border-top: 1px solid var(--lab-line);
+  padding-top: 1rem;
+}
+.cue-ref > summary {
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--lab-muted);
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.cue-ref > summary::-webkit-details-marker { display: none; }
+.cue-ref > summary::before {
+  content: "▸";
+  color: var(--lab-accent);
+}
+.cue-ref[open] > summary::before { content: "▾"; }
+.cue-ref .cue-grid {
+  margin-top: 1.5rem;
+}
+
+/* --- Texture skins (per look) ---
+   Grain ALWAYS paints above type ( ::after ). Soft-light alone
+   barely bites light glyphs — overlay/multiply mesh field + ink together.
+*/
+.cue-surface {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.cue-surface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background-repeat: repeat;
+  background-position: 0 0;
+}
+
+/* Film: overlay so 1-bit grit eats light type + dark field as one emulsion */
+[data-skin="film"]::after {
+  background-image: url("./noise-tile.png?v=8");
+  background-size: 256px 256px;
+  mix-blend-mode: overlay;
+  opacity: 0.72;
+}
+[data-skin="film-quiet"]::after {
+  background-image: url("./noise-tile-subtle.png?v=8");
+  background-size: 256px 256px;
+  mix-blend-mode: overlay;
+  opacity: 0.9;
+}
+
+/* Paper: warm 1-bit flecks · multiply on cream (baked for light editorial) */
+[data-skin="paper"]::after {
+  background-image: url("./noise-tile-paper.png?v=3");
+  background-size: 256px 256px;
+  mix-blend-mode: multiply;
+  opacity: 1;
+}
+[data-skin="paper-soft"]::after {
+  background-image: url("./noise-tile-paper.png?v=3");
+  background-size: 256px 256px;
+  mix-blend-mode: multiply;
+  opacity: 0.62;
+}
+
+/* Matte: quieter 1-bit · overlay on sage (baked for flat premium) */
+[data-skin="matte"]::after {
+  background-image: url("./noise-tile-matte.png?v=3");
+  background-size: 256px 256px;
+  mix-blend-mode: overlay;
+  opacity: 0.85;
+}
+[data-skin="matte-quiet"]::after {
+  background-image: url("./noise-tile-matte.png?v=3");
+  background-size: 256px 256px;
+  mix-blend-mode: overlay;
+  opacity: 0.55;
+}
+
+/* Phosphor: Sacred CRT dust — readable but not crunchy */
+[data-skin="phosphor"]::after {
+  background-image: url("./noise-tile-phosphor.png?v=5");
+  background-size: 256px 256px;
+  mix-blend-mode: screen;
+  opacity: 0.7;
+}
+[data-skin="phosphor-quiet"]::after {
+  background-image: url("./noise-tile-phosphor.png?v=5");
+  background-size: 256px 256px;
+  mix-blend-mode: screen;
+  opacity: 0.4;
+}
+
+/* Fixed page skin — body sets data-page-skin */
+body.lab[data-page-skin]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  background-repeat: repeat;
+}
+body.lab[data-page-skin="film"]::before {
+  background-image: url("./noise-tile-subtle.png?v=8");
+  background-size: 256px 256px;
+  mix-blend-mode: overlay;
+  opacity: 0.55;
+}
+body.lab[data-page-skin="paper"]::before {
+  background-image: url("./noise-tile-paper.png?v=3");
+  background-size: 256px 256px;
+  mix-blend-mode: multiply;
+  opacity: 0.55;
+}
+
+/* 3XN: quieter paper tooth — institutional calm, not film grit */
+body.lab-3xn[data-page-skin="paper"]::before {
+  opacity: 0.22;
+}
+body.lab-3xn [data-skin="paper"]::after {
+  opacity: 0.38;
+}
+body.lab-3xn [data-skin="paper-soft"]::after {
+  opacity: 0.22;
+}
+body.lab[data-page-skin="matte"]::before {
+  background-image: url("./noise-tile-matte.png?v=3");
+  background-size: 256px 256px;
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+body.lab[data-page-skin="phosphor"]::before {
+  background-image: url("./noise-tile-phosphor.png?v=5");
+  background-size: 256px 256px;
+  mix-blend-mode: screen;
+  opacity: 0.55;
+}
+
+/* Skin proof strip — show baked tile on native field */
+.skin-proof {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.65rem;
+  margin: 0 0 2.25rem;
+}
+.skin-proof-tile {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 7.5rem;
+  border: 1px solid var(--lab-line);
+  display: flex;
+  align-items: flex-end;
+  padding: 0.75rem;
+}
+.skin-proof-tile span {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lab-muted);
+}
+@media (max-width: 640px) {
+  .skin-proof {
+    grid-template-columns: 1fr;
+  }
+}

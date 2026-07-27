@@ -3,7 +3,6 @@ import { projects } from "./content/manifest.js";
 import { fetchEntry } from "./md.js";
 import { projectSlug } from "./case.js";
 import { wireFolioRail } from "./folio-rail.js";
-import { wireCanopyShadows } from "./canopy.js?v=13";
 
 function padIndex(n) {
   return String(n).padStart(2, "0");
@@ -269,5 +268,3 @@ function wireReveals() {
 }
 
 wireReveals();
-
-wireCanopyShadows();

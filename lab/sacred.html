@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sacred Computer — live lab</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./lab-base.css?v=8">
+  <link rel="stylesheet" href="./sacred.css?v=7">
+</head>
+<body class="lab lab-sacred" data-page-skin="phosphor">
+  <a class="skip" href="#live">Skip to live demo</a>
+  <main class="lab-shell">
+    <p class="lab-kicker">Lab · Sacred Computer / SRCL</p>
+    <h1 class="lab-title">Sacred · live</h1>
+    <p class="lab-lede">
+      Working terminal workspace — layout, grid, works as S.card-term-block.
+      Face stand-in: <strong>Martian Mono</strong>. Toggle phosphor / scan / ch-grid.
+    </p>
+    <nav class="lab-nav" aria-label="Lab">
+      <a href="./">← Labs</a>
+      <a href="../">Portfolio</a>
+      <a href="../docs/inspiration-study-sacred.md">Study</a>
+      <a href="./lefos.html">Lefos</a>
+      <a href="./3xn.html">3XN</a>
+      <a href="./maxmilkin.html">Max</a>
+    </nav>
+
+    <p class="live-banner" id="live">Live composition · not a cue list</p>
+
+    <section class="sacred-live cue-surface" data-skin="phosphor" data-scan="on" id="stage" aria-label="Sacred live workspace">
+      <div class="sacred-live-scan" aria-hidden="true"></div>
+      <span class="sacred-live-pin" data-at="bar">T.block-hotkey</span>
+      <span class="sacred-live-pin" data-at="nav">S.sidebar-20ch</span>
+      <span class="sacred-live-pin" data-at="main">S.window-shadow-ch</span>
+      <span class="sacred-live-pin" data-at="works">S.card-term-block</span>
+
+      <div class="sacred-live-bar" role="toolbar" aria-label="Action bar">
+        <button type="button" class="sacred-chord" id="toggle-phosphor"><span class="hot">⌃+P</span> Phosphor</button>
+        <button type="button" class="sacred-chord" id="toggle-scan"><span class="hot">⌃+S</span> Scan</button>
+        <button type="button" class="sacred-chord" id="toggle-grid"><span class="hot">⌃+G</span> Grid</button>
+      </div>
+
+      <div class="sacred-live-body">
+        <nav class="sacred-live-nav" aria-label="Sidebar">
+          <p class="nav-title">SRCL 2.0.6</p>
+          <div class="sacred-action-list">
+            <a class="sacred-action-item" href="#works"><span class="slot">→</span><span class="label">Works</span></a>
+            <a class="sacred-action-item" href="#canvas"><span class="slot">⊹</span><span class="label">Canvas</span></a>
+            <a class="sacred-action-item" href="#status"><span class="slot">↓</span><span class="label">Loaders</span></a>
+            <a class="sacred-action-item" href="https://www.sacred.computer/" rel="noopener"><span class="slot">→</span><span class="label">sacred.computer</span></a>
+          </div>
+        </nav>
+        <div class="sacred-live-handle" aria-hidden="true"><i></i><i></i></div>
+        <div class="sacred-live-main">
+          <!-- S.card-term-block: projects as block links, no magazine plates / archive GIFs -->
+          <div class="sacred-live-window" id="works">
+            <h2>WORKS · S.card-term-block</h2>
+            <p>
+              Instrument list — project = block action. Slot <code>3ch</code> · label · meta line.
+              Photo rare (none here). Not sage strip, not cream tile.
+            </p>
+            <div class="sacred-term-list" role="list">
+              <a class="sacred-term-block" role="listitem" href="#works">
+                <span class="slot" aria-hidden="true">→</span>
+                <span class="body">
+                  <span class="name">Harbor CRM</span>
+                  <span class="meta">Crm · Ai · Product</span>
+                </span>
+                <span class="id">01</span>
+              </a>
+              <a class="sacred-term-block" role="listitem" href="#works">
+                <span class="slot" aria-hidden="true">→</span>
+                <span class="body">
+                  <span class="name">Ledger Scrape</span>
+                  <span class="meta">Scraping · Finance</span>
+                </span>
+                <span class="id">02</span>
+              </a>
+              <a class="sacred-term-block" role="listitem" href="#works">
+                <span class="slot" aria-hidden="true">→</span>
+                <span class="body">
+                  <span class="name">Cue Labs</span>
+                  <span class="meta">Design · Systems</span>
+                </span>
+                <span class="id">03</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="sacred-live-window" id="canvas">
+            <h2>ASCII CANVAS · live</h2>
+            <p>
+              Per-cell spans · wave brightness · ResizeObserver columns.
+              IntersectionObserver pauses when you scroll away.
+            </p>
+            <div class="sacred-ascii-frame">
+              <span class="cap">Example</span>
+              <pre class="sacred-ascii-canvas" data-ascii-canvas data-rows="10" aria-hidden="true"></pre>
+            </div>
+          </div>
+
+          <div class="sacred-live-status" id="status">
+            <p class="sacred-one-line" data-one-line>
+              <span data-ol-spin>⠋⠋⠋⠋</span>
+              <span data-ol-word>Thinking</span><span data-ol-dots>﹒</span>
+              <span data-ol-time>(0ms)</span>
+              <span style="margin-left:1ch" data-block-loader="1" aria-hidden="true"></span>
+            </p>
+            <div class="sacred-bar-track" data-bar-loader>
+              <div class="sacred-bar-fill"></div>
+            </div>
+            <div class="sacred-char-progress" data-char-progress data-fill-char="░">
+              <span data-char-measure>░</span>
+              <span data-char-out></span>
+            </div>
+          </div>
+
+          <div class="sacred-links">
+            <a href="../docs/inspiration-study-sacred.md">⭢ Read study notes</a>
+            <a href="../docs/lab-card-recipes.md">⭢ Card recipes</a>
+            <a href="https://github.com/internet-development/www-sacred" rel="noopener">⭢ View SRCL source</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="layer-toggles" role="group" aria-label="Skin layers">
+      <label><input type="checkbox" id="chk-phosphor" checked> Phosphor dust</label>
+      <label><input type="checkbox" id="chk-scan" checked> Scanlines</label>
+    </div>
+
+    <details class="cue-ref">
+      <summary>Cue reference (flat list — optional)</summary>
+      <div class="cue-grid">
+        <article class="cue" id="T.mono-grid">
+          <header class="cue-meta"><code>T.mono-grid</code><h3>Martian Mono grid</h3>
+            <p>16/20 · tabular-nums. Sample: 0O il · 1,234.00</p></header>
+          <div class="mono-grid-demo cue-surface" data-skin="phosphor-quiet">
+            <p class="big">I build software with AI.</p>
+            <p class="meta">0O il 1l B8 · {}[]() · =&gt;</p>
+          </div>
+        </article>
+        <article class="cue" id="C.ansi-gray-ramp">
+          <header class="cue-meta"><code>C.ansi-gray-ramp</code><h3>ANSI gray ladder</h3></header>
+          <div class="ansi-ramp">
+            <div class="ansi-swatch" style="background:#080808">#080808</div>
+            <div class="ansi-swatch" style="background:#262626">#262626</div>
+            <div class="ansi-swatch" style="background:#3a3a3a">#3a3a3a</div>
+            <div class="ansi-swatch" style="background:#585858">#585858</div>
+            <div class="ansi-swatch" style="background:#8a8a8a">#8a8a8a</div>
+            <div class="ansi-swatch light" style="background:#a8a8a8">#a8a8a8</div>
+            <div class="ansi-swatch light" style="background:#e4e4e4">#e4e4e4</div>
+          </div>
+        </article>
+        <article class="cue" id="L.flat-terminal">
+          <header class="cue-meta"><code>L.flat-terminal</code><h3>Phosphor vs film</h3></header>
+          <div class="skin-proof" style="margin:0">
+            <div class="skin-proof-tile cue-surface" data-skin="film" style="background:#000"><span>film wrong</span></div>
+            <div class="skin-proof-tile cue-surface" data-skin="phosphor" style="background:#000"><span>phosphor</span></div>
+            <div class="skin-proof-tile" style="background:#000"><span>bare</span></div>
+          </div>
+        </article>
+      </div>
+    </details>
+
+    <footer class="lab-foot">
+      <p class="mono-ui">Live · S.card-term-block · <a href="../docs/lab-card-recipes.md">lab-card-recipes.md</a> · <a href="../docs/inspiration-study-sacred.md">study</a></p>
+    </footer>
+  </main>
+
+  <script type="module" src="./sacred.js?v=3"></script>
+</body>
+</html>

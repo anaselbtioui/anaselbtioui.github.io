@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lefos — live lab</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#161d27">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./lab-base.css?v=8">
+  <link rel="stylesheet" href="./cues.css?v=14">
+</head>
+<body class="lab">
+  <a class="skip" href="#live">Skip to live demo</a>
+
+  <header class="lab-top">
+    <p class="lab-kicker">Lab · Lefos</p>
+    <h1 class="lab-title">Lefos · live</h1>
+    <p class="lab-lede">
+      Gate composition + work strip — mesh, corner chrome, film, type as one page.
+      Flat cue cards optional below.
+    </p>
+    <nav class="lab-nav" aria-label="Lab">
+      <a href="./">← Labs</a>
+      <a href="../">Portfolio</a>
+      <a href="../docs/inspiration-study-lefos.md">Study</a>
+      <a href="./3xn.html">3XN</a>
+      <a href="./maxmilkin.html">Max</a>
+      <a href="./sacred.html">Sacred</a>
+    </nav>
+  </header>
+
+  <p class="live-banner" id="live" style="width:min(64rem,92vw);margin:0 auto 0.75rem">Live composition · gate</p>
+
+  <section class="stage" aria-labelledby="mesh-title">
+    <div class="stage-head">
+      <h2 id="mesh-title">Gate</h2>
+      <p class="stage-note">S.corner-chrome · L.grain · L.shade-multiply · T.duo-serif-mono · S.neg-space</p>
+    </div>
+
+    <div class="stage-frame" id="stage" data-grain="on" data-shade="on" data-mist="on" data-grain-blend="soft">
+      <div class="stage-field has-photo" aria-hidden="true">
+        <img class="stage-field-img" src="./media/lefos-gate.webp?v=1" alt="" width="1920" height="1080">
+      </div>
+      <div class="stage-mist" aria-hidden="true"></div>
+      <div class="stage-shade" aria-hidden="true"></div>
+      <div class="stage-grain" aria-hidden="true"></div>
+
+      <div class="stage-chrome stage-chrome-tl">
+        <span class="mark-geo" aria-hidden="true"></span>
+        <span class="mono-ui">About</span>
+      </div>
+      <div class="stage-chrome stage-chrome-tr">
+        <span class="mono-ui">EN</span>
+        <button type="button" class="mono-ui stage-fx" id="fx-toggle" aria-pressed="true">FX</button>
+      </div>
+      <div class="stage-chrome stage-chrome-bl">
+        <span class="mono-ui">Earendil Works Co.</span>
+      </div>
+      <div class="stage-chrome stage-chrome-br">
+        <span class="hairline-box mono-ui">Summon the herald</span>
+      </div>
+
+      <div class="stage-center">
+        <div class="stage-brand-box">
+          <span class="mark-geo mark-geo-lg" aria-hidden="true"></span>
+          <p class="display">Lefos</p>
+        </div>
+        <p class="mono-ui stage-cta">I build software with AI</p>
+      </div>
+    </div>
+
+    <div class="layer-toggles" role="group" aria-label="Atmosphere layers">
+      <label><input type="checkbox" data-layer="mist" checked> Mist</label>
+      <label><input type="checkbox" data-layer="grain" checked> Film grain</label>
+      <label><input type="checkbox" data-layer="shade" checked> Shade multiply</label>
+      <label><input type="checkbox" data-grain-blend id="grain-burn"> Lefos burn (α8)</label>
+    </div>
+  </section>
+
+  <p class="live-banner" style="width:min(64rem,92vw);margin:0 auto 0.75rem">Live composition · work strip</p>
+
+  <section class="lefos-live-work" aria-label="Lefos work strip">
+    <p class="display">Selected work</p>
+    <p class="mono-ui">Film skin stays on · work thumbs = I.archive-gif</p>
+    <ol class="lefos-work-list">
+      <li>
+        <picture class="archive-thumb">
+          <source srcset="./media/harbor-archive-poster.webp?v=1" media="(prefers-reduced-motion: reduce)">
+          <img class="lefos-work-img" src="./media/harbor-archive.gif?v=1" alt="" width="320" height="240" loading="lazy">
+        </picture>
+        <span>01</span><strong>Harbor CRM</strong><span>Crm · Ai</span>
+      </li>
+      <li>
+        <picture class="archive-thumb">
+          <source srcset="./media/ledger-archive-poster.webp?v=1" media="(prefers-reduced-motion: reduce)">
+          <img class="lefos-work-img" src="./media/ledger-archive.gif?v=1" alt="" width="320" height="240" loading="lazy">
+        </picture>
+        <span>02</span><strong>Ledger Scrape</strong><span>Finance</span>
+      </li>
+      <li>
+        <picture class="archive-thumb">
+          <source srcset="./media/cuelabs-archive-poster.webp?v=1" media="(prefers-reduced-motion: reduce)">
+          <img class="lefos-work-img" src="./media/cuelabs-archive.gif?v=1" alt="" width="320" height="240" loading="lazy">
+        </picture>
+        <span>03</span><strong>Cue Labs</strong><span>Systems</span>
+      </li>
+    </ol>
+  </section>
+
+  <details class="cue-ref" style="width:min(64rem,92vw);margin:0 auto 2rem">
+    <summary>Cue reference (flat list — optional)</summary>
+    <div class="cue-grid" style="margin-top:1.5rem">
+      <article class="cue" id="C.contrast-soft">
+        <header class="cue-meta"><code>C.contrast-soft</code><h3>Soft hierarchy</h3></header>
+        <div class="swatch-row cue-surface" data-skin="film-quiet">
+          <div class="swatch" style="--sw:#161d27"><span>field</span><code>#161d27</code></div>
+          <div class="swatch" style="--sw:#9fa4ab"><span>muted</span><code>#9fa4ab</code></div>
+          <div class="swatch" style="--sw:#f0f2f3"><span>text</span><code>#f0f2f3</code></div>
+        </div>
+      </article>
+      <article class="cue" id="L.grain">
+        <header class="cue-meta"><code>L.grain</code><h3>Film A/B</h3></header>
+        <div class="grain-demo">
+          <div class="grain-panel bare"><span>none</span></div>
+          <div class="grain-panel with"><span>α32 overlay</span></div>
+          <div class="grain-panel burn"><span>α8 burn</span></div>
+          <div class="grain-panel old"><span>α8 soft</span></div>
+        </div>
+      </article>
+      <article class="cue" id="S.neg-space">
+        <header class="cue-meta"><code>S.neg-space</code><h3>Dense vs airy</h3></header>
+        <div class="space-compare">
+          <div class="space-tile dense cue-surface" data-skin="film"><p class="display">Crowded</p></div>
+          <div class="space-tile airy cue-surface" data-skin="film-quiet"><p class="display">Breathing</p></div>
+        </div>
+      </article>
+    </div>
+  </details>
+
+  <footer class="lab-foot">
+    <p class="mono-ui">Live demo + <a href="../docs/inspiration-study-lefos.md">inspiration-study-lefos.md</a></p>
+  </footer>
+
+  <script type="module" src="./cues.js?v=3"></script>
+</body>
+</html>

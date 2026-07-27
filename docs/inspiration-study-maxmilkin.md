@@ -5,6 +5,7 @@
 **Applied:** 2026-07-17 — sage/ink tokens, Space Grotesk + IBM Plex Mono, case strips, CSS motion only.
 
 **Exemplar:** [maxmilkin.com](https://maxmilkin.com/)  
+**Lab:** [lab/maxmilkin.html](../lab/maxmilkin.html)  
 **Sources:** live site (OG + CSS/JS bundles), [Awwwards SOTD](https://www.awwwards.com/sites/max-milkin-portfolio), [Codrops case study](https://tympanus.net/codrops/2025/12/02/two-portfolios-one-process-where-design-motion-and-code-come-together/), DesignRush/Are.na blurbs, cofolios case-study spine, [docs/visual-grammar.md](visual-grammar.md), [docs/narrative-thesis.md](narrative-thesis.md), make-interfaces-feel-better.
 
 **Why this exemplar:** Performance-first *developer* portfolio (not design-intern flash). Two-color discipline. Motion framed as meaning. Not Brittany sticky-rail.

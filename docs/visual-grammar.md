@@ -18,7 +18,7 @@ Motion explains structure and state, never decoration.
 
 ## Visual constraints
 
-- No stock photography.
+- No stock photography. See [imagery-brief.md](imagery-brief.md) (`I.no-stock`, cool documentary material).
 - No gradients.
 - No glassmorphism effects.
 - Max two typefaces.
