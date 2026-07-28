@@ -2,9 +2,7 @@
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/* Paste your Formspree form URL after creating one at https://formspree.io
-   Example: https://formspree.io/f/mqkjwxyz
-   Also set the same URL on <form id="inquiry" action="…">. */
+/* Formspree — https://formspree.io/f/xpqvblgj */
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xpqvblgj";
 
 const CLI_FRAMES = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
@@ -103,7 +101,7 @@ function mountInquiryForm() {
       }
 
       form.reset();
-      if (news) news.textContent = "Sent. I’ll reply by email.";
+      if (news) news.textContent = "Sent. Reply comes by email.";
       submit.disabled = false;
     } catch {
       if (news) news.textContent = "Network error — try again or email directly.";
