@@ -5,7 +5,7 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
 /* Paste your Formspree form URL after creating one at https://formspree.io
    Example: https://formspree.io/f/mqkjwxyz
    Also set the same URL on <form id="inquiry" action="…">. */
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/REPLACE_ME";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xpqvblgj";
 
 const CLI_FRAMES = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
 const CLI_WORDS = ["Building", "Shaping", "Tuning", "Drafting", "Locking"];
