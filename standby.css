@@ -59,21 +59,23 @@ body.standby {
     );
   background-attachment: fixed;
   position: relative;
+  isolation: isolate;
   overflow-x: clip;
 }
 
-/* Baked grain */
+/* Baked matte grain — α20 in tile; opacity here only scales the bake */
 body.standby::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 5;
-  opacity: 0.1;
+  z-index: 0;
+  opacity: 0.65;
   mix-blend-mode: overlay;
-  background-image: url("./texture.png");
+  background-image: url("./grain.png");
   background-repeat: repeat;
-  background-size: 180px 180px;
+  background-size: 256px 256px;
+  background-position: 0 0;
 }
 
 .skip {
