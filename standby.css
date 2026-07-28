@@ -269,12 +269,19 @@ code {
   color: var(--muted);
 }
 
-/* Enter — split + stagger */
+/* Enter — split + stagger (visible by default if motion off / animation skipped) */
 .reveal {
-  opacity: 0;
-  transform: translateY(0.55rem);
-  animation: rise var(--dur) var(--ease-out) forwards;
-  animation-delay: calc(var(--d, 0) * 90ms + 80ms);
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(0.55rem);
+    animation: rise var(--dur) var(--ease-out) forwards;
+    animation-delay: calc(var(--d, 0) * 90ms + 80ms);
+  }
 }
 
 @keyframes rise {
@@ -285,12 +292,6 @@ code {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1;
-    transform: none;
-    animation: none;
-  }
-
   .cta a:active {
     transform: none;
   }
