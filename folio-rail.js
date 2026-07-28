@@ -1,7 +1,8 @@
 // #nobuild: custom mist thumb — native OS trail cannot be killed on Linux.
 /** @param {{ getY?: () => number, scrollTo?: (y: number) => void }} api */
 export function wireFolioRail(api = {}) {
-  if (!document.body.classList.contains("portfolio")) return null;
+  const skin = document.body.classList;
+  if (!skin.contains("portfolio") && !skin.contains("standby")) return null;
 
   let rail = document.querySelector(".folio-rail");
   if (!rail) {

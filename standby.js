@@ -1,5 +1,7 @@
 // #nobuild: soft mono one-line + Formspree inquiry form.
 
+import { wireFolioRail } from "./folio-rail.js";
+
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* Formspree — https://formspree.io/f/xpqvblgj */
@@ -19,23 +21,23 @@ const CLI_FRAMES = [
   "\u283F",
 ];
 const CLI_WORDS = [
-  "Building",
-  "Shaping",
-  "Drafting",
-  "Tuning",
-  "Wiring",
-  "Sketching",
-  "Fitting",
-  "Sanding",
-  "Stitching",
+  "Layering",
+  "Seasoning",
+  "Steeping",
+  "Curing",
+  "Settling",
+  "Weathering",
   "Tempering",
-  "Carving",
+  "Distilling",
+  "Uncovering",
+  "Opening",
+  "Grounding",
+  "Rooting",
   "Joining",
   "Polishing",
-  "Framing",
-  "Patching",
-  "Sharpening",
   "Steadying",
+  "Simmering",
+  "Framing",
   "Finishing",
 ];
 
@@ -107,7 +109,7 @@ function mountInquiryForm() {
       });
 
       if (!res.ok) {
-        let detail = "Send failed — try email below.";
+        let detail = "Send failed. Try email below.";
         try {
           const data = await res.json();
           if (data?.error) detail = String(data.error);
@@ -123,7 +125,7 @@ function mountInquiryForm() {
       if (news) news.textContent = "Sent.";
       submit.disabled = false;
     } catch {
-      if (news) news.textContent = "Network error — try email below.";
+      if (news) news.textContent = "Network error. Try email below.";
       submit.disabled = false;
     }
   });
@@ -131,3 +133,4 @@ function mountInquiryForm() {
 
 mountOneLine();
 mountInquiryForm();
+wireFolioRail();
