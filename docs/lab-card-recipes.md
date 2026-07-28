@@ -15,6 +15,8 @@ Each inspiration owns **one** project-preview pattern. Shared media (`I.archive-
 | `S.card-case-module` | 3XN | Not a card — case module / related tile on cream |
 | `S.card-sage-strip` | Max | Sage magazine strip — matte plate + ink type |
 | `S.card-term-block` | Sacred | Terminal block link / ch-window — not photo card |
+| `S.card-coffee-soft` | Microsoft AI | Cream bone tile · soft illust · walnut italic type |
+| `S.card-pastoral-project` | Huts | Photo-led pastoral tile · meta chips · serif title |
 
 ---
 
@@ -73,7 +75,8 @@ Each inspiration owns **one** project-preview pattern. Shared media (`I.archive-
 
 ---
 
-## 4. Sacred — `S.card-term-block`
+## 5. Sacred — `S.card-term-block`
+
 
 **Feel:** Instrument list — project as block action, photo optional.
 
@@ -92,13 +95,47 @@ Each inspiration owns **one** project-preview pattern. Shared media (`I.archive-
 
 ---
 
+## 6. Microsoft AI — `S.card-coffee-soft`
+
+**Feel:** Manuscript model tile on parchment.
+
+| Axis | Spec |
+|------|------|
+| Surface | Bone `#f5f0e4` on parchment `#fef9ed` · linen border · **no film** |
+| Plate | Soft illustration optional in stage · tiles mostly type |
+| Layout | 2-up (mobile 1) model tiles · tag mono · italic serif title · short body |
+| Type | Fraunces italic · JetBrains Mono tags |
+| Chrome | Pill CTA (`border-radius: 999px`) · ≥40px hit · `scale(0.96)` press |
+| Ban | Sage strips · terminal blocks · archive GIF as hero |
+
+**Live:** [lab/microsoft-ai.html](../lab/microsoft-ai.html)
+
+---
+
+## 7. Huts — `S.card-pastoral-project`
+
+**Feel:** Pastoral project proof + type catalog.
+
+| Axis | Spec |
+|------|------|
+| Surface | Coffee `#faf7ed` · paper `#fffdf6` tiles |
+| Plate | Authored pastoral still · 4:3 · `outline: 1px solid rgba(0,0,0,0.1)` |
+| Layout | Catalog: equal type tiles (`S.catalog-type-grid`) · Projects: 2-up photo + title + tabular meta |
+| Type | Fraunces title · Outfit body · mono meta · moss CTA |
+| Ban | Film dark chrome · magenta Sacred hover · stamp-size thumbs |
+
+**Live:** [lab/huts.html](../lab/huts.html)
+
+---
+
 ## Shared rules (all labs)
 
 1. Hard edges · no rounded “product cards”.  
 2. One job per row/tile.  
 3. Archive GIF OK as **thumb fuel** only where recipe allows (Lefos + Max primary; 3XN related optional; Sacred rare).  
 4. `prefers-reduced-motion` → poster still.  
-5. Never copy Max layout into Lefos chrome or reverse.
+5. Never copy Max layout into Lefos chrome or reverse.  
+6. Coffee labs (MAI / Huts) share field family — **card recipes stay separate**.
 
 ---
 

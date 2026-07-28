@@ -13,6 +13,8 @@
 | 3XN | [lab/3xn.html](../lab/3xn.html) | **paper** — warm flecks · multiply, quiet on 3XN live (~0.22–0.38) |
 | Max Milkin | [lab/maxmilkin.html](../lab/maxmilkin.html) | **matte** — quiet 1-bit α20 · overlay on sage |
 | Sacred Computer | [lab/sacred.html](../lab/sacred.html) | **phosphor** — mid CRT flecks · screen @ ~0.55–0.7 (not loud) |
+| Microsoft AI | [lab/microsoft-ai.html](../lab/microsoft-ai.html) | **coffee** — parchment `#FEF9ED` · no film grit |
+| Huts | [lab/huts.html](../lab/huts.html) | **coffee** — field `#faf7ed` · moss accent |
 
 ---
 
@@ -24,6 +26,8 @@
 | [Max Milkin](https://maxmilkin.com) | [inspiration-study-maxmilkin.md](inspiration-study-maxmilkin.md) | [maxmilkin.html](../lab/maxmilkin.html) | Applied (partial / later diverged) | Restraint · 2-color field · case spine |
 | [3XN](https://3xn.com/) | [inspiration-study-3xn.md](inspiration-study-3xn.md) | [3xn.html](../lab/3xn.html) | Extracted (fonts + SAP Garden case spine) | Case modules: hero bleed · intro+meta · quote / image / text-rail / pair |
 | [Sacred Computer](https://www.sacred.computer/) | [inspiration-study-sacred.md](inspiration-study-sacred.md) | [sacred.html](../lab/sacred.html) | Extracted · not applied | Terminal mono · ANSI · ch layout · loaders · glyph icons · phosphor |
+| [Microsoft AI](https://microsoft.ai/) | [inspiration-study-microsoft-ai.md](inspiration-study-microsoft-ai.md) | [microsoft-ai.html](../lab/microsoft-ai.html) | Extracted · lab live | Soft coffee parchment · soft illustration · manuscript serif |
+| [Huts](https://huts.com/) | [inspiration-study-huts.md](inspiration-study-huts.md) | [huts.html](../lab/huts.html) | Extracted · lab live | Coffee field · pastoral catalog · moss accent |
 
 ---
 
@@ -83,6 +87,21 @@ Use these labels when naming what you like — maps feeling → measurable CSS/d
 | `S.card-case-module` | 3XN project preview | Not a card — related 2-up / module on cream |
 | `S.card-sage-strip` | Max project row | Sage magazine strip · matte plate + ink |
 | `S.card-term-block` | Sacred project row | Terminal block link · ch chrome · photo rare |
+| `C.field-coffee` | Soft white coffee / parchment | Warm cream `#FEF9ED`–`#FAF7ED` · not cool Nordic · not pure white |
+| `C.ink-walnut` | Warm brown ink on cream | `#5D524B` / `#664A42` class |
+| `C.accent-moss` | Quiet pastoral green | `#57772E` class CTAs/links · rare |
+| `C.wash-apricot` | Soft peach atmosphere | `#FBD3BE` wash band only · never button fill |
+| `C.library-ink` | MAI hero void | `#2E4D4D` masthead/hero only · not Huts |
+| `C.rose-label` | MAI muted burgundy label | `#8C5462` tags/emphasis |
+| `C.moss-deep-band` | Huts deep green band | `#0C310A` process section |
+| `S.wax-seal-pill` | MAI extreme pill control | ~86px radius · ink border · no hue fill |
+| `I.soft-illustrate` | Humanist soft illustration | Analogue warm · soft glow/grain · not neon 3D UI |
+| `T.serif-manuscript` | Manuscript editorial serif | Soft transitional display+body (Bradford → Fraunces) |
+| `T.mono-quiet-ui` | Mono as small chrome only | Labels/tabs · not full-page terminal |
+| `T.serif-sans-pastoral` | Soft serif + humanist sans | Huts: display serif · body sans |
+| `S.catalog-type-grid` | Equal offering tiles | One job per tile · catalog of types |
+| `S.card-coffee-soft` | Coffee light project preview | Cream · soft illust/still · walnut type |
+| `S.card-pastoral-project` | Huts-style project tile | Photo-led · meta · title under |
 
 **Imagery lock:** [imagery-brief.md](imagery-brief.md) · labs use authored [`lab/media/`](../lab/media/) (no stock CDN).  
 **Card layouts:** [lab-card-recipes.md](lab-card-recipes.md) — one recipe per lab.
@@ -124,8 +143,16 @@ Use these labels when naming what you like — maps feeling → measurable CSS/d
 | Archive / photographer-gallery GIFs for project thumbs | `I.archive-gif`, `I.proof-sheet`, `M.thumb-loop` |
 | Per-lab card design + layout | `S.card-film-strip`, `S.card-case-module`, `S.card-sage-strip`, `S.card-term-block` → [lab-card-recipes.md](lab-card-recipes.md) |
 
+## Your stated likes → cue map (MAI + Huts, session)
+
+| You said | Cue IDs |
+|----------|---------|
+| Soft white coffee (microsoft.ai) | `C.field-coffee`, `C.ink-walnut`, `C.wash-apricot` |
+| Illustrations (microsoft.ai) | `I.soft-illustrate`, `T.serif-manuscript`, `T.mono-quiet-ui` |
+| Along with huts.com | `C.field-coffee` (shared), `C.accent-moss`, `S.catalog-type-grid`, `S.card-pastoral-project`, `T.serif-sans-pastoral` |
+
 ## Next
 
-1. Send next exemplar + likes (same format).
-2. Or say **apply … cues** (pick Cue IDs) to barebones portfolio.
-3. Or generate / shoot one test still against [imagery-brief.md](imagery-brief.md).
+1. Say **apply** coffee cues to light portfolio skin.  
+2. Or next exemplar + likes.  
+3. Labs live: [microsoft-ai.html](../lab/microsoft-ai.html) · [huts.html](../lab/huts.html).

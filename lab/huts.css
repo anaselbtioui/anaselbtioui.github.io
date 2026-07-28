@@ -1,0 +1,359 @@
+/* #nobuild: Huts lab — pastoral product catalog (NOT MAI manuscript). */
+
+body.lab-huts {
+  --huts-field: #faf7ed;
+  --huts-paper: #fffdf6;
+  --huts-ink: #664a42;
+  --huts-dark: #1e1414;
+  --huts-moss: #57772e; /* primary action — MAI forbids this green */
+  --huts-moss-deep: #0c310a;
+  --huts-mute: #d0d4c8;
+  --huts-stone: #534e4a;
+  --lab-fg: var(--huts-ink);
+  --lab-muted: var(--huts-stone);
+  --lab-line: rgba(102, 74, 66, 0.14);
+  --font-serif: "Fraunces", Georgia, serif; /* display only */
+  --font-sans: "Outfit", "ABC Walter Neue", system-ui, sans-serif; /* body */
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  background: var(--huts-field);
+  color: var(--huts-ink);
+  font-family: var(--font-sans); /* sans reading — opposite of MAI */
+}
+
+body.lab-huts a:hover {
+  color: var(--huts-moss-deep);
+}
+
+body.lab-huts .lab-title {
+  font-family: var(--font-serif);
+  font-style: normal; /* not italic manuscript */
+  letter-spacing: -0.02em;
+}
+
+body.lab-huts .lab-lede {
+  font-family: var(--font-sans);
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 1rem;
+  color: var(--huts-stone);
+}
+
+body.lab-huts .lab-kicker,
+body.lab-huts .lab-nav a,
+body.lab-huts .mono-ui,
+body.lab-huts .live-banner {
+  font-family: var(--font-mono);
+}
+
+.huts-live {
+  /* No Library Ink dark hero — always light pastoral field */
+  background: var(--huts-field);
+  border: 1px solid rgba(102, 74, 66, 0.12);
+  margin-bottom: 1.5rem;
+  padding: 0;
+  overflow: hidden;
+}
+
+.huts-top {
+  padding: clamp(1.25rem, 3vw, 2rem) clamp(1.25rem, 3.5vw, 2.25rem) 0;
+}
+
+.huts-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: clamp(1.75rem, 4vh, 2.75rem);
+}
+
+.huts-mark {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--huts-dark);
+}
+
+.huts-nav nav {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.huts-nav a {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  letter-spacing: 0;
+  text-transform: none;
+  text-decoration: none;
+  color: var(--huts-stone);
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.huts-nav a:hover {
+  color: var(--huts-moss);
+}
+
+.huts-hero {
+  margin-bottom: clamp(2rem, 5vh, 3rem);
+  max-width: 40rem;
+}
+
+.huts-hero h2 {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-serif);
+  font-size: clamp(2.1rem, 5vw, 3.2rem);
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  text-wrap: balance;
+  color: var(--huts-dark);
+}
+
+.huts-hero p {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--huts-stone);
+  text-wrap: pretty;
+}
+
+.huts-band {
+  padding: 0 clamp(1.25rem, 3.5vw, 2.25rem) clamp(2rem, 4vw, 2.75rem);
+}
+
+.huts-section-label {
+  margin: 0 0 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--huts-moss);
+}
+
+/* Product catalog — core Huts cue */
+.huts-catalog {
+  list-style: none;
+  margin: 0 0 clamp(2.5rem, 6vh, 3.5rem);
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.huts-type {
+  background: var(--huts-paper);
+  border: 1px solid rgba(102, 74, 66, 0.14);
+  border-radius: 0; /* product tile, not wax-seal */
+  padding: 1.15rem 1.05rem;
+  display: grid;
+  gap: 0.5rem;
+  min-height: 9.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition-property: transform, border-color, background-color;
+  transition-duration: 180ms;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+.huts-type:hover {
+  border-color: var(--huts-moss);
+  background: #fff;
+  color: inherit;
+}
+
+.huts-type:active {
+  transform: scale(0.96);
+}
+
+.huts-type strong {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--huts-dark);
+  text-wrap: balance;
+}
+
+.huts-type span {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: var(--huts-stone);
+  text-wrap: pretty;
+}
+
+.huts-type .go {
+  margin-top: auto;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--huts-moss);
+  font-weight: 500;
+}
+
+/* Photo-led project proofs */
+.huts-projects {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.85rem, 2vw, 1.35rem);
+}
+
+.huts-project {
+  display: grid;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+  transition-property: transform;
+  transition-duration: 160ms;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+.huts-project:hover {
+  color: inherit;
+}
+
+.huts-project:active {
+  transform: scale(0.96);
+}
+
+.huts-project img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  outline: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--huts-mute);
+  border-radius: 0;
+}
+
+.huts-project h3 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--huts-dark);
+  text-wrap: balance;
+}
+
+.huts-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.85rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--huts-stone);
+  font-variant-numeric: tabular-nums;
+}
+
+.huts-meta span::before {
+  content: "";
+}
+
+/* Filled moss CTA — MAI never does hue-filled buttons */
+.huts-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  margin: 1.75rem clamp(1.25rem, 3.5vw, 2.25rem) 0;
+  padding: 0 1.5rem;
+  background: var(--huts-moss);
+  color: var(--huts-paper);
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 500;
+  border-radius: 4px;
+  transition-property: transform, background-color;
+  transition-duration: 180ms;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+.huts-cta:hover {
+  background: var(--huts-moss-deep);
+  color: var(--huts-paper);
+}
+
+.huts-cta:active {
+  transform: scale(0.96);
+}
+
+.huts-process {
+  margin-top: clamp(2.5rem, 6vh, 3.5rem);
+  padding: clamp(1.75rem, 4vw, 2.5rem) clamp(1.25rem, 3.5vw, 2.25rem);
+  background: var(--huts-moss-deep);
+  color: var(--huts-paper);
+}
+
+.huts-process h2 {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-weight: 400;
+  color: var(--huts-paper);
+  text-wrap: balance;
+}
+
+.huts-process p {
+  margin: 0;
+  max-width: 48ch;
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: rgba(255, 253, 246, 0.82);
+  text-wrap: pretty;
+}
+
+.huts-foot {
+  margin: 0;
+  padding: 1.15rem clamp(1.25rem, 3.5vw, 2.25rem);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--huts-stone);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.25rem;
+  border-top: 1px solid rgba(102, 74, 66, 0.12);
+}
+
+@media (max-width: 900px) {
+  .huts-catalog {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .huts-catalog,
+  .huts-projects {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .huts-type,
+  .huts-project,
+  .huts-cta {
+    transition: none;
+  }
+  .huts-type:active,
+  .huts-project:active,
+  .huts-cta:active {
+    transform: none;
+  }
+}

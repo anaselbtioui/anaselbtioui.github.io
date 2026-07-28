@@ -109,5 +109,7 @@ Authored stills live in [`lab/media/`](../lab/media/) (WebP, `?v=1`). Cues: `I.c
 | `harbor-archive-poster.webp` | same | Reduced-motion poster |
 | `ledger-archive.gif` + `-poster.webp` | Max + Lefos Ledger | Archive GIF |
 | `cuelabs-archive.gif` + `-poster.webp` | Max + Lefos Cue Labs | Archive GIF |
+| `mai-soft-illust.webp` | [microsoft-ai.html](../lab/microsoft-ai.html) | Soft illustration (`I.soft-illustrate`) |
+| `huts-pastoral-01.webp` · `02` | [huts.html](../lab/huts.html) | Pastoral project tiles |
 
 No Unsplash/CDN in labs.

@@ -12,8 +12,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./standby.css?v=15">
-  <script type="module" src="./standby.js?v=15"></script>
+  <link rel="stylesheet" href="./standby.css?v=26">
+  <script type="module" src="./standby.js?v=26"></script>
 </head>
 <body class="standby">
   <a class="skip" href="#main">Skip to content</a>
@@ -21,7 +21,11 @@
   <main id="main" class="stage">
     <header class="hero">
       <a class="logo reveal" style="--d:0" href="#main" aria-label="Anas Elbtioui">
-        <img class="logo-mark" src="./favicon.svg" alt="" width="40" height="40" decoding="async">
+        <span class="logo-mark" aria-hidden="true">
+          <span class="logo-mark-surface"></span>
+          <span class="logo-mark-lit"></span>
+          <span class="logo-mark-spec"></span>
+        </span>
         <span class="logo-word">Anas Elbtioui</span>
       </a>
       <h1 class="title reveal" style="--d:1">I build tools people can actually use.</h1>
@@ -31,7 +35,7 @@
       </p>
       <p class="cli reveal" style="--d:3" data-one-line aria-live="polite">
         <span data-ol-spin aria-hidden="true">⠋</span>
-        <span data-ol-word>Building</span><span data-ol-dots>﹒</span>
+        <span data-ol-word>Building</span>
       </p>
       <nav class="cta reveal" style="--d:4" aria-label="Links">
         <a class="hit" href="#contact">Contact</a>

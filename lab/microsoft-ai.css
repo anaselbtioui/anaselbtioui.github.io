@@ -1,0 +1,361 @@
+/* #nobuild: Microsoft AI lab — manuscript parchment (NOT Huts pastoral). */
+
+body.lab-mai {
+  /* Refero / live MAI tokens */
+  --mai-parchment: #fef9ed;
+  --mai-bone: #f5f0e4;
+  --mai-linen: #cec7bc;
+  --mai-walnut: #5d524b;
+  --mai-cedar: #72675b;
+  --mai-library: #2e4d4d; /* hero void only */
+  --mai-apricot: #fbd3be; /* wash band only */
+  --mai-rose: #8c5462;
+  --mai-lilac: #666583;
+  --lab-fg: var(--mai-walnut);
+  --lab-muted: var(--mai-cedar);
+  --lab-line: rgba(93, 82, 75, 0.14);
+  --font-serif: "Fraunces", "Source Serif Pro", Georgia, serif;
+  --font-mono: "JetBrains Mono", "Red Hat Mono", ui-monospace, monospace;
+  background: var(--mai-parchment);
+  color: var(--mai-walnut);
+  /* Manuscript: serif for ALL reading */
+  font-family: var(--font-serif);
+  font-weight: 400;
+}
+
+body.lab-mai strong {
+  font-weight: 400; /* MAI: no bold axis — size + italic only */
+}
+
+body.lab-mai a:hover {
+  color: var(--mai-library);
+}
+
+body.lab-mai .lab-title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  letter-spacing: -0.04em;
+}
+
+body.lab-mai .lab-lede {
+  font-family: var(--font-serif);
+  text-transform: none;
+  letter-spacing: -0.01em;
+  color: var(--mai-cedar);
+  font-size: 1.05rem;
+}
+
+body.lab-mai .lab-kicker,
+body.lab-mai .lab-nav a,
+body.lab-mai .mono-ui,
+body.lab-mai .live-banner,
+body.lab-mai .cue-meta code {
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+}
+
+.mai-live {
+  background: var(--mai-parchment);
+  margin-bottom: 1.5rem;
+}
+
+/* Library Ink void — reserved for hero/masthead only */
+.mai-hero {
+  background: var(--mai-library);
+  color: var(--mai-parchment);
+  min-height: min(78vh, 40rem);
+  padding: clamp(2rem, 6vw, 4rem) clamp(1.5rem, 5vw, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.mai-hero-kicker {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(254, 249, 237, 0.65);
+}
+
+.mai-hero-title {
+  margin: 0;
+  max-width: 12ch;
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 9vw, 6.5rem);
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: -0.045em; /* aggressive tracking = signature */
+  line-height: 0.95;
+  text-wrap: balance;
+  color: var(--mai-parchment);
+}
+
+.mai-hero-title em {
+  font-style: italic; /* emphasis = italic, never bold */
+  color: var(--mai-apricot);
+}
+
+.mai-hero-sub {
+  margin: 0;
+  max-width: 34ch;
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+  color: rgba(254, 249, 237, 0.78);
+  text-wrap: pretty;
+}
+
+/* Apricot wash = full-bleed atmosphere band, not a fill accent */
+.mai-wash {
+  background: linear-gradient(
+    100deg,
+    var(--mai-apricot) 0%,
+    #f7e4d4 42%,
+    var(--mai-parchment) 100%
+  );
+  padding: clamp(2.5rem, 7vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
+}
+
+.mai-wash-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+  max-width: 75rem;
+  margin: 0 auto;
+}
+
+.mai-illust {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 25px; /* MAI card radius */
+  outline: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.mai-wash-copy h2 {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.85rem, 3.5vw, 2.6rem);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  text-wrap: balance;
+  color: var(--mai-walnut);
+}
+
+.mai-wash-copy p {
+  margin: 0 0 1.25rem;
+  max-width: 38ch;
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  color: var(--mai-cedar);
+  text-wrap: pretty;
+}
+
+/* Wax-seal pill — extreme radius (~86px class) */
+.mai-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 1.75rem;
+  border: 1px solid var(--mai-walnut);
+  border-radius: 86px;
+  background: transparent;
+  color: var(--mai-walnut);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition-property: transform, background-color, color;
+  transition-duration: 180ms;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+.mai-pill:hover {
+  background: var(--mai-walnut);
+  color: var(--mai-parchment);
+}
+
+.mai-pill:active {
+  transform: scale(0.96);
+}
+
+/* Text action — no filled hue CTAs */
+.mai-text-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 40px;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--mai-walnut);
+  text-decoration: none;
+  letter-spacing: -0.015em;
+}
+
+.mai-text-action:hover {
+  color: var(--mai-rose);
+}
+
+.mai-section {
+  padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 3.5rem);
+  background: var(--mai-parchment);
+}
+
+.mai-section-label {
+  margin: 0 0 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mai-rose);
+}
+
+.mai-model-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  max-width: 75rem;
+}
+
+.mai-model {
+  background: var(--mai-bone);
+  border: 1px solid var(--mai-linen);
+  border-radius: 25px;
+  padding: 2rem 1.75rem;
+  display: grid;
+  gap: 0.55rem;
+  transition-property: transform;
+  transition-duration: 160ms;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+.mai-model:active {
+  transform: scale(0.96);
+}
+
+.mai-model .tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mai-rose);
+}
+
+.mai-model strong {
+  font-family: var(--font-serif);
+  font-size: clamp(1.45rem, 2.5vw, 1.85rem);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.025em;
+  color: var(--mai-walnut);
+}
+
+.mai-model p {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--mai-cedar);
+  text-wrap: pretty;
+}
+
+.mai-values {
+  background: var(--mai-bone);
+  padding: clamp(3rem, 8vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
+  border-top: 1px solid var(--mai-linen);
+  border-bottom: 1px solid var(--mai-linen);
+}
+
+.mai-values h2 {
+  margin: 0 0 1.75rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.85rem, 3vw, 2.4rem);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.03em;
+  color: var(--mai-walnut);
+}
+
+.mai-values-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem 2rem;
+  max-width: 75rem;
+}
+
+.mai-values-grid li {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.mai-values-grid h3 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--mai-walnut);
+}
+
+.mai-values-grid p {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--mai-cedar);
+  text-wrap: pretty;
+}
+
+.mai-foot {
+  margin: 0;
+  padding: 1.25rem clamp(1.5rem, 5vw, 3.5rem);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mai-cedar);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.25rem;
+  border-top: 1px solid var(--mai-linen);
+}
+
+@media (max-width: 800px) {
+  .mai-wash-inner,
+  .mai-model-grid,
+  .mai-values-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mai-pill,
+  .mai-model {
+    transition: none;
+  }
+  .mai-pill:active,
+  .mai-model:active {
+    transform: none;
+  }
+}
