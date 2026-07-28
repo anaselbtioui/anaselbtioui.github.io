@@ -12,52 +12,51 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./standby.css?v=4">
-  <script type="module" src="./standby.js?v=4"></script>
+  <link rel="stylesheet" href="./standby.css?v=5">
+  <script type="module" src="./standby.js?v=5"></script>
 </head>
 <body class="standby">
   <a class="skip" href="#main">Skip to content</a>
 
   <main id="main" class="stage">
-    <!-- Vision: who + job. Symbol: small portrait (not portrait-first entrance). -->
+    <!-- Desktop: editorial split (type | proof-sheet). Mobile: type-first, plate as footnote. -->
     <header class="hero">
-      <div class="who reveal" style="--d:0">
-        <picture class="who-photo">
+      <div class="hero-copy">
+        <p class="brand reveal" style="--d:0">Anas Elbtioui</p>
+        <h1 class="title reveal" style="--d:1">I build software with AI.</h1>
+        <p class="lede reveal" style="--d:2">
+          CRMs, scrapers, and tools for small businesses —
+          clear next actions, not SaaS clutter.
+        </p>
+        <p class="cli reveal" style="--d:3" data-one-line aria-live="polite">
+          <span data-ol-spin aria-hidden="true">⠋</span>
+          <span data-ol-word>Building</span><span data-ol-dots>﹒</span>
+          <span class="cli-note">portfolio still under construction</span>
+          <span data-ol-time class="cli-time">(0ms)</span>
+        </p>
+        <nav class="cta reveal" style="--d:4" aria-label="Quick links">
+          <a class="hit" href="#contact">Contact</a>
+          <a class="hit" href="https://github.com/anaselbtioui" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="hit" href="https://www.linkedin.com/in/anas-elbtioui" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </nav>
+      </div>
+
+      <figure class="hero-plate reveal" style="--d:2">
+        <picture>
           <source srcset="./media/anas.webp" type="image/webp">
           <img
             src="./media/anas.jpg"
             alt="Anas Elbtioui"
-            width="96"
-            height="96"
+            width="480"
+            height="480"
             decoding="async"
             fetchpriority="high"
           >
         </picture>
-        <div class="who-copy">
-          <p class="brand">Anas Elbtioui</p>
-          <h1 class="title">I build software with AI.</h1>
-        </div>
-      </div>
-      <p class="lede reveal" style="--d:1">
-        CRMs, scrapers, and tools for small businesses —
-        clear next actions, not SaaS clutter.
-      </p>
-      <!-- News: current state -->
-      <p class="cli reveal" style="--d:2" data-one-line aria-live="polite">
-        <span data-ol-spin aria-hidden="true">⠋</span>
-        <span data-ol-word>Building</span><span data-ol-dots>﹒</span>
-        <span class="cli-note">portfolio still under construction</span>
-        <span data-ol-time class="cli-time">(0ms)</span>
-      </p>
-      <nav class="cta reveal" style="--d:3" aria-label="Quick links">
-        <a class="hit" href="#contact">Contact</a>
-        <a class="hit" href="https://github.com/anaselbtioui" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a class="hit" href="https://www.linkedin.com/in/anas-elbtioui" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      </nav>
+      </figure>
     </header>
 
-    <!-- Contributions: inquiry → reply by email -->
-    <section class="contact reveal" style="--d:4" id="contact" aria-labelledby="contact-title">
+    <section class="contact reveal" style="--d:5" id="contact" aria-labelledby="contact-title">
       <h2 id="contact-title" class="section-kicker">Contact</h2>
       <p class="contact-lede">
         Say what you need. I’ll reply by email.
@@ -100,7 +99,7 @@
       </p>
     </section>
 
-    <footer class="foot reveal" style="--d:5">
+    <footer class="foot reveal" style="--d:6">
       <p class="mono">anaselbt.me · under construction</p>
     </footer>
   </main>

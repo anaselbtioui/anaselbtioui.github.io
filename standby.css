@@ -12,7 +12,7 @@
   --ease: cubic-bezier(0.2, 0, 0, 1);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --dur: 520ms;
-  --maxw: 40rem;
+  --maxw: 56rem;
 }
 
 *,
@@ -99,49 +99,50 @@ body.standby::before {
   padding: clamp(3.5rem, 10vh, 6rem) 0 4rem;
 }
 
+/* Desktop recipe 2 — editorial split */
 .hero {
-  min-height: min(62vh, 30rem);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0;
-  padding-bottom: 2.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(11rem, 16.5rem);
+  gap: clamp(1.75rem, 4vw, 3.25rem);
+  align-items: end;
+  min-height: min(58vh, 28rem);
+  padding-bottom: 2.75rem;
+  margin-bottom: 0;
   border-bottom: 1px solid var(--line);
 }
 
-.who {
-  display: flex;
-  align-items: center;
-  gap: 1.15rem;
-  margin: 0 0 1.25rem;
+.hero-copy {
+  min-width: 0;
+  padding-bottom: 0.15rem;
 }
 
-.who-photo {
-  flex: 0 0 auto;
+.hero-plate {
+  margin: 0;
+  width: 100%;
+  justify-self: end;
+}
+
+.hero-plate picture {
   display: block;
-  width: 4.5rem;
-  height: 4.5rem;
-  border-radius: 50%;
+  aspect-ratio: 3 / 4;
   overflow: hidden;
+  border-radius: 0;
+  background: #12151a;
   outline: 1px solid rgba(255, 255, 255, 0.1);
   outline-offset: 0;
-  background: #12151a;
 }
 
-.who-photo img {
+.hero-plate img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 20%;
-}
-
-.who-copy {
-  min-width: 0;
+  object-position: center 18%;
+  filter: saturate(0.82) contrast(1.04);
 }
 
 .brand {
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.55rem;
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 500;
@@ -151,9 +152,9 @@ body.standby::before {
 }
 
 .title {
-  margin: 0;
+  margin: 0 0 1rem;
   font-family: var(--font-display);
-  font-size: clamp(1.85rem, 5.5vw, 2.75rem);
+  font-size: clamp(1.85rem, 4.8vw, 2.85rem);
   font-weight: 400;
   letter-spacing: -0.035em;
   line-height: 1.12;
@@ -162,7 +163,7 @@ body.standby::before {
 
 .lede {
   margin: 0 0 1.5rem;
-  max-width: 36ch;
+  max-width: 34ch;
   color: var(--muted);
   font-size: 1.02rem;
   text-wrap: pretty;
@@ -380,18 +381,42 @@ body.standby::before {
   color: var(--muted);
 }
 
-@media (max-width: 520px) {
-  .who {
-    align-items: flex-start;
+/* Mobile recipe 1 — type first, plate as footnote */
+@media (max-width: 720px) {
+  :root {
+    --maxw: 40rem;
   }
 
-  .who-photo {
-    width: 3.75rem;
-    height: 3.75rem;
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    min-height: 0;
+    padding-bottom: 2rem;
+  }
+
+  .hero-plate {
+    order: 2;
+    width: 7.5rem;
+    margin-top: 2rem;
+    justify-self: start;
+  }
+
+  .hero-copy {
+    order: 1;
+  }
+
+  .hero-plate picture {
+    aspect-ratio: 3 / 4;
+  }
+
+  .title {
+    font-size: clamp(1.85rem, 7vw, 2.4rem);
   }
 }
 
-/* Enter — split + stagger (visible by default if motion off / animation skipped) */
+/* Enter — split + stagger */
 .reveal {
   opacity: 1;
   transform: none;
