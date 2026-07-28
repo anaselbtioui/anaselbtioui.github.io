@@ -12,8 +12,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./standby.css?v=11">
-  <script type="module" src="./standby.js?v=11"></script>
+  <link rel="stylesheet" href="./standby.css?v=12">
+  <script type="module" src="./standby.js?v=12"></script>
 </head>
 <body class="standby">
   <a class="skip" href="#main">Skip to content</a>
@@ -21,7 +21,10 @@
   <main id="main" class="stage">
     <header class="hero">
       <div class="hero-copy">
-        <p class="brand reveal" style="--d:0">Anas Elbtioui</p>
+        <a class="logo reveal" style="--d:0" href="#main" aria-label="Anas Elbtioui">
+          <img class="logo-mark" src="./favicon.svg" alt="" width="28" height="28" decoding="async">
+          <span class="logo-word">Anas Elbtioui</span>
+        </a>
         <h1 class="title reveal" style="--d:1">I build tools people can actually use.</h1>
         <p class="lede reveal" style="--d:2">
           SaaS apps, ecommerce sites, CRMs, and scrapers for small businesses —
