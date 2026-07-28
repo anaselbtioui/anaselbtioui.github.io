@@ -12,50 +12,51 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./standby.css?v=13">
-  <script type="module" src="./standby.js?v=13"></script>
+  <link rel="stylesheet" href="./standby.css?v=14">
+  <script type="module" src="./standby.js?v=14"></script>
 </head>
 <body class="standby">
   <a class="skip" href="#main">Skip to content</a>
 
   <main id="main" class="stage">
     <header class="hero">
-      <a class="logo reveal" style="--d:0" href="#main" aria-label="Anas Elbtioui">
-        <img class="logo-mark" src="./favicon.svg" alt="" width="36" height="36" decoding="async">
-        <span class="logo-word">Anas Elbtioui</span>
-      </a>
-      <h1 class="title reveal" style="--d:1">I build tools people can actually use.</h1>
-      <p class="lede reveal" style="--d:2">
-        SaaS apps, ecommerce sites, CRMs, and scrapers for small businesses —
-        clear on day one, steady as volume grows, built to earn their keep.
-      </p>
+      <div class="hero-copy">
+        <a class="logo reveal" style="--d:0" href="#main" aria-label="Anas Elbtioui">
+          <img class="logo-mark" src="./favicon.svg" alt="" width="40" height="40" decoding="async">
+          <span class="logo-word">Anas Elbtioui</span>
+        </a>
+        <h1 class="title reveal" style="--d:1">I build tools people can actually use.</h1>
+        <p class="lede reveal" style="--d:2">
+          SaaS apps, ecommerce sites, CRMs, and scrapers for small businesses —
+          clear on day one, steady as volume grows, built to earn their keep.
+        </p>
+        <p class="cli reveal" style="--d:3" data-one-line aria-live="polite">
+          <span data-ol-spin aria-hidden="true">⠋</span>
+          <span data-ol-word>Building</span><span data-ol-dots>﹒</span>
+        </p>
+        <nav class="cta reveal" style="--d:4" aria-label="Links">
+          <a class="hit" href="#contact">Contact</a>
+          <a class="hit" href="https://github.com/anaselbtioui" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="hit" href="https://www.linkedin.com/in/anas-elbtioui" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </nav>
+      </div>
 
-      <figure class="hero-plate reveal" style="--d:3">
+      <figure class="hero-plate reveal" style="--d:2">
         <picture>
           <source srcset="./media/anas.webp" type="image/webp">
           <img
             src="./media/anas.jpg"
             alt="Anas Elbtioui"
-            width="480"
-            height="480"
+            width="640"
+            height="640"
             decoding="async"
             fetchpriority="high"
           >
         </picture>
       </figure>
-
-      <p class="cli reveal" style="--d:4" data-one-line aria-live="polite">
-        <span data-ol-spin aria-hidden="true">⠋</span>
-        <span data-ol-word>Building</span><span data-ol-dots>﹒</span>
-      </p>
-      <nav class="cta reveal" style="--d:5" aria-label="Links">
-        <a class="hit" href="#contact">Contact</a>
-        <a class="hit" href="https://github.com/anaselbtioui" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a class="hit" href="https://www.linkedin.com/in/anas-elbtioui" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      </nav>
     </header>
 
-    <section class="contact reveal" style="--d:6" id="contact" aria-label="Contact">
+    <section class="contact reveal" style="--d:5" id="contact" aria-label="Contact">
       <form
         class="inquiry"
         id="inquiry"
