@@ -1,6 +1,7 @@
 // #nobuild: soft mono one-line + Formspree inquiry form.
 
 import { wireFolioRail } from "./folio-rail.js";
+import { wireWorkStrip } from "./work-strip.js";
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -134,3 +135,4 @@ function mountInquiryForm() {
 mountOneLine();
 mountInquiryForm();
 wireFolioRail();
+wireWorkStrip();

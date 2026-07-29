@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Anas Elbtioui. Tools people can use</title>
-  <meta name="description" content="Anas Elbtioui, backend-first full-stack developer. Business apps, online shops, customer tools, and data tools people can actually use.">
+  <meta name="description" content="Anas Elbtioui, backend-first full-stack developer and product designer. Ideas shaped into brands, interfaces, and software people can actually use.">
   <meta name="theme-color" content="#10191c">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="icon" href="./favicon.png" type="image/png" sizes="32x32">
@@ -12,11 +12,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./standby.css?v=36">
-  <script type="module" src="./standby.js?v=36"></script>
+  <link rel="stylesheet" href="./standby.css?v=59">
+  <script type="module" src="./standby.js?v=59"></script>
 </head>
 <body class="standby">
   <a class="skip" href="#main">Skip to content</a>
+  <div class="leaf-wash" aria-hidden="true"></div>
   <div class="fig-wash" aria-hidden="true"></div>
 
   <main id="main" class="stage">
@@ -29,13 +30,13 @@
         </span>
         <span class="logo-text">
           <span class="logo-word">Anas Elbtioui</span>
-          <span class="logo-role">Backend-first full-stack developer</span>
+          <span class="logo-role">Full-stack developer and product designer</span>
         </span>
       </a>
       <h1 class="title reveal" style="--d:1">I build tools people can actually use.</h1>
       <p class="lede reveal" style="--d:2">
-        Business apps, online shops, customer tools, and data tools.
-        Easy to run from day one, steady as they grow, worth keeping.
+        I take ideas from first sketch to brand, interface, and working software.
+        One design language throughout, shaped around the people who use it.
       </p>
       <p class="cli reveal" style="--d:3" data-one-line aria-live="polite">
         <span data-ol-spin aria-hidden="true">⠋</span>
@@ -48,7 +49,43 @@
       </nav>
     </header>
 
-    <section class="contact reveal" style="--d:5" id="contact" aria-label="Contact">
+    <section class="work reveal" style="--d:5" data-shape="grove" aria-labelledby="work-title">
+      <h2 class="section-title" id="work-title">Selected work</h2>
+
+      <div class="work-strip" data-strip>
+        <ol
+          class="work-track"
+          data-strip-track
+          tabindex="0"
+          role="group"
+          aria-label="Selected work, side by side"
+        >
+          <li class="work-card" data-strip-card>
+            <div class="work-plate">
+              <img class="work-thumb-still" src="media/work/work-01-poster.webp?v=3" alt="" width="400" height="500" loading="lazy" decoding="async" draggable="false">
+              <img class="work-thumb-loop" src="media/work/work-01.gif?v=3" alt="" width="400" height="500" loading="lazy" decoding="async" draggable="false">
+            </div>
+            <h3>[Project name]</h3>
+          </li>
+          <li class="work-card" data-strip-card>
+            <div class="work-plate">
+              <img class="work-thumb-still" src="media/work/work-02-poster.webp?v=3" alt="" width="400" height="500" loading="lazy" decoding="async" draggable="false">
+              <img class="work-thumb-loop" src="media/work/work-02.gif?v=3" alt="" width="400" height="500" loading="lazy" decoding="async" draggable="false">
+            </div>
+            <h3>[Project name]</h3>
+          </li>
+          <li class="work-card" data-strip-card>
+            <div class="work-plate">
+              <img class="work-thumb-still" src="media/work/work-03-poster.webp?v=3" alt="" width="400" height="500" loading="lazy" decoding="async" draggable="false">
+              <img class="work-thumb-loop" src="media/work/work-03.gif?v=3" alt="" width="400" height="500" loading="lazy" decoding="async" draggable="false">
+            </div>
+            <h3>[Project name]</h3>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="contact reveal" style="--d:6" id="contact" aria-label="Contact">
       <form
         class="inquiry"
         id="inquiry"

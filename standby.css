@@ -2,11 +2,13 @@
 
 :root {
   --bg: #10191c;
-  --fg: #e4eceb;
-  --muted: #7a8f8c;
+  --fg: #c3d2d0;
+  /* Intense white is an accent — headline only, nothing else earns it */
+  --fg-bright: #eaf2f0;
+  --muted: #748986;
   --accent: #3d7a7e;
   --accent-mist: #5a9a9c;
-  --line: rgba(228, 236, 235, 0.06);
+  --line: rgba(195, 210, 208, 0.06);
   --font-body: "Outfit", system-ui, sans-serif;
   --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
   --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
@@ -328,6 +330,7 @@ body.standby::before {
   font-weight: 400;
   letter-spacing: -0.04em;
   line-height: 1.08;
+  color: var(--fg-bright);
   text-wrap: balance;
 }
 
@@ -407,7 +410,7 @@ body.standby::before {
   font-weight: 500;
   letter-spacing: 0.01em;
   text-decoration: none;
-  color: var(--fg);
+  color: color-mix(in srgb, var(--fg) 84%, var(--bg));
   border-bottom: 1px solid transparent;
   padding: 0.5rem 0;
   min-height: 48px;
@@ -428,34 +431,403 @@ body.standby::before {
   transform: scale(0.96);
 }
 
-/* Fig as atmosphere — dissolve into field, not a mid-page tile */
+/* Fig as atmosphere — dissolve into field, not a mid-page tile.
+   Sized ~botanical vs leaves (fruit smaller).
+   Bottom-left; mirrored; light clip on opened fig — not soft-light (vanishes on dark). */
 .fig-wash {
   position: fixed;
   z-index: 0;
-  right: -8%;
-  bottom: -6%;
-  width: min(42rem, 78vw);
+  left: -8%;
+  bottom: -4%;
+  width: min(30rem, 56vw);
   aspect-ratio: 1;
   pointer-events: none;
-  background-image: url("./media/fig-illustration.png");
+  background-image: url("./media/fig-illustration.webp");
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: 48% 55%;
   background-size: contain;
-  opacity: 0.34;
-  filter: saturate(0.78) brightness(0.88) contrast(1.06);
-  mix-blend-mode: soft-light;
-  /* Soft edge dissolve into teal */
+  transform: scaleX(-1);
+  opacity: 0.28;
+  filter: saturate(0.55) brightness(0.72) contrast(1.02);
+  /* Opaque near corner; fade into page. Pre-flip coords (scaleX flips them). */
   -webkit-mask-image: radial-gradient(
-    ellipse 68% 68% at 55% 55%,
-    #000 20%,
-    transparent 72%
+    ellipse 78% 78% at 58% 58%,
+    #000 28%,
+    transparent 78%
   );
   mask-image: radial-gradient(
-    ellipse 68% 68% at 55% 55%,
-    #000 20%,
-    transparent 72%
+    ellipse 78% 78% at 58% 58%,
+    #000 28%,
+    transparent 78%
   );
 }
+
+/* Fig leaves frame opposite corner — larger than fruit (~4× subject read),
+   hang deeper off-edge so scale stays botanical without eating type.
+   Top-right; natural orientation (branch enters from right). */
+.leaf-wash {
+  position: fixed;
+  z-index: 0;
+  top: -12%;
+  right: -12%;
+  width: min(72rem, 118vw);
+  aspect-ratio: 3 / 2;
+  pointer-events: none;
+  background-image: url("./media/fig-leaf-illustration.webp");
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-size: contain;
+  /* Normal blend — soft-light vanishes against a field this dark */
+  opacity: 0.36;
+  filter: saturate(0.62) brightness(0.78) contrast(1.02);
+  /* Dissolve toward page center so foliage never fights the type */
+  -webkit-mask-image: radial-gradient(
+    ellipse 70% 70% at 22% 22%,
+    #000 12%,
+    transparent 68%
+  );
+  mask-image: radial-gradient(
+    ellipse 70% 70% at 22% 22%,
+    #000 12%,
+    transparent 68%
+  );
+}
+
+/* Contact sheet: plates pinned side by side, bleeding past the text column */
+.work {
+  padding: 5.5rem 0 4.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.section-title {
+  margin: 0 0 2.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--accent-mist);
+}
+
+.work-strip {
+  /* Full-bleed sheet: track spans the viewport, plates still line up with the text column */
+  --bleed: calc((100vw - min(var(--maxw), 92vw)) / 2);
+  position: relative;
+  margin-inline: calc(-1 * var(--bleed));
+}
+
+.work-track {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(1.5rem, 3.5vw, 3rem);
+  width: 100%;
+  margin: 0;
+  padding: 0 var(--bleed) 0.5rem;
+  list-style: none;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline-start: var(--bleed);
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.work-track::-webkit-scrollbar {
+  display: none;
+}
+
+.work-track:focus-visible {
+  outline: 1px solid var(--accent-mist);
+  outline-offset: 0.75rem;
+}
+
+.work-track.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
+}
+
+.work-card {
+  position: relative;
+  flex: 0 0 clamp(17rem, 30vw, 26rem);
+  scroll-snap-align: start;
+}
+
+/* Plate shape presets — swap data-shape on .work. Bottom edge stays flat so
+   the overlaid name always sits on a straight baseline. */
+.work[data-shape="crest"] {
+  --plate-radius: 64% 36% 0 0 / 34% 26% 0 0;
+  --plate-ratio: 4 / 5;
+}
+
+.work[data-shape="arch"] {
+  --plate-radius: 50% 50% 0 0 / 38% 38% 0 0;
+  --plate-ratio: 4 / 5;
+}
+
+/* One arch family, alternating mirrored crowns. Adjacent cards lean toward
+   each other; repetition keeps each plate reading as a solid container. */
+.work[data-shape="arch-pair"] {
+  --plate-ratio: 4 / 5;
+}
+
+.work[data-shape="arch-pair"] .work-card:nth-child(odd) .work-plate {
+  --plate-radius: 62% 38% 0 0 / 36% 29% 0 0;
+}
+
+.work[data-shape="arch-pair"] .work-card:nth-child(even) .work-plate {
+  --plate-radius: 38% 62% 0 0 / 29% 36% 0 0;
+}
+
+.work[data-shape="tab"] {
+  --plate-radius: 2.75rem 2.75rem 0 0;
+  --plate-ratio: 4 / 5;
+}
+
+.work[data-shape="lean"] {
+  --plate-radius: 45% 12% 0 0 / 30% 12% 0 0;
+  --plate-ratio: 3 / 4;
+}
+
+.work[data-shape="sheet"] {
+  --plate-radius: 0;
+  --plate-ratio: 2 / 3;
+}
+
+/* Cut corner — index card pulled from a drawer */
+.work[data-shape="notch"] {
+  --plate-ratio: 4 / 5;
+  --plate-clip: polygon(0 0, calc(100% - 2.5rem) 0, 100% 2.5rem, 100% 100%, 0 100%);
+}
+
+/* Tapered plinth — sides lean in, architectural */
+.work[data-shape="plinth"] {
+  --plate-ratio: 4 / 5;
+  --plate-clip: polygon(7% 0, 93% 0, 100% 100%, 0 100%);
+}
+
+/* Torn paper and organic silhouette need real alpha, so they ride on masks */
+.work[data-shape="deckle"] {
+  --plate-ratio: 4 / 5;
+  --plate-mask: url("./media/work/mask-deckle.png");
+}
+
+.work[data-shape="blob"] {
+  --plate-ratio: 4 / 5;
+  --plate-mask: url("./media/work/mask-blob.png");
+}
+
+/* Grove — one arch family, crown set by phyllotaxis (golden-angle lean) and a
+   name-seeded superellipse. Straight sides + flat bottom keep the container and
+   the title baseline; only the dome differs per project. */
+.work[data-shape="grove"] {
+  --plate-ratio: 4 / 5;
+}
+
+.work[data-shape="grove"] .work-card:nth-child(3n + 1) .work-plate {
+  --plate-mask: url("./media/work/mask-grove-01.png");
+}
+
+.work[data-shape="grove"] .work-card:nth-child(3n + 2) .work-plate {
+  --plate-mask: url("./media/work/mask-grove-02.png");
+}
+
+.work[data-shape="grove"] .work-card:nth-child(3n + 3) .work-plate {
+  --plate-mask: url("./media/work/mask-grove-03.png");
+}
+
+/* Slit from one sheet — each plate's right edge is the next plate's left edge,
+   so neighbours interlock. Caps are shared, so the row reads as one strip. */
+.work[data-shape="seam"] {
+  --plate-ratio: 4 / 5;
+}
+
+/* The masks carry their own transparent margin, so the flex gap goes nearly to
+   zero and the channel between plates stays the width of the shared seam. */
+.work[data-shape="seam"] .work-track {
+  gap: clamp(0.1rem, 0.5vw, 0.6rem);
+}
+
+.work[data-shape="seam"] .work-card {
+  flex-basis: clamp(19rem, 34vw, 29rem);
+}
+
+.work[data-shape="seam"] .work-card:nth-child(3n + 1) .work-plate {
+  --plate-mask: url("./media/work/mask-seam-01.png");
+}
+
+.work[data-shape="seam"] .work-card:nth-child(3n + 2) .work-plate {
+  --plate-mask: url("./media/work/mask-seam-02.png");
+}
+
+.work[data-shape="seam"] .work-card:nth-child(3n + 3) .work-plate {
+  --plate-mask: url("./media/work/mask-seam-03.png");
+}
+
+/* Clipped and masked plates: box-shadow gets cut, so depth moves to
+   drop-shadow, which follows the alpha instead of the element box. */
+.work[data-shape="notch"] .work-plate,
+.work[data-shape="plinth"] .work-plate,
+.work[data-shape="deckle"] .work-plate,
+.work[data-shape="seam"] .work-plate,
+.work[data-shape="grove"] .work-plate,
+.work[data-shape="blob"] .work-plate {
+  background: none;
+  box-shadow: none;
+}
+
+/* Filter runs before the mask, so a drop-shadow on the plate itself would be
+   masked away. It lives on the card, one level up. */
+.work[data-shape="notch"] .work-card,
+.work[data-shape="plinth"] .work-card,
+.work[data-shape="deckle"] .work-card,
+.work[data-shape="seam"] .work-card,
+.work[data-shape="grove"] .work-card,
+.work[data-shape="blob"] .work-card {
+  filter: drop-shadow(0 0.4rem 0.8rem rgba(0, 0, 0, 0.22))
+    drop-shadow(0 1.1rem 2.25rem rgba(0, 0, 0, 0.32));
+  transition-property: filter;
+  transition-duration: 420ms;
+  transition-timing-function: var(--ease);
+}
+
+.work[data-shape="notch"] .work-card:hover,
+.work[data-shape="plinth"] .work-card:hover,
+.work[data-shape="deckle"] .work-card:hover,
+.work[data-shape="seam"] .work-card:hover,
+.work[data-shape="grove"] .work-card:hover,
+.work[data-shape="blob"] .work-card:hover {
+  filter: drop-shadow(0 0.5rem 1rem rgba(0, 0, 0, 0.26))
+    drop-shadow(0 1.4rem 2.75rem rgba(0, 0, 0, 0.4));
+}
+
+/* Ragged and round bottoms give the name nothing to sit on — drop it below */
+.work[data-shape="deckle"] .work-card h3,
+.work[data-shape="seam"] .work-card h3,
+.work[data-shape="blob"] .work-card h3 {
+  position: static;
+  margin: 1.15rem 0 0;
+  text-shadow: none;
+}
+
+/* Line the name up with the masked plate, not the transparent margin */
+.work[data-shape="seam"] .work-card h3 {
+  margin-inline: 12%;
+}
+
+.work[data-shape="deckle"] .work-plate::after,
+.work[data-shape="seam"] .work-plate::after,
+.work[data-shape="blob"] .work-plate::after {
+  opacity: 0;
+}
+
+.work-plate {
+  position: relative;
+  display: block;
+  aspect-ratio: var(--plate-ratio, 4 / 5);
+  border-radius: var(--plate-radius, 0);
+  clip-path: var(--plate-clip, none);
+  -webkit-mask-image: var(--plate-mask, none);
+  mask-image: var(--plate-mask, none);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  overflow: hidden;
+  background: #16262a;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 0.5rem 1rem rgba(0, 0, 0, 0.18),
+    0 1.25rem 2.5rem rgba(0, 0, 0, 0.28);
+  transition-property: box-shadow;
+  transition-duration: 420ms;
+  transition-timing-function: var(--ease);
+}
+
+/* Scrim so the name stays legible over any plate */
+.work-plate::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 45%;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(6, 12, 14, 0.82) 0%,
+    rgba(6, 12, 14, 0.45) 42%,
+    rgba(6, 12, 14, 0) 100%
+  );
+  transition-property: opacity;
+  transition-duration: 480ms;
+  transition-timing-function: var(--ease);
+}
+
+.work-plate img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.72) contrast(1.03) brightness(0.9);
+  transition: opacity 480ms var(--ease), filter 480ms var(--ease);
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.work-thumb-loop {
+  opacity: 0;
+}
+
+.work-card:hover .work-thumb-loop,
+.work-card:focus-within .work-thumb-loop,
+.work-card.is-live .work-thumb-loop {
+  opacity: 1;
+}
+
+.work-card:hover .work-plate img,
+.work-card:focus-within .work-plate img,
+.work-card.is-live .work-plate img {
+  filter: saturate(0.95) contrast(1.04) brightness(1);
+}
+
+.work-card:hover .work-plate {
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.16),
+    0 0.6rem 1.25rem rgba(0, 0, 0, 0.22),
+    0 1.5rem 3rem rgba(0, 0, 0, 0.36);
+}
+
+/* No hover to reveal the loop on touch, so it just runs. */
+@media (hover: none) {
+  .work-thumb-loop {
+    opacity: 1;
+  }
+}
+
+.work-card h3 {
+  position: absolute;
+  z-index: 1;
+  right: 1.35rem;
+  bottom: 1.15rem;
+  left: 1.35rem;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--fg);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+  text-wrap: balance;
+  transition-property: color;
+  transition-duration: 420ms;
+  transition-timing-function: var(--ease);
+}
+
+.work-card:hover h3,
+.work-card:focus-within h3,
+.work-card.is-live h3 {
+  color: var(--fg-bright);
+}
+
 
 .contact {
   padding: 3.5rem 0 0;
@@ -488,7 +860,7 @@ body.standby::before {
   width: 100%;
   margin: 0;
   padding: 1.05rem 1.15rem;
-  border: 1px solid rgba(228, 236, 235, 0.1);
+  border: 1px solid rgba(195, 210, 208, 0.1);
   border-radius: 0;
   background: rgba(8, 14, 16, 0.5);
   color: var(--fg);
@@ -511,7 +883,7 @@ body.standby::before {
 
 .field input:hover,
 .field textarea:hover {
-  border-color: rgba(228, 236, 235, 0.16);
+  border-color: rgba(195, 210, 208, 0.16);
 }
 
 .field textarea::placeholder {
@@ -539,9 +911,9 @@ body.standby::before {
   margin: 0;
   padding: 1.05rem 1.75rem;
   min-height: 56px;
-  border: 1px solid rgba(228, 236, 235, 0.2);
+  border: 1px solid rgba(195, 210, 208, 0.18);
   border-radius: 0;
-  background: var(--fg);
+  background: color-mix(in srgb, var(--fg) 90%, var(--bg));
   color: var(--bg);
   font-family: var(--font-mono);
   font-size: 1.05rem;
@@ -608,10 +980,37 @@ body.standby::before {
   }
 
   .fig-wash {
-    right: -18%;
-    bottom: -4%;
-    width: min(28rem, 92vw);
-    opacity: 0.26;
+    left: -12%;
+    bottom: -2%;
+    width: min(20rem, 64vw);
+    opacity: 0.22;
+  }
+
+  .leaf-wash {
+    top: -10%;
+    right: -32%;
+    width: min(48rem, 140vw);
+    opacity: 0.24;
+  }
+
+  .work {
+    padding: 4rem 0 3.5rem;
+  }
+
+  .section-title {
+    margin-bottom: 1.75rem;
+  }
+
+  .work-card {
+    flex-basis: min(78vw, 20rem);
+  }
+
+  .work[data-shape="seam"] .work-card {
+    flex-basis: min(86vw, 23rem);
+  }
+
+  .work-card h3 {
+    font-size: 1.25rem;
   }
 }
 
@@ -649,5 +1048,9 @@ body.standby::before {
     background: none;
     -webkit-background-clip: border-box;
     background-clip: border-box;
+  }
+
+  .work-thumb-loop {
+    display: none;
   }
 }
