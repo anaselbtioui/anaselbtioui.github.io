@@ -15,6 +15,8 @@
 | Sacred Computer | [lab/sacred.html](../lab/sacred.html) | **phosphor** — mid CRT flecks · screen @ ~0.55–0.7 (not loud) |
 | Microsoft AI | [lab/microsoft-ai.html](../lab/microsoft-ai.html) | **coffee** — parchment `#FEF9ED` · no film grit |
 | Huts | [lab/huts.html](../lab/huts.html) | **coffee** — field `#faf7ed` · moss accent |
+| Ahmed Dahbi | [lab/dahbiahmed.html](../lab/dahbiahmed.html) | **charcoal** — flat `#141414` · no grain |
+| Pretext | [lab/pretext.html](../lab/pretext.html) | **instrument** — `#12161c` · accent line |
 
 ---
 
@@ -28,7 +30,8 @@
 | [Sacred Computer](https://www.sacred.computer/) | [inspiration-study-sacred.md](inspiration-study-sacred.md) | [sacred.html](../lab/sacred.html) | Extracted · not applied | Terminal mono · ANSI · ch layout · loaders · glyph icons · phosphor |
 | [Microsoft AI](https://microsoft.ai/) | [inspiration-study-microsoft-ai.md](inspiration-study-microsoft-ai.md) | [microsoft-ai.html](../lab/microsoft-ai.html) | Extracted · lab live | Soft coffee parchment · soft illustration · manuscript serif |
 | [Huts](https://huts.com/) | [inspiration-study-huts.md](inspiration-study-huts.md) | [huts.html](../lab/huts.html) | Extracted · lab live | Coffee field · pastoral catalog · moss accent |
-| [Ahmed Dahbi](https://dahbiahmed.com/) | [inspiration-study-dahbiahmed.md](inspiration-study-dahbiahmed.md) | — | Extracted · not applied | Cursor avatar · 3D bookshelf · accordion spine |
+| [Ahmed Dahbi](https://dahbiahmed.com/) | [inspiration-study-dahbiahmed.md](inspiration-study-dahbiahmed.md) | [dahbiahmed.html](../lab/dahbiahmed.html) | Extracted · lab live | Cursor avatar · CSS shelf · accordion spine |
+| [Pretext](https://github.com/chenglou/pretext) | [inspiration-study-pretext.md](inspiration-study-pretext.md) | [pretext.html](../lab/pretext.html) | Extracted · lab live | Measure without reflow · shrinkwrap · line flow |
 
 ---
 
@@ -112,6 +115,11 @@ Use these labels when naming what you like — maps feeling → measurable CSS/d
 | `M.lazy-webgl-chunk` | Deferred 3D | dynamic import on section open · idle prefetch |
 | `S.shelf-fallback` | Shelf without WebGL | DOM list · same links · reduced-motion / error path |
 | `S.card-shelf-volume` | Dahbi project preview | Face-out cover · spine siblings · inspect link |
+| `M.pretext-measure` | Height without DOM reflow | `prepare` + `layout(width, lineHeight)` |
+| `M.pretext-shrinkwrap` | Multiline content hug | `measureLineStats.maxLineWidth` |
+| `M.pretext-line-flow` | Variable-width rows | `layoutNextLineRange` · obstacle / float |
+| `M.pretext-canvas-lines` | Manual line paint | `prepareWithSegments` + `layoutWithLines` |
+| `S.instrument-panel` | Lab prove-the-math chrome | Dark panel · range · tabular stats |
 
 **Imagery lock:** [imagery-brief.md](imagery-brief.md) · labs use authored [`lab/media/`](../lab/media/) (no stock CDN).  
 **Card layouts:** [lab-card-recipes.md](lab-card-recipes.md) — one recipe per lab.
@@ -168,8 +176,13 @@ Use these labels when naming what you like — maps feeling → measurable CSS/d
 | Avatar following the cursor | `M.cursor-avatar` |
 | 3D bookshelf | `M.bookshelf-3d`, `S.project-shelf`, `S.card-shelf-volume`, `S.shelf-fallback`, `M.lazy-webgl-chunk` |
 
+## Your stated likes → cue map (Pretext, session)
+
+| You said | Cue IDs |
+|----------|---------|
+| Try something with pretext | `M.pretext-measure`, `M.pretext-shrinkwrap`, `M.pretext-line-flow`, `M.pretext-canvas-lines` |
+
 ## Next
 
-1. Say **lab dahbi** for cursor avatar + shelf prototype.  
-2. Or **apply** shelf metaphor to Works (static/CSS first).  
-3. Labs live: [microsoft-ai.html](../lab/microsoft-ai.html) · [huts.html](../lab/huts.html).
+1. Or **apply** Pretext shrinkwrap / predicted height to a case row.  
+2. Labs live: [pretext.html](../lab/pretext.html) · [dahbiahmed.html](../lab/dahbiahmed.html).

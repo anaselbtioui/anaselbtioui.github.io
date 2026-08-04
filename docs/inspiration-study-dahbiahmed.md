@@ -1,10 +1,10 @@
 # Inspiration study: Ahmed Dahbi (dahbiahmed.com)
 
-**Status:** Extracted · not applied.  
+**Status:** Extracted · lab live.  
 **Exemplar:** [dahbiahmed.com/#projects](https://dahbiahmed.com/#projects)  
 **Evidence:** Live inspect 2026-08-04 · Astro bundle (`index.astro_*.js`, lazy `shelf.*.js`) · browser CDP  
 **Related:** [inspiration-ledger.md](inspiration-ledger.md)  
-**Lab:** *(not built — say **lab dahbi** when ready)*
+**Lab:** [lab/dahbiahmed.html](../lab/dahbiahmed.html)
 
 **Why this exemplar (your words):** avatar following the cursor · 3D bookshelf.
 
@@ -115,8 +115,13 @@ lab/dahbiahmed.html
 
 ---
 
+## Lab adapt (shipped)
+
+- Avatar: 8-way `atan2` + pupil/head tilt — **no** sprite WebP sheet.
+- Shelf: CSS `perspective` volumes · drag / ← → / Enter · `S.shelf-fallback` on `prefers-reduced-motion`.
+- No Three.js.
+
 ## Next
 
-1. Say **lab dahbi** to prototype avatar + shelf in `/lab/`.  
-2. Or **apply** shelf metaphor only to Works section (no full Three.js).  
-3. Or next exemplar + likes.
+1. **apply** shelf metaphor / avatar to production Works.  
+2. Or next exemplar + likes.

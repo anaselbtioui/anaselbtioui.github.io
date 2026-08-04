@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pretext — live lab</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#12161c">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./lab-base.css?v=10">
+  <link rel="stylesheet" href="./pretext.css?v=1">
+</head>
+<body class="lab lab-pretext">
+  <a class="skip" href="#live">Skip to live demo</a>
+  <main class="lab-shell">
+    <p class="lab-kicker">Lab · Pretext</p>
+    <h1 class="lab-title">Pretext · live</h1>
+    <p class="lab-lede">
+      <a href="https://github.com/chenglou/pretext" rel="noopener">@chenglou/pretext</a> —
+      multiline measure &amp; layout without DOM reflow. ESM from jsDelivr · #nobuild.
+    </p>
+    <nav class="lab-nav" aria-label="Lab">
+      <a href="./">← Labs</a>
+      <a href="../">Portfolio</a>
+      <a href="../docs/inspiration-study-pretext.md">Study</a>
+      <a href="https://chenglou.me/pretext/" rel="noopener">Demos</a>
+    </nav>
+
+    <p class="live-banner" id="live">Live · prepare → layout / shrinkwrap / obstacle flow</p>
+    <p class="px-status" id="px-status" data-ok="0">loading pretext…</p>
+
+    <article class="px-live" aria-label="Pretext live demos">
+      <header class="px-hero">
+        <h2>Height without getBoundingClientRect</h2>
+        <p>
+          <code>prepare()</code> once · <code>layout(prepared, width, lineHeight)</code> on every drag.
+          Box height comes from Pretext arithmetic — not a measured DOM node.
+        </p>
+      </header>
+
+      <section class="px-section" aria-labelledby="px-measure-h">
+        <h3 id="px-measure-h">1 · Measure</h3>
+        <p class="px-sub">Drag max width. Stats update from <code>layout()</code>. Text stays put; only the predicted box resizes.</p>
+        <div class="px-controls">
+          <label>
+            Width
+            <input id="px-width" type="range" min="140" max="520" value="320" step="2">
+          </label>
+          <div class="px-stats" aria-live="polite">
+            <span><strong id="px-width-val">320</strong> px</span>
+            <span><strong id="px-height-val">—</strong> px high</span>
+            <span><strong id="px-lines-val">—</strong> lines</span>
+          </div>
+        </div>
+        <div class="px-measure-stage">
+          <div class="px-width-mark" id="px-width-mark" aria-hidden="true"></div>
+          <div class="px-measure-box" id="px-measure-box">
+            <p id="px-measure-text"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="px-section" aria-labelledby="px-wrap-h">
+        <h3 id="px-wrap-h">2 · Shrinkwrap</h3>
+        <p class="px-sub">
+          <code>measureLineStats</code> → widest line width. Bubbles hug content, not the column.
+        </p>
+        <div class="px-bubbles" id="px-bubbles"></div>
+      </section>
+
+      <section class="px-section" aria-labelledby="px-lines-h">
+        <h3 id="px-lines-h">3 · Canvas lines</h3>
+        <p class="px-sub">
+          <code>prepareWithSegments</code> + <code>layoutWithLines</code> → paint each line + measured underline.
+        </p>
+        <div class="px-canvas-wrap">
+          <canvas id="px-lines-canvas" width="640" height="200" aria-label="Wrapped lines drawn to canvas"></canvas>
+        </div>
+      </section>
+
+      <section class="px-section" aria-labelledby="px-flow-h">
+        <h3 id="px-flow-h">4 · Obstacle flow</h3>
+        <p class="px-sub">
+          <code>layoutNextLineRange</code> with variable width beside the circle, full width below.
+        </p>
+        <div class="px-flow" id="px-flow">
+          <div class="px-obstacle" id="px-obstacle" aria-hidden="true"></div>
+          <canvas id="px-flow-canvas" class="px-flow-canvas" width="640" height="280" aria-label="Text flowing around a circular obstacle"></canvas>
+        </div>
+      </section>
+
+      <p class="px-cues">
+        <span>M.pretext-measure</span>
+        <span>M.pretext-shrinkwrap</span>
+        <span>M.pretext-line-flow</span>
+        <span>S.instrument-panel</span>
+        <span>T.serif-mono-personal</span>
+      </p>
+    </article>
+
+    <details class="cue-ref">
+      <summary>Cue reference — Pretext</summary>
+      <div class="cue-grid">
+        <article class="cue">
+          <header class="cue-meta">
+            <code>M.pretext-measure</code>
+            <h3>Height without reflow</h3>
+            <p>prepare once · layout(width, lineHeight) → height/lineCount. No getBoundingClientRect loop.</p>
+          </header>
+        </article>
+        <article class="cue">
+          <header class="cue-meta">
+            <code>M.pretext-shrinkwrap</code>
+            <h3>Multiline shrink wrap</h3>
+            <p>measureLineStats.maxLineWidth sizes the bubble to the widest wrapped line.</p>
+          </header>
+        </article>
+        <article class="cue">
+          <header class="cue-meta">
+            <code>M.pretext-line-flow</code>
+            <h3>Variable-width rows</h3>
+            <p>layoutNextLineRange + materializeLineRange for obstacle / float routing.</p>
+          </header>
+        </article>
+      </div>
+    </details>
+
+    <footer class="lab-foot">
+      <p class="mono-ui">
+        <a href="../docs/inspiration-study-pretext.md">study</a>
+        · <a href="https://github.com/chenglou/pretext" rel="noopener">github</a>
+        · <a href="https://chenglou.me/pretext/" rel="noopener">chenglou.me/pretext</a>
+      </p>
+    </footer>
+  </main>
+  <script type="module" src="./pretext.js?v=1"></script>
+</body>
+</html>

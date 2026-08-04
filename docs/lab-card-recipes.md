@@ -129,7 +129,7 @@ Each inspiration owns **one** project-preview pattern. Shared media (`I.archive-
 
 ---
 
-**Live:** *(lab not built)* — see [inspiration-study-dahbiahmed.md](inspiration-study-dahbiahmed.md).
+**Live:** [lab/dahbiahmed.html](../lab/dahbiahmed.html) — see [inspiration-study-dahbiahmed.md](inspiration-study-dahbiahmed.md).
 
 ---
 
@@ -146,7 +146,7 @@ Each inspiration owns **one** project-preview pattern. Shared media (`I.archive-
 | Fallback | Same titles as plain list (`S.shelf-fallback`) · reduced-motion → list only |
 | Ban | Card grid · rounded product tiles · Three.js without lazy chunk + fallback |
 
-**Live:** *(pending **lab dahbi**)*.
+**Live:** [lab/dahbiahmed.html](../lab/dahbiahmed.html).
 
 ---
 

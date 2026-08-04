@@ -1,0 +1,262 @@
+/* Pretext lab — measure without reflow */
+
+:root {
+  --px-bg: #12161c;
+  --px-fg: #e8eaed;
+  --px-muted: #8b929c;
+  --px-line: rgba(232, 234, 237, 0.14);
+  --px-accent: #6b8cae;
+  --px-panel: #1a1f27;
+  --px-bubble: #243040;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-mono: "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+body.lab-pretext {
+  background: var(--px-bg);
+  color: var(--px-fg);
+}
+
+body.lab-pretext .lab-title {
+  font-family: var(--font-display);
+  color: var(--px-fg);
+}
+
+body.lab-pretext .lab-lede,
+body.lab-pretext .lab-kicker,
+body.lab-pretext .lab-nav a,
+body.lab-pretext .live-banner {
+  color: var(--px-muted);
+  font-family: var(--font-mono);
+}
+
+.px-live {
+  margin-top: 0.5rem;
+  padding-bottom: 2rem;
+}
+
+.px-hero {
+  padding: 0.5rem 0 1.75rem;
+  border-bottom: 1px solid var(--px-line);
+}
+
+.px-hero h2 {
+  margin: 0 0 0.55rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.px-hero p {
+  margin: 0;
+  max-width: 46ch;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--px-muted);
+}
+
+.px-hero code {
+  color: var(--px-accent);
+  font-size: 0.75rem;
+}
+
+.px-section {
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--px-line);
+}
+
+.px-section h3 {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 400;
+}
+
+.px-section .px-sub {
+  margin: 0 0 1.15rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: var(--px-muted);
+  max-width: 48ch;
+}
+
+.px-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--px-muted);
+}
+
+.px-controls label {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 40px;
+}
+
+.px-controls input[type="range"] {
+  width: min(16rem, 52vw);
+  accent-color: var(--px-accent);
+}
+
+.px-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--px-fg);
+}
+
+.px-stats strong {
+  color: var(--px-accent);
+  font-weight: 500;
+}
+
+.px-measure-stage {
+  position: relative;
+  background: var(--px-panel);
+  border: 1px solid var(--px-line);
+  padding: 1.15rem;
+  overflow: hidden;
+}
+
+.px-measure-box {
+  background: transparent;
+  border-left: 2px solid var(--px-accent);
+  padding-left: 0.85rem;
+  transition: height 120ms var(--ease), width 120ms var(--ease);
+  overflow: hidden;
+}
+
+.px-measure-box p {
+  margin: 0;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: 17px;
+  line-height: 26px;
+  color: var(--px-fg);
+}
+
+.px-width-mark {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(107, 140, 174, 0.45);
+  pointer-events: none;
+}
+
+.px-bubbles {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.px-bubble {
+  max-width: 100%;
+  padding: 0.7rem 0.9rem;
+  background: var(--px-bubble);
+  border: 1px solid var(--px-line);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--px-fg);
+  /* width set by JS from measureLineStats maxLineWidth */
+}
+
+.px-bubble[data-side="out"] {
+  align-self: flex-end;
+  background: #2a323c;
+}
+
+.px-flow {
+  position: relative;
+  background: var(--px-panel);
+  border: 1px solid var(--px-line);
+  padding: 1.15rem;
+  min-height: 14rem;
+}
+
+.px-flow-canvas {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.px-obstacle {
+  position: absolute;
+  width: 7.5rem;
+  height: 7.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--px-line);
+  background: #1e2630;
+  pointer-events: none;
+}
+
+.px-obstacle::after {
+  content: "";
+  position: absolute;
+  inset: 28%;
+  border: 1px solid var(--px-accent);
+  border-radius: 50%;
+  opacity: 0.55;
+}
+
+.px-canvas-wrap {
+  background: var(--px-panel);
+  border: 1px solid var(--px-line);
+  padding: 0.75rem;
+}
+
+.px-canvas-wrap canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.px-status {
+  margin-top: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--px-muted);
+}
+
+.px-status[data-ok="1"] {
+  color: var(--px-accent);
+}
+
+.px-status[data-ok="0"] {
+  color: #c47a6a;
+}
+
+.px-cues {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--px-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .px-measure-box {
+    transition: none;
+  }
+}

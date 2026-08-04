@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ahmed Dahbi — live lab</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#141414">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./lab-base.css?v=10">
+  <link rel="stylesheet" href="./dahbiahmed.css?v=2">
+</head>
+<body class="lab lab-dahbi">
+  <a class="skip" href="#live">Skip to live demo</a>
+  <main class="lab-shell">
+    <p class="lab-kicker">Lab · Dahbi</p>
+    <h1 class="lab-title">Dahbi · live</h1>
+    <p class="lab-lede">
+      Cursor avatar + CSS 3D bookshelf (no Three.js chunk). Accordion spine · charcoal void · Fraunces + IBM Plex Mono.
+      Steal presence + shelf metaphor — not 575KB WebGL.
+    </p>
+    <nav class="lab-nav" aria-label="Lab">
+      <a href="./">← Labs</a>
+      <a href="../">Portfolio</a>
+      <a href="../docs/inspiration-study-dahbiahmed.md">Study</a>
+      <a href="https://dahbiahmed.com/#projects" rel="noopener">Exemplar</a>
+    </nav>
+
+    <p class="live-banner" id="live">Live · M.cursor-avatar · M.bookshelf-3d (CSS)</p>
+
+    <article class="dahbi-live" aria-label="Dahbi live demo">
+      <header class="dahbi-hero">
+        <div class="avatar-wrap" id="avatar-wrap" aria-hidden="true">
+          <div class="avatar-face" data-look="center">
+            <div class="avatar-hair"></div>
+            <div class="avatar-skin"></div>
+            <div class="avatar-glasses" aria-hidden="true">
+              <span><i class="avatar-pupil"></i></span>
+              <span><i class="avatar-pupil"></i></span>
+            </div>
+          </div>
+        </div>
+        <h2 class="dahbi-name">Anas</h2>
+        <p class="dahbi-bio">
+          Lab stand-in for <a href="https://dahbiahmed.com/" rel="noopener">dahbiahmed.com</a> cues —
+          portrait tracks pointer (8-way), projects browse as volumes.
+        </p>
+      </header>
+
+      <details class="dahbi-acc">
+        <summary>About</summary>
+        <div class="dahbi-acc-body">
+          <p>
+            Personal page as accordion instrument. One column, chevron headers, mono labels.
+            Avatar is presence — not decoration.
+          </p>
+        </div>
+      </details>
+
+      <details class="dahbi-acc" id="projects" open>
+        <summary>Side Projects</summary>
+        <div class="dahbi-acc-body">
+          <p>I learn by building. Text list here — shelf owns the tactile browse.</p>
+          <ul class="dahbi-projects">
+            <li>
+              <a href="./lefos.html">Harbor</a>
+              <span>Film-strip case on cool night field.</span>
+            </li>
+            <li>
+              <a href="./maxmilkin.html">Ledger</a>
+              <span>Sage magazine strip · matte plate.</span>
+            </li>
+            <li>
+              <a href="./sacred.html">Cue Labs</a>
+              <span>Terminal block chrome · ch measure.</span>
+            </li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="dahbi-acc" id="bookshelf" open>
+        <summary>Bookshelf</summary>
+        <div class="dahbi-acc-body">
+          <p class="dahbi-shelf-note">
+            Lab volumes as books. Drag the shelf to browse, click a book to pick it up.
+            Reduced motion → list only.
+          </p>
+
+          <div
+            class="shelf-stage"
+            id="shelf-stage"
+            tabindex="0"
+            role="region"
+            aria-label="Interactive shelf of nine volumes. Drag or use the arrow keys to browse. Press Enter to inspect the selected volume."
+          >
+            <div class="shelf-world" id="shelf-world">
+              <div class="shelf-plank" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <div class="shelf-chrome" data-shelf-chrome>
+            <button type="button" id="shelf-prev" aria-label="Previous book">←</button>
+            <span id="shelf-counter">01 / 09</span>
+            <div class="shelf-ticks" id="shelf-ticks" aria-hidden="true"></div>
+            <button type="button" id="shelf-next" aria-label="Next book">→</button>
+          </div>
+
+          <div class="shelf-meta" data-shelf-chrome>
+            <div>
+              <h3 id="shelf-title">Harbor</h3>
+              <p id="shelf-author">Case · film strip</p>
+            </div>
+            <a class="shelf-inspect" id="shelf-inspect" href="./lefos.html">Inspect ↗</a>
+          </div>
+
+          <ul class="books-fallback" id="books-fallback">
+            <li><a href="./lefos.html">Harbor — Case · film strip</a></li>
+            <li><a href="./maxmilkin.html">Ledger — Case · sage strip</a></li>
+            <li><a href="./">Cue Labs — Instrument chrome</a></li>
+            <li><a href="./3xn.html">SAP Garden — 3XN case spine</a></li>
+            <li><a href="./sacred.html">Sacred — Term block works</a></li>
+            <li><a href="./microsoft-ai.html">Coffee Soft — MAI parchment</a></li>
+            <li><a href="./huts.html">Pastoral — Huts catalog</a></li>
+            <li><a href="../docs/imagery-brief.md">Imagery — Cool documentary</a></li>
+            <li><a href="../docs/visual-grammar.md">Grammar — Circle + line</a></li>
+          </ul>
+        </div>
+      </details>
+
+      <div class="dahbi-cta-row">
+        <a class="dahbi-help" href="../docs/inspiration-study-dahbiahmed.md">How cues map</a>
+      </div>
+
+      <nav class="dahbi-social" aria-label="Social stand-in">
+        <a href="../">Portfolio</a>
+        <a href="./">Labs</a>
+        <a href="../docs/inspiration-ledger.md">Ledger</a>
+      </nav>
+
+      <p class="dahbi-cue-strip">
+        <span>M.cursor-avatar</span>
+        <span>M.bookshelf-3d</span>
+        <span>S.project-shelf</span>
+        <span>S.card-shelf-volume</span>
+        <span>S.accordion-terminal</span>
+        <span>C.field-charcoal-warm</span>
+        <span>T.serif-mono-personal</span>
+        <span>S.shelf-fallback</span>
+      </p>
+    </article>
+
+    <details class="cue-ref">
+      <summary>Cue reference — Dahbi</summary>
+      <div class="cue-grid">
+        <article class="cue">
+          <header class="cue-meta">
+            <code>M.cursor-avatar</code>
+            <h3>8-way look</h3>
+            <p>atan2 buckets · 60px dead zone · eyes + head tilt (sprite sheet avoided).</p>
+          </header>
+        </article>
+        <article class="cue">
+          <header class="cue-meta">
+            <code>M.bookshelf-3d</code>
+            <h3>CSS shelf</h3>
+            <p>Drag · ← → · Enter inspect · face-out + spines · list fallback · no Three.js.</p>
+          </header>
+        </article>
+        <article class="cue">
+          <header class="cue-meta">
+            <code>S.accordion-terminal</code>
+            <h3>Chevron spine</h3>
+            <p>&gt; / ˇ headers · mono uppercase · one column measure.</p>
+          </header>
+        </article>
+      </div>
+    </details>
+
+    <footer class="lab-foot">
+      <p class="mono-ui">
+        <a href="../docs/inspiration-study-dahbiahmed.md">study</a>
+        · <a href="https://dahbiahmed.com/#projects" rel="noopener">dahbiahmed.com</a>
+      </p>
+    </footer>
+  </main>
+  <script src="./dahbiahmed.js?v=2" defer></script>
+</body>
+</html>
