@@ -17,6 +17,7 @@ Each inspiration owns **one** project-preview pattern. Shared media (`I.archive-
 | `S.card-term-block` | Sacred | Terminal block link / ch-window — not photo card |
 | `S.card-coffee-soft` | Microsoft AI | Cream bone tile · soft illust · walnut italic type |
 | `S.card-pastoral-project` | Huts | Photo-led pastoral tile · meta chips · serif title |
+| `S.card-shelf-volume` | Dahbi | Face-out cover · spine queue · drag/inspect (WebGL or CSS proto) |
 
 ---
 
@@ -128,6 +129,27 @@ Each inspiration owns **one** project-preview pattern. Shared media (`I.archive-
 
 ---
 
+**Live:** *(lab not built)* — see [inspiration-study-dahbiahmed.md](inspiration-study-dahbiahmed.md).
+
+---
+
+## 7. Dahbi — `S.card-shelf-volume`
+
+**Feel:** One volume face-out on a shelf; siblings as spines — browse, don't grid.
+
+| Axis | Spec |
+|------|------|
+| Surface | Warm charcoal void `#141414` · flat · no grain |
+| Hero volume | Cover still or archive GIF · face-out · title + author/meta under |
+| Queue | Spine strip · muted labels · orange/active tick on progress rail |
+| Interaction | Drag horizontal · ← → · Enter / Inspect → outbound case link |
+| Fallback | Same titles as plain list (`S.shelf-fallback`) · reduced-motion → list only |
+| Ban | Card grid · rounded product tiles · Three.js without lazy chunk + fallback |
+
+**Live:** *(pending **lab dahbi**)*.
+
+---
+
 ## Shared rules (all labs)
 
 1. Hard edges · no rounded “product cards”.  
@@ -135,7 +157,8 @@ Each inspiration owns **one** project-preview pattern. Shared media (`I.archive-
 3. Archive GIF OK as **thumb fuel** only where recipe allows (Lefos + Max primary; 3XN related optional; Sacred rare).  
 4. `prefers-reduced-motion` → poster still.  
 5. Never copy Max layout into Lefos chrome or reverse.  
-6. Coffee labs (MAI / Huts) share field family — **card recipes stay separate**.
+6. Coffee labs (MAI / Huts) share field family — **card recipes stay separate**.  
+7. Dahbi shelf is **not** Lefos film strip or Sacred term block — volume browser only.
 
 ---
 

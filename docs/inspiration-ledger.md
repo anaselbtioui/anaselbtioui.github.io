@@ -28,6 +28,7 @@
 | [Sacred Computer](https://www.sacred.computer/) | [inspiration-study-sacred.md](inspiration-study-sacred.md) | [sacred.html](../lab/sacred.html) | Extracted · not applied | Terminal mono · ANSI · ch layout · loaders · glyph icons · phosphor |
 | [Microsoft AI](https://microsoft.ai/) | [inspiration-study-microsoft-ai.md](inspiration-study-microsoft-ai.md) | [microsoft-ai.html](../lab/microsoft-ai.html) | Extracted · lab live | Soft coffee parchment · soft illustration · manuscript serif |
 | [Huts](https://huts.com/) | [inspiration-study-huts.md](inspiration-study-huts.md) | [huts.html](../lab/huts.html) | Extracted · lab live | Coffee field · pastoral catalog · moss accent |
+| [Ahmed Dahbi](https://dahbiahmed.com/) | [inspiration-study-dahbiahmed.md](inspiration-study-dahbiahmed.md) | — | Extracted · not applied | Cursor avatar · 3D bookshelf · accordion spine |
 
 ---
 
@@ -102,6 +103,15 @@ Use these labels when naming what you like — maps feeling → measurable CSS/d
 | `S.catalog-type-grid` | Equal offering tiles | One job per tile · catalog of types |
 | `S.card-coffee-soft` | Coffee light project preview | Cream · soft illust/still · walnut type |
 | `S.card-pastoral-project` | Huts-style project tile | Photo-led · meta · title under |
+| `M.cursor-avatar` | Portrait tracks pointer | 8-way look · center dead zone · transition frames · theme sprite pairs |
+| `M.bookshelf-3d` | WebGL volume browser | Drag · arrows · pick up / inspect · face-out + spine queue |
+| `S.project-shelf` | Works as physical volumes | List elsewhere · shelf for browse metaphor |
+| `S.accordion-terminal` | Chevron accordion spine | `>` headers · mono uppercase · one section open |
+| `C.field-charcoal-warm` | Warm near-black void | `#141414` class · flat · no grain |
+| `T.serif-mono-personal` | Personal site type pair | Fraunces display · IBM Plex Mono body |
+| `M.lazy-webgl-chunk` | Deferred 3D | dynamic import on section open · idle prefetch |
+| `S.shelf-fallback` | Shelf without WebGL | DOM list · same links · reduced-motion / error path |
+| `S.card-shelf-volume` | Dahbi project preview | Face-out cover · spine siblings · inspect link |
 
 **Imagery lock:** [imagery-brief.md](imagery-brief.md) · labs use authored [`lab/media/`](../lab/media/) (no stock CDN).  
 **Card layouts:** [lab-card-recipes.md](lab-card-recipes.md) — one recipe per lab.
@@ -151,8 +161,15 @@ Use these labels when naming what you like — maps feeling → measurable CSS/d
 | Illustrations (microsoft.ai) | `I.soft-illustrate`, `T.serif-manuscript`, `T.mono-quiet-ui` |
 | Along with huts.com | `C.field-coffee` (shared), `C.accent-moss`, `S.catalog-type-grid`, `S.card-pastoral-project`, `T.serif-sans-pastoral` |
 
+## Your stated likes → cue map (Dahbi, session)
+
+| You said | Cue IDs |
+|----------|---------|
+| Avatar following the cursor | `M.cursor-avatar` |
+| 3D bookshelf | `M.bookshelf-3d`, `S.project-shelf`, `S.card-shelf-volume`, `S.shelf-fallback`, `M.lazy-webgl-chunk` |
+
 ## Next
 
-1. Say **apply** coffee cues to light portfolio skin.  
-2. Or next exemplar + likes.  
+1. Say **lab dahbi** for cursor avatar + shelf prototype.  
+2. Or **apply** shelf metaphor to Works (static/CSS first).  
 3. Labs live: [microsoft-ai.html](../lab/microsoft-ai.html) · [huts.html](../lab/huts.html).
