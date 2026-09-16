@@ -7,16 +7,17 @@
   <!-- One-off render target: 3168×792 (2× of 1584×396). Not part of site IA. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@400;500;600&family=Reenie+Beanie&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #10191c;
       --fg: #c3d2d0;
       --fg-bright: #eaf2f0;
       --muted: #748986;
-      --accent: #3d7a7e;
       --accent-mist: #5a9a9c;
-      --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+      --fox: #d06e3e;
+      --font-body: "Outfit", system-ui, sans-serif;
+      --font-hand: "Reenie Beanie", "Segoe Script", cursive;
       --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
     }
 
@@ -33,7 +34,7 @@
       background: #000;
     }
 
-    /* Fixed 2× LinkedIn personal cover */
+    /* Fixed 2× LinkedIn personal cover — matches standby field */
     .board {
       position: relative;
       width: 3168px;
@@ -42,6 +43,11 @@
       color-scheme: dark;
       background-color: var(--bg);
       background-image:
+        radial-gradient(
+          ellipse 78% 56% at 50% 16%,
+          color-mix(in srgb, var(--fox) 24%, transparent) 0%,
+          transparent 62%
+        ),
         radial-gradient(
           ellipse 130% 100% at 112% -12%,
           rgba(45, 110, 118, 0.16) 0%,
@@ -73,107 +79,106 @@
       background-position: 0 0;
     }
 
-    /* Leaves — top-right, hang off edge (standby .leaf-wash, scaled for ultrawide) */
+    /* Leaves — far right ground (site puts them bottom-left; photo owns that corner here) */
     .leaf-wash {
       position: absolute;
       z-index: 0;
-      top: -18%;
-      right: -10%;
-      width: 2100px;
+      right: -8%;
+      bottom: -28%;
+      width: 1680px;
       aspect-ratio: 3 / 2;
       pointer-events: none;
       background-image: url("./media/fig-leaf-illustration.webp");
       background-repeat: no-repeat;
       background-position: top left;
       background-size: contain;
-      opacity: 0.36;
+      transform: rotate(180deg);
+      opacity: 0.28;
       filter: saturate(0.62) brightness(0.78) contrast(1.02);
       -webkit-mask-image: radial-gradient(
-        ellipse 70% 70% at 22% 22%,
-        #000 12%,
-        transparent 68%
+        ellipse 70% 70% at 78% 22%,
+        #000 14%,
+        transparent 70%
       );
       mask-image: radial-gradient(
-        ellipse 70% 70% at 22% 22%,
-        #000 12%,
-        transparent 68%
+        ellipse 70% 70% at 78% 22%,
+        #000 14%,
+        transparent 70%
       );
     }
 
-    /* Fig — far right only (bottom-left is LinkedIn photo). Faint, behind leaves. */
-    .fig-wash {
+    /* Fox desk — right hero plate (homepage signature still) */
+    .fox-wash {
       position: absolute;
-      z-index: 0;
-      right: -2%;
-      bottom: -18%;
-      width: 720px;
-      aspect-ratio: 1;
+      z-index: 1;
+      right: 40px;
+      bottom: -40px;
+      width: 980px;
+      height: 740px;
       pointer-events: none;
-      background-image: url("./media/fig-illustration.webp");
+      background-image: url("./media/fox-desk.webp");
       background-repeat: no-repeat;
-      background-position: 48% 55%;
+      background-position: center bottom;
       background-size: contain;
-      transform: scaleX(-1);
-      opacity: 0.22;
-      filter: saturate(0.55) brightness(0.72) contrast(1.02);
-      -webkit-mask-image: radial-gradient(
-        ellipse 78% 78% at 58% 58%,
-        #000 28%,
-        transparent 78%
+      filter: saturate(0.92) brightness(0.96);
+      -webkit-mask-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        #000 18%,
+        #000 100%
       );
-      mask-image: radial-gradient(
-        ellipse 78% 78% at 58% 58%,
-        #000 28%,
-        transparent 78%
+      mask-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        #000 18%,
+        #000 100%
       );
     }
 
     /*
       Safe zone at 2×:
-      - left inset ~440px (photo disc ~200×200 @1×)
-      - avoid outer ~240px sides (mobile crop)
-      - type box ~1120×240 @1× → 2240×480 @2× max, optically center-left
+      - left clear of avatar (~360px @1×)
+      - sit high — bottom third gets photo bleed
+      - leave right for fox plate
     */
     .copy {
       position: absolute;
       z-index: 10;
-      left: 480px;
-      top: 50%;
-      transform: translateY(-50%);
-      max-width: 1680px;
+      left: 640px;
+      top: 120px;
+      max-width: 1580px;
       padding: 0;
     }
 
     .title {
-      margin: 0 0 28px;
-      font-family: var(--font-display);
-      font-size: 92px;
+      margin: 0 0 20px;
+      font-family: var(--font-hand);
+      font-size: 108px;
       font-weight: 400;
-      letter-spacing: -0.04em;
-      line-height: 1.08;
+      letter-spacing: 0.01em;
+      line-height: 0.98;
       color: var(--fg-bright);
       text-wrap: balance;
     }
 
     .role {
       margin: 0;
-      font-family: var(--font-mono);
-      font-size: 32px;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-      line-height: 1.35;
-      color: var(--accent-mist);
+      font-family: var(--font-hand);
+      font-size: 56px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+      color: var(--fox);
     }
 
-    /* Preview-only: LinkedIn photo disc (hidden for export via ?export=1) */
     .photo-safe {
       display: none;
       position: absolute;
       z-index: 50;
       left: 48px;
-      bottom: -80px;
-      width: 320px;
-      height: 320px;
+      bottom: -100px;
+      width: 360px;
+      height: 360px;
       border-radius: 50%;
       border: 6px solid #fff;
       background: rgba(234, 242, 240, 0.12);
@@ -187,18 +192,17 @@
   </style>
 </head>
 <body>
-  <div class="board" id="board" role="img" aria-label="LinkedIn cover: I build tools people can actually use. Full-stack developer and product designer.">
+  <div class="board" id="board" role="img" aria-label="LinkedIn cover: I sit with how a product feels to a person, then build it. Software developer and product designer.">
     <div class="leaf-wash" aria-hidden="true"></div>
-    <div class="fig-wash" aria-hidden="true"></div>
+    <div class="fox-wash" aria-hidden="true"></div>
     <div class="copy">
-      <p class="title">I build tools people can actually use.</p>
-      <p class="role">Full-stack developer and product designer</p>
+      <p class="title">I sit with how a product feels to a person, then build it.</p>
+      <p class="role">software developer and product designer</p>
     </div>
     <div class="grain" aria-hidden="true"></div>
     <div class="photo-safe" aria-hidden="true" title="LinkedIn profile photo overlay"></div>
   </div>
   <script>
-    // ?safe=1 shows the photo disc for crop checks
     if (new URLSearchParams(location.search).has("safe")) {
       document.body.classList.add("show-safe");
     }

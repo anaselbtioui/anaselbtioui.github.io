@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anas Elbtioui — Fox den</title>
+  <meta name="description" content="Anas Elbtioui. Full-stack developer and product designer. Tools people can actually use.">
+  <meta name="theme-color" content="#10191c">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="./favicon.png?v=75" type="image/png" sizes="32x32">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./fox.css?v=5">
+  <script type="module" src="./fox.js?v=5"></script>
+</head>
+<body class="den">
+  <a class="skip" href="#main">Skip to content</a>
+  <p class="variant-tag">
+    <a href="./">← Standby</a>
+    <span aria-hidden="true">·</span>
+    <span>Fox den variant</span>
+  </p>
+
+  <main id="main">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="brand reveal" style="--d:0">Anas Elbtioui</p>
+        <h1 class="title reveal" style="--d:1">I build tools people can actually use.</h1>
+        <p class="lede reveal" style="--d:2">
+          From first sketch to brand, interface, and working software —
+          one language, shaped around the people who use it.
+        </p>
+        <nav class="cta reveal" style="--d:3" aria-label="Links">
+          <a class="hit" href="#contact">Write me</a>
+          <a class="hit" href="#work">Selected work</a>
+          <a class="hit" href="https://github.com/anaselbtioui" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </nav>
+      </div>
+      <figure class="hero-fox reveal" style="--d:1">
+        <img
+          src="./media/fox-portrait.webp"
+          alt="Painted fox portrait wearing glasses"
+          width="1000"
+          height="1000"
+          decoding="async"
+          fetchpriority="high"
+        >
+      </figure>
+    </header>
+
+    <section class="work" id="work" aria-labelledby="work-title">
+      <div class="work-head">
+        <img class="work-mark" src="./media/fox-sit.webp" alt="" width="160" height="160" loading="lazy" decoding="async" aria-hidden="true">
+        <h2 class="section-title" id="work-title">Selected work</h2>
+        <p class="section-lede">Quiet plates. Real cases later.</p>
+      </div>
+      <ol class="work-list">
+        <li>
+          <a class="work-row" href="#contact">
+            <span class="work-num" aria-hidden="true">01</span>
+            <span class="work-name">[Project name]</span>
+            <span class="work-meta">Brand · interface</span>
+          </a>
+        </li>
+        <li>
+          <a class="work-row" href="#contact">
+            <span class="work-num" aria-hidden="true">02</span>
+            <span class="work-name">[Project name]</span>
+            <span class="work-meta">Product · systems</span>
+          </a>
+        </li>
+        <li>
+          <a class="work-row" href="#contact">
+            <span class="work-num" aria-hidden="true">03</span>
+            <span class="work-name">[Project name]</span>
+            <span class="work-meta">Tooling · craft</span>
+          </a>
+        </li>
+      </ol>
+    </section>
+
+    <section class="contact" id="contact" aria-label="Contact">
+      <div class="contact-grid">
+        <div class="contact-copy">
+          <h2 class="section-title">Write me</h2>
+          <p class="section-lede">Tell me what needs building.</p>
+          <form
+            class="inquiry"
+            id="inquiry"
+            action="https://formspree.io/f/xpqvblgj"
+            method="POST"
+            novalidate
+          >
+            <input type="hidden" name="_subject" value="anaselbt.me fox-den inquiry">
+            <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" required autocomplete="name" maxlength="120">
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" required autocomplete="email" maxlength="200">
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required rows="4" maxlength="4000" placeholder="What needs building?"></textarea>
+            </div>
+            <div class="form-row">
+              <button class="submit hit" type="submit" data-submit>Send message</button>
+              <p class="form-news" data-form-news role="status" aria-live="polite"></p>
+            </div>
+          </form>
+          <p class="contact-alt">
+            <a href="mailto:anaselbtioui@gmail.com">anaselbtioui@gmail.com</a>
+          </p>
+        </div>
+        <figure class="desk-fox" aria-hidden="true">
+          <img
+            src="./media/fox-desk.webp"
+            alt=""
+            width="900"
+            height="900"
+            loading="lazy"
+            decoding="async"
+          >
+        </figure>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

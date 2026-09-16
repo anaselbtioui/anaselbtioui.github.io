@@ -32,6 +32,7 @@
 | [Huts](https://huts.com/) | [inspiration-study-huts.md](inspiration-study-huts.md) | [huts.html](../lab/huts.html) | Extracted · lab live | Coffee field · pastoral catalog · moss accent |
 | [Ahmed Dahbi](https://dahbiahmed.com/) | [inspiration-study-dahbiahmed.md](inspiration-study-dahbiahmed.md) | [dahbiahmed.html](../lab/dahbiahmed.html) | Extracted · lab live | Cursor avatar · CSS shelf · accordion spine |
 | [Pretext](https://github.com/chenglou/pretext) | [inspiration-study-pretext.md](inspiration-study-pretext.md) | [pretext.html](../lab/pretext.html) | Extracted · lab live | Measure without reflow · shrinkwrap · line flow |
+| [Grace Wang](https://gracewang.design/) | [inspiration-study-gracewang.md](inspiration-study-gracewang.md) | [fox.html](../fox.html) (apply, not clone) | Extracted · applied on fox den | Light paper · mascot air · grounded pastel / dusty coral |
 
 ---
 
@@ -120,6 +121,13 @@ Use these labels when naming what you like — maps feeling → measurable CSS/d
 | `M.pretext-line-flow` | Variable-width rows | `layoutNextLineRange` · obstacle / float |
 | `M.pretext-canvas-lines` | Manual line paint | `prepareWithSegments` + `layoutWithLines` |
 | `S.instrument-panel` | Lab prove-the-math chrome | Dark panel · range · tabular stats |
+| `C.field-paper` | Cool almost-white paper | `#FCFDFE` class · not Nordic void |
+| `C.ink-slate` | Soft slate reading ink | `#202B36` on paper · not pure black |
+| `C.mute-faint` | Dusty blue-grey mute | `#A8B6C3` / `#7A8896` meta |
+| `C.wash-sand` | Sand atmosphere | `#E8DCC8` wash only |
+| `C.coral-dust` | Grounded coral accent | `#BF6F4E` class · not candy pink |
+| `I.mascot-illustrate` | Authored mascot as identity | Illustration owns hero air · not headshot |
+| `S.air-mascot` | Empty paper around character | Chrome tiny · mascot + name hold the page |
 
 **Imagery lock:** [imagery-brief.md](imagery-brief.md) · labs use authored [`lab/media/`](../lab/media/) (no stock CDN).  
 **Card layouts:** [lab-card-recipes.md](lab-card-recipes.md) — one recipe per lab.
@@ -182,7 +190,15 @@ Use these labels when naming what you like — maps feeling → measurable CSS/d
 |----------|---------|
 | Try something with pretext | `M.pretext-measure`, `M.pretext-shrinkwrap`, `M.pretext-line-flow`, `M.pretext-canvas-lines` |
 
+## Your stated likes → cue map (Grace Wang, session)
+
+| You said | Cue IDs |
+|----------|---------|
+| Grace Wang as portfolio inspiration | `C.field-paper`, `C.ink-slate`, `I.mascot-illustrate`, `S.air-mascot` |
+| Fox variant in grounded pastel | `C.coral-dust`, `C.wash-sand`, `C.mute-faint` |
+
 ## Next
 
 1. Or **apply** Pretext shrinkwrap / predicted height to a case row.  
-2. Labs live: [pretext.html](../lab/pretext.html) · [dahbiahmed.html](../lab/dahbiahmed.html).
+2. Labs live: [pretext.html](../lab/pretext.html) · [dahbiahmed.html](../lab/dahbiahmed.html).  
+3. Fox den pastel: [fox.html](../fox.html).
