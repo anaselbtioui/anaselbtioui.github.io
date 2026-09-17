@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LinkedIn banner artboard — Anas Elbtioui</title>
-  <!-- One-off render target: 3168×792 (2× of 1584×396). Not part of site IA. -->
+  <!-- One-off render target: 3168×792 (2×). Export THIS size to LinkedIn — do not downscale to 1584. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@400;500;600&family=Reenie+Beanie&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=block" rel="stylesheet">
   <style>
     :root {
       --bg: #10191c;
@@ -16,9 +16,7 @@
       --muted: #748986;
       --accent-mist: #5a9a9c;
       --fox: #d06e3e;
-      --font-body: "Outfit", system-ui, sans-serif;
       --font-hand: "Reenie Beanie", "Segoe Script", cursive;
-      --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
     }
 
     *,
@@ -32,6 +30,14 @@
       margin: 0;
       padding: 0;
       background: #000;
+    }
+
+    body {
+      opacity: 0;
+    }
+
+    body.is-ready {
+      opacity: 1;
     }
 
     /* Fixed 2× LinkedIn personal cover — matches standby field */
@@ -63,7 +69,7 @@
           var(--bg) 100%
         );
       -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
+      text-rendering: geometricPrecision;
     }
 
     .grain {
@@ -71,9 +77,9 @@
       inset: 0;
       pointer-events: none;
       z-index: 40;
-      opacity: 0.72;
+      opacity: 0.55;
       mix-blend-mode: overlay;
-      background-image: url("./grain.png");
+      background-image: url("../grain.png");
       background-repeat: repeat;
       background-size: 220px 220px;
       background-position: 0 0;
@@ -88,7 +94,7 @@
       width: 1680px;
       aspect-ratio: 3 / 2;
       pointer-events: none;
-      background-image: url("./media/fig-leaf-illustration.webp");
+      background-image: url("../media/fig-leaf-illustration.webp");
       background-repeat: no-repeat;
       background-position: top left;
       background-size: contain;
@@ -116,11 +122,11 @@
       width: 980px;
       height: 740px;
       pointer-events: none;
-      background-image: url("./media/fox-desk.webp");
+      background-image: url("../media/fox-desk.webp");
       background-repeat: no-repeat;
       background-position: center bottom;
       background-size: contain;
-      filter: saturate(0.92) brightness(0.96);
+      /* No saturate/brightness crush — LinkedIn compresses enough already */
       -webkit-mask-image: linear-gradient(
         90deg,
         transparent 0%,
@@ -159,16 +165,21 @@
       line-height: 0.98;
       color: var(--fg-bright);
       text-wrap: balance;
+      /* Thin script survives LinkedIn JPEG better with slight optical weight */
+      -webkit-text-stroke: 0.4px color-mix(in srgb, var(--fg-bright) 55%, transparent);
+      text-shadow: 0 0 0.6px var(--fg-bright);
     }
 
     .role {
       margin: 0;
       font-family: var(--font-hand);
-      font-size: 56px;
+      font-size: 60px;
       font-weight: 400;
       letter-spacing: 0.02em;
       line-height: 1.2;
       color: var(--fox);
+      -webkit-text-stroke: 0.35px color-mix(in srgb, var(--fox) 50%, transparent);
+      text-shadow: 0 0 0.5px var(--fox);
     }
 
     .photo-safe {
@@ -206,6 +217,11 @@
     if (new URLSearchParams(location.search).has("safe")) {
       document.body.classList.add("show-safe");
     }
+    // Gate paint until Reenie Beanie is ready (avoids soft fallback glyphs in screenshot)
+    document.fonts.ready.then(() => {
+      document.body.classList.add("is-ready");
+      document.documentElement.dataset.bannerReady = "1";
+    });
   </script>
 </body>
 </html>

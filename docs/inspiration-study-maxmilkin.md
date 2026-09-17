@@ -146,10 +146,10 @@ If you say **apply**, change commercial `/` toward this grammar:
 | 1 | Tokens: `--bg` / field `#C2CABB` (or near), `--fg` `#10120F`, drop teal paper / Fraunces light-studio look | [styles.css](../styles.css) `body.portfolio` |
 | 2 | Type: 2 families only — geometric grotesque + mono labels; uppercase quiet nav | [index.html](../index.html) font links; CSS vars |
 | 3 | Hero: one Vision line + short lede; generous negative space; optional flat sage field (no WebGL rock) | [index.html](../index.html) |
-| 4 | Work: prefer **magazine rows or case strips** with `type · title · one problem line`; cover optional upgrade | [portfolio.js](../portfolio.js) |
+| 4 | Work: prefer **magazine rows or case strips** with `type · title · one problem line`; cover optional upgrade | [work-strip.js](../work-strip.js) |
 | 5 | Motion: 2–3 CSS moves only (intro stagger, row stagger, hover) | [styles.css](../styles.css) |
 | 6 | Keep nav ≤3 links; personal space link stays quiet | [index.html](../index.html) |
-| 7 | Empty state: editorial honesty, not fake gallery cards | [portfolio.js](../portfolio.js) |
+| 7 | Empty state: editorial honesty, not fake gallery cards | [work-strip.js](../work-strip.js) |
 
 ### Avoid (do not copy)
 

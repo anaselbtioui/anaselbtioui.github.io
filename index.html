@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@400;500;600&family=Reenie+Beanie&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./standby.css?v=132">
-  <script type="module" src="./standby.js?v=130"></script>
+  <link rel="stylesheet" href="./standby.css?v=152">
+  <script type="module" src="./standby.js?v=131"></script>
 </head>
 <body class="standby" data-page="home">
   <a class="skip" href="#main">Skip to content</a>
@@ -76,9 +76,7 @@
 
     <section class="work reveal" style="--d:5" id="work" data-shape="grove" aria-labelledby="work-title">
       <h2 class="section-title" id="work-title">Selected work</h2>
-      <p class="work-lede">
-        I take ideas from first sketch to brand, interface, and working software. One design language throughout.
-      </p>
+      <p class="work-lede">A few up close. The rest named.</p>
 
       <div class="work-strip" data-strip>
         <ol
@@ -89,27 +87,75 @@
           aria-label="Selected work, side by side"
         >
           <li class="work-card" data-strip-card>
-            <div class="work-plate">
-              <img class="work-thumb-still" src="media/work/work-01-poster.webp?v=3" alt="" width="400" height="500" loading="lazy" decoding="async" draggable="false">
-              <img class="work-thumb-loop" src="media/work/work-01.gif?v=3" alt="" width="400" height="500" loading="lazy" decoding="async" draggable="false">
-            </div>
-            <h3>[Project name]</h3>
+            <a class="work-card-link" href="./case.html?p=hamssah">
+              <div class="work-plate">
+                <img class="work-thumb-still" src="media/work/work-01-poster.webp?v=3" alt="" width="400" height="500" loading="lazy" decoding="async" draggable="false">
+                <img class="work-thumb-loop" src="media/work/work-01.gif?v=3" alt="" width="400" height="500" loading="lazy" decoding="async" draggable="false">
+              </div>
+              <h3>Hamssah</h3>
+            </a>
           </li>
           <li class="work-card" data-strip-card>
-            <div class="work-plate">
-              <img class="work-thumb-still" src="media/work/work-02-poster.webp?v=3" alt="" width="400" height="500" loading="lazy" decoding="async" draggable="false">
-              <img class="work-thumb-loop" src="media/work/work-02.gif?v=3" alt="" width="400" height="500" loading="lazy" decoding="async" draggable="false">
-            </div>
-            <h3>[Project name]</h3>
+            <a class="work-card-link" href="./case.html?p=phikra">
+              <div class="work-plate">
+                <img class="work-thumb-still" src="media/work/phikra-poster.webp?v=6" alt="" width="400" height="500" loading="lazy" decoding="async" draggable="false">
+                <img class="work-thumb-loop" src="media/work/phikra.gif?v=6" alt="" width="400" height="500" loading="lazy" decoding="async" draggable="false">
+              </div>
+              <h3>Phikra</h3>
+            </a>
           </li>
           <li class="work-card" data-strip-card>
-            <div class="work-plate">
-              <img class="work-thumb-still" src="media/work/work-03-poster.webp?v=3" alt="" width="400" height="500" loading="lazy" decoding="async" draggable="false">
-              <img class="work-thumb-loop" src="media/work/work-03.gif?v=3" alt="" width="400" height="500" loading="lazy" decoding="async" draggable="false">
-            </div>
-            <h3>[Project name]</h3>
+            <a class="work-card-link" href="./case.html?p=ghizou">
+              <div class="work-plate">
+                <img class="work-thumb-still" src="media/work/work-03-poster.webp?v=3" alt="" width="400" height="500" loading="lazy" decoding="async" draggable="false">
+                <img class="work-thumb-loop" src="media/work/work-03.gif?v=3" alt="" width="400" height="500" loading="lazy" decoding="async" draggable="false">
+              </div>
+              <h3>Ghizou</h3>
+            </a>
           </li>
         </ol>
+      </div>
+
+      <div class="work-index" aria-label="Full work index">
+        <div class="work-group">
+          <h3 class="work-group-label">Businesses</h3>
+          <ul class="work-names">
+            <li><a href="./case.html?p=hamssah">Hamssah</a> <span class="work-aside">storefront, API, ERP</span></li>
+            <li>W.A. Pharma <span class="work-aside">landing, API, ERP</span></li>
+            <li>Odyva</li>
+            <li>Dikafood</li>
+            <li>Ceryon</li>
+            <li>Widamine <span class="work-aside">admin</span></li>
+            <li><a href="./case.html?p=phikra">Phikra</a> <span class="work-aside">landing page</span></li>
+            <li>Paquace</li>
+          </ul>
+        </div>
+        <div class="work-group">
+          <h3 class="work-group-label">Personal portfolios</h3>
+          <ul class="work-names">
+            <li>Badr Tairech</li>
+            <li>Mohammed Bakkouri</li>
+          </ul>
+        </div>
+        <div class="work-group">
+          <h3 class="work-group-label">Side projects</h3>
+          <ul class="work-names">
+            <li><a href="./case.html?p=ghizou">Ghizou</a></li>
+            <li>Flint</li>
+            <li>Streamatlas</li>
+            <li>Guichet FYI</li>
+            <li>Tachrone.ma <span class="work-aside">rebrand</span></li>
+            <li>My Vala Client Area <span class="work-aside">rebrand</span></li>
+          </ul>
+        </div>
+        <div class="work-group">
+          <h3 class="work-group-label">Backend</h3>
+          <ul class="work-names">
+            <li>Olassur</li>
+            <li>Ovoky</li>
+            <li>Hexapink</li>
+          </ul>
+        </div>
       </div>
     </section>
 

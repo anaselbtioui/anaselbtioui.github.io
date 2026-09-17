@@ -1,6 +1,6 @@
 # Inspiration study: Grace Wang (gracewang.design)
 
-**Status:** Extracted · applied to [fox.html](../fox.html) (pastel den).  
+**Status:** Extracted · applied to [fox.html](../lab/fox.html) (pastel den).  
 **Exemplar:** [gracewang.design](https://gracewang.design/)  
 **Evidence:** Live CSS tokens (2026-09-14).  
 **Related:** [inspiration-ledger.md](inspiration-ledger.md), [inspiration-study-microsoft-ai.md](inspiration-study-microsoft-ai.md).
@@ -65,4 +65,4 @@
 
 ## 4. Applied where
 
-Fox den variant: [fox.html](../fox.html) · [fox.css](../fox.css). Standby stays teal-dark.
+Fox den variant: [fox.html](../lab/fox.html) · [fox.css](../lab/fox.css). Standby stays teal-dark.

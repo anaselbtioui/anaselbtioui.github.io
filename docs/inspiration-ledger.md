@@ -32,7 +32,8 @@
 | [Huts](https://huts.com/) | [inspiration-study-huts.md](inspiration-study-huts.md) | [huts.html](../lab/huts.html) | Extracted · lab live | Coffee field · pastoral catalog · moss accent |
 | [Ahmed Dahbi](https://dahbiahmed.com/) | [inspiration-study-dahbiahmed.md](inspiration-study-dahbiahmed.md) | [dahbiahmed.html](../lab/dahbiahmed.html) | Extracted · lab live | Cursor avatar · CSS shelf · accordion spine |
 | [Pretext](https://github.com/chenglou/pretext) | [inspiration-study-pretext.md](inspiration-study-pretext.md) | [pretext.html](../lab/pretext.html) | Extracted · lab live | Measure without reflow · shrinkwrap · line flow |
-| [Grace Wang](https://gracewang.design/) | [inspiration-study-gracewang.md](inspiration-study-gracewang.md) | [fox.html](../fox.html) (apply, not clone) | Extracted · applied on fox den | Light paper · mascot air · grounded pastel / dusty coral |
+| [Grace Wang](https://gracewang.design/) | [inspiration-study-gracewang.md](inspiration-study-gracewang.md) | [fox.html](../lab/fox.html) (apply, not clone) | Extracted · applied on fox den | Light paper · mascot air · grounded pastel / dusty coral |
+| Self-intro set (Aaron, DHH, PG, geohot, Chimero, Maggie, …) | [inspiration-study-self-intro.md](inspiration-study-self-intro.md) | — | Extracted · applied on About opening | Name hinge · Chimero breath · thin-proof voice · no sandwich |
 
 ---
 
@@ -201,4 +202,4 @@ Use these labels when naming what you like — maps feeling → measurable CSS/d
 
 1. Or **apply** Pretext shrinkwrap / predicted height to a case row.  
 2. Labs live: [pretext.html](../lab/pretext.html) · [dahbiahmed.html](../lab/dahbiahmed.html).  
-3. Fox den pastel: [fox.html](../fox.html).
+3. Fox den pastel: [fox.html](../lab/fox.html).

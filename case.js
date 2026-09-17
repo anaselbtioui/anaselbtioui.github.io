@@ -1,46 +1,27 @@
-// #nobuild: dedicated case study page — ?p=slug from manifest path.
-import { projects } from "./content/manifest.js";
-import { fetchEntry } from "./md.js";
+// #nobuild: thin standby case page — ?p=slug from content/cases.js
+import { cases, findCase, caseHref } from "./content/cases.js";
 import { wireFolioRail } from "./folio-rail.js";
-
-export function projectSlug(path) {
-  const file = path.split("/").pop() || "";
-  return file.replace(/\.md$/i, "").replace(/^\d{4}-\d{2}-\d{2}-/, "");
-}
-
-function padIndex(n) {
-  return String(n).padStart(2, "0");
-}
 
 function querySlug() {
   const params = new URLSearchParams(window.location.search);
-  let slug = (params.get("p") || params.get("slug") || "").trim();
+  let slug = (params.get("p") || params.get("slug") || "").trim().toLowerCase();
   if (!slug && window.location.hash) {
     slug = window.location.hash
       .replace(/^#/, "")
       .replace(/^p=/i, "")
-      .trim();
+      .trim()
+      .toLowerCase();
   }
   return slug;
 }
 
-function findProject(slug) {
-  const i = projects.findIndex((p) => projectSlug(p.path) === slug);
-  if (i < 0) return null;
-  return { meta: projects[i], index: i };
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"]/g, (c) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])
+  );
 }
 
-function snapshotBits(entry) {
-  return [
-    entry.domain && entry.role
-      ? `${entry.domain} · ${entry.role}`
-      : entry.domain || entry.role,
-    entry.duration,
-    entry.date,
-  ].filter(Boolean);
-}
-
-async function renderCase() {
+function renderCase() {
   const host = document.getElementById("case-article");
   const pager = document.getElementById("case-pager");
   if (!host) return;
@@ -49,88 +30,99 @@ async function renderCase() {
   if (!slug) {
     host.removeAttribute("aria-busy");
     host.innerHTML =
-      '<p class="muted">Missing project. <a href="./#work">Back to work</a>.</p>';
+      '<p class="case-miss">Missing project. <a href="./#work">Back to work</a>.</p>';
     return;
   }
 
-  const hit = findProject(slug);
+  const hit = findCase(slug);
   if (!hit) {
     host.removeAttribute("aria-busy");
     host.innerHTML =
-      '<p class="muted">Unknown project. <a href="./#work">Back to work</a>.</p>';
+      '<p class="case-miss">Unknown project. <a href="./#work">Back to work</a>.</p>';
     return;
   }
 
-  try {
-    const entry = { ...(await fetchEntry(hit.meta.path)), ...hit.meta };
-    document.title = `${entry.title} — Anas`;
-    const desc = document.querySelector('meta[name="description"]');
-    if (desc && entry.summary) desc.setAttribute("content", entry.summary);
+  const { entry, index } = hit;
+  document.title = `${entry.title} — Anas Elbtioui`;
+  const desc = document.querySelector('meta[name="description"]');
+  if (desc) desc.setAttribute("content", entry.line);
 
-    const bits = snapshotBits(entry);
-    const cover = entry.cover
-      ? `<figure class="case-hero-cover">
-          <img src="${entry.cover}" alt="" decoding="async" />
-        </figure>`
-      : "";
+  const body = (entry.body || [])
+    .map((p) => `<p>${escapeHtml(p)}</p>`)
+    .join("");
 
-    host.removeAttribute("aria-busy");
-    host.innerHTML = `
-      <header class="case-header">
-        <p class="case-kicker">${padIndex(hit.index + 1)} · Case study</p>
-        <h1 class="case-hero-title">${entry.title}</h1>
-        ${bits.length ? `<p class="case-meta-line">${bits.join(" · ")}</p>` : ""}
-      </header>
-      ${cover}
-      <div class="case-prose">${entry.bodyHtml}</div>
-    `;
-
-    if (pager && projects.length > 1) {
-      const prev = projects[hit.index - 1];
-      const next = projects[hit.index + 1];
-      pager.hidden = false;
-      pager.innerHTML = `
-        <div class="case-pager-row">
-          ${
-            prev
-              ? `<a class="case-pager-link prev" href="./case.html#${projectSlug(prev.path)}">
-                  <span class="case-pager-label">Previous</span>
-                  <span class="case-pager-title"></span>
-                </a>`
-              : `<span class="case-pager-link prev is-empty"></span>`
-          }
-          ${
-            next
-              ? `<a class="case-pager-link next" href="./case.html#${projectSlug(next.path)}">
-                  <span class="case-pager-label">Next</span>
-                  <span class="case-pager-title"></span>
-                </a>`
-              : `<span class="case-pager-link next is-empty"></span>`
-          }
-        </div>
-      `;
-
-      // Fill titles without blocking first paint
-      const fill = async (node, meta) => {
-        if (!node || !meta) return;
-        try {
-          const e = await fetchEntry(meta.path);
-          const t = node.querySelector(".case-pager-title");
-          if (t) t.textContent = e.title;
-        } catch {
-          /* ignore */
-        }
-      };
-      fill(pager.querySelector(".case-pager-link.prev:not(.is-empty)"), prev);
-      fill(pager.querySelector(".case-pager-link.next:not(.is-empty)"), next);
-    }
-    window.dispatchEvent(new Event("resize"));
-  } catch (err) {
-    host.removeAttribute("aria-busy");
-    host.innerHTML = `<p class="muted">Could not load case study. <a href="./#work">Back to work</a>.</p>`;
-    console.error(err);
-    window.dispatchEvent(new Event("resize"));
+  const contrib = [];
+  if (entry.live) {
+    contrib.push(
+      `<a class="hit" href="${escapeHtml(entry.live)}" target="_blank" rel="noopener noreferrer">Live site</a>`
+    );
   }
+  if (entry.github) {
+    contrib.push(
+      `<a class="hit" href="${escapeHtml(entry.github)}" target="_blank" rel="noopener noreferrer">GitHub</a>`
+    );
+  }
+
+  host.removeAttribute("aria-busy");
+  host.innerHTML = `
+    <header class="case-header">
+      ${entry.group ? `<p class="case-kicker">${escapeHtml(entry.group)}</p>` : ""}
+      <h1 class="case-title">${escapeHtml(entry.title)}</h1>
+      <p class="case-line">${escapeHtml(entry.line)}</p>
+    </header>
+    <figure class="case-plate">
+      <img
+        class="case-plate-still"
+        src="${escapeHtml(entry.poster)}"
+        alt=""
+        width="400"
+        height="500"
+        decoding="async"
+      >
+      <img
+        class="case-plate-loop"
+        src="${escapeHtml(entry.gif)}"
+        alt=""
+        width="400"
+        height="500"
+        decoding="async"
+      >
+    </figure>
+    <div class="case-body">${body}</div>
+    ${
+      contrib.length
+        ? `<nav class="case-contrib cta" aria-label="Links">${contrib.join("")}</nav>`
+        : ""
+    }
+  `;
+
+  if (pager && cases.length > 1) {
+    const prev = cases[index - 1];
+    const next = cases[index + 1];
+    pager.hidden = false;
+    pager.innerHTML = `
+      <div class="case-pager-row">
+        ${
+          prev
+            ? `<a class="case-pager-link" href="${caseHref(prev.slug)}">
+                <span class="case-pager-label">Previous</span>
+                <span class="case-pager-title">${escapeHtml(prev.title)}</span>
+              </a>`
+            : `<span class="case-pager-link is-empty"></span>`
+        }
+        ${
+          next
+            ? `<a class="case-pager-link case-pager-next" href="${caseHref(next.slug)}">
+                <span class="case-pager-label">Next</span>
+                <span class="case-pager-title">${escapeHtml(next.title)}</span>
+              </a>`
+            : `<span class="case-pager-link is-empty"></span>`
+        }
+      </div>
+    `;
+  }
+
+  window.dispatchEvent(new Event("resize"));
 }
 
 if (document.getElementById("case-article")) {

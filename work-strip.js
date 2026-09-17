@@ -8,10 +8,12 @@ export function wireWorkStrip() {
   const cards = Array.from(track.querySelectorAll("[data-strip-card]"));
 
   let raf = 0;
+  let pending = false;
   let dragging = false;
   let startX = 0;
   let startLeft = 0;
   let moved = 0;
+  let activePointer = null;
 
   const span = () => track.scrollWidth - track.clientWidth;
 
@@ -44,29 +46,43 @@ export function wireWorkStrip() {
   track.addEventListener("scroll", schedule, { passive: true });
   window.addEventListener("resize", schedule);
 
+  // Start pan only after a small move so plate links still click.
+  // Pointer down on a link never arms drag — the whole card is the hit target.
   track.addEventListener("pointerdown", (event) => {
-    // Touch already pans natively; hijacking it would double the movement.
     if (event.pointerType !== "mouse" || event.button !== 0 || span() <= 8) return;
-    dragging = true;
+    if (event.target.closest?.("a[href]")) return;
+    pending = true;
+    dragging = false;
     moved = 0;
+    activePointer = event.pointerId;
     startX = event.clientX;
     startLeft = track.scrollLeft;
-    track.classList.add("is-dragging");
-    track.setPointerCapture(event.pointerId);
   });
 
   track.addEventListener("pointermove", (event) => {
-    if (!dragging) return;
+    if (!pending || event.pointerId !== activePointer) return;
     const dx = event.clientX - startX;
     moved = Math.max(moved, Math.abs(dx));
+    if (!dragging) {
+      if (moved <= 6) return;
+      dragging = true;
+      track.classList.add("is-dragging");
+      track.setPointerCapture(event.pointerId);
+    }
     track.scrollLeft = startLeft - dx;
   });
 
   const endDrag = (event) => {
-    if (!dragging) return;
-    dragging = false;
-    track.classList.remove("is-dragging");
-    if (track.hasPointerCapture?.(event.pointerId)) track.releasePointerCapture(event.pointerId);
+    if (!pending || event.pointerId !== activePointer) return;
+    pending = false;
+    activePointer = null;
+    if (dragging) {
+      dragging = false;
+      track.classList.remove("is-dragging");
+      if (track.hasPointerCapture?.(event.pointerId)) {
+        track.releasePointerCapture(event.pointerId);
+      }
+    }
   };
 
   track.addEventListener("pointerup", endDrag);

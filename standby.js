@@ -1,7 +1,7 @@
 // #nobuild: Fluid thinking-indicator port + Formspree inquiry form.
 
 import { wireFolioRail } from "./folio-rail.js";
-import { wireWorkStrip } from "./work-strip.js";
+import { wireWorkStrip } from "./work-strip.js?v=131";
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 

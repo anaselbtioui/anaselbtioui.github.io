@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Bake leaves.mp4 into pre-keyed alpha WebM (shadow + optional light fringe).
-# Matches canopy.js intent: dark luma → opaque shadow, bright → transparent.
+# Dark luma → opaque shadow, bright → transparent.
 # ffmpeg 8+ geq requires lowercase r(X,Y)/g(X,Y)/b(X,Y) (not R/G/B).
 # Note: leaves-1.mp4 is too bright (luma ~190–242) for LO/HI=40/200; use leaves.mp4.
 set -euo pipefail
