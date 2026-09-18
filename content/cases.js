@@ -47,11 +47,11 @@ export const cases = [
     line: "Side project: tools that help close an accounting month.",
     body: [
       "Built for a concrete job — get transactions ready to export, not another generic finance dashboard.",
-      "Still early. The case here is a placeholder until a quiet screen recording grades into an archive GIF.",
+      "Wine field and pear mascot carry the line: close the month without noise.",
     ],
     group: "Side projects",
-    gif: "./media/work/work-03.gif?v=3",
-    poster: "./media/work/work-03-poster.webp?v=3",
+    gif: "./media/work/ghizou.gif?v=1",
+    poster: "./media/work/ghizou-poster.webp?v=1",
   },
 ];
 
