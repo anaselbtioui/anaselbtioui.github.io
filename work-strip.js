@@ -1,10 +1,7 @@
 // #nobuild: contact-sheet strip — drag to pan, centered plate goes live.
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-export function wireWorkStrip() {
-  const track = document.querySelector("[data-strip-track]");
-  if (!track) return null;
-
+function wireOneStrip(track) {
   const cards = Array.from(track.querySelectorAll("[data-strip-card]"));
 
   let raf = 0;
@@ -113,4 +110,10 @@ export function wireWorkStrip() {
 
   paint();
   return { paint };
+}
+
+export function wireWorkStrip() {
+  const tracks = Array.from(document.querySelectorAll("[data-strip-track]"));
+  if (!tracks.length) return null;
+  return tracks.map(wireOneStrip);
 }

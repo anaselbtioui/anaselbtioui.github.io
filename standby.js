@@ -1,7 +1,7 @@
 // #nobuild: Fluid thinking-indicator port + Formspree inquiry form.
 
 import { wireFolioRail } from "./folio-rail.js";
-import { wireWorkStrip } from "./work-strip.js?v=131";
+import { wireWorkStrip } from "./work-strip.js?v=132";
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -223,7 +223,7 @@ function mountInquiryForm() {
 function mastLinkKind(href) {
   if (/about\.html/.test(href)) return "about";
   if (/#contact/.test(href)) return "write";
-  if (/#work/.test(href)) return "work";
+  if (/work\.html/.test(href) || /#work/.test(href)) return "work";
   return "";
 }
 
@@ -234,16 +234,19 @@ function mountMastCurrent() {
   const page = document.body.dataset.page || "home";
 
   const sync = () => {
-    const current =
+    // Home: contact hash wins, otherwise work (selected strip).
+    const resolved =
       page === "about"
         ? "about"
-        : window.location.hash === "#contact"
+        : page === "home" && window.location.hash === "#contact"
           ? "write"
-          : "work";
+          : page === "work" || page === "case" || page === "home"
+            ? "work"
+            : "work";
 
     links.forEach((link) => {
       const kind = mastLinkKind(link.getAttribute("href") || "");
-      if (kind && kind === current) link.setAttribute("aria-current", "page");
+      if (kind && kind === resolved) link.setAttribute("aria-current", "page");
       else link.removeAttribute("aria-current");
     });
   };
@@ -452,6 +455,86 @@ function mountCopyEmail() {
   });
 }
 
+function mountPageToc() {
+  const headings = Array.from(document.querySelectorAll("[data-toc]"));
+  if (headings.length < 2) return;
+
+  const offset = 96;
+  let manual = false;
+  let manualTimer = 0;
+
+  const nav = document.createElement("nav");
+  nav.className = "page-toc";
+  nav.setAttribute("aria-label", "On this page");
+
+  const list = document.createElement("ul");
+  list.className = "page-toc-rail";
+
+  /** @type {{ heading: Element, a: HTMLAnchorElement }[]} */
+  const links = [];
+
+  const setActive = (activeLink) => {
+    for (const { a } of links) {
+      const on = a === activeLink;
+      a.classList.toggle("is-active", on);
+      if (on) a.setAttribute("aria-current", "true");
+      else a.removeAttribute("aria-current");
+    }
+  };
+
+  for (const [index, heading] of headings.entries()) {
+    if (!heading.id) heading.id = `toc-${index + 1}`;
+    const level = heading.classList.contains("section-title") ? "section" : "sub";
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.className = `page-toc-link page-toc-link--${level}`;
+    a.href = `#${heading.id}`;
+    a.dataset.tocLevel = level;
+    a.innerHTML =
+      `<span class="page-toc-mark" aria-hidden="true"></span>` +
+      `<span class="page-toc-label">${heading.textContent.trim()}</span>`;
+    a.addEventListener("click", (event) => {
+      event.preventDefault();
+      manual = true;
+      window.clearTimeout(manualTimer);
+      setActive(a);
+      const top = heading.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: reduceMotion ? "auto" : "smooth" });
+      manualTimer = window.setTimeout(() => {
+        manual = false;
+      }, 900);
+    });
+    li.appendChild(a);
+    list.appendChild(li);
+    links.push({ heading, a });
+  }
+
+  nav.appendChild(list);
+  document.body.appendChild(nav);
+
+  const visible = new Map();
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (manual) return;
+      for (const entry of entries) {
+        const item = links.find((l) => l.heading === entry.target);
+        if (!item) continue;
+        if (entry.isIntersecting) visible.set(item.a, entry.boundingClientRect.top);
+        else visible.delete(item.a);
+      }
+      if (!visible.size) return;
+      const sorted = [...visible.entries()].sort(
+        (a, b) => Math.abs(a[1]) - Math.abs(b[1]),
+      );
+      setActive(sorted[0][0]);
+    },
+    { rootMargin: `-${offset}px 0px -45% 0px`, threshold: [0.1, 0.35] },
+  );
+
+  for (const { heading } of links) observer.observe(heading);
+  setActive(links[0].a);
+}
+
 mountThinkIndicator();
 mountInquiryForm();
 mountCopyEmail();
@@ -459,5 +542,6 @@ mountMastCurrent();
 mountMastFade();
 mountLeaveConfirm();
 mountDirtyLeave();
+mountPageToc();
 wireFolioRail();
 wireWorkStrip();

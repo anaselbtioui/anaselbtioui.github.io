@@ -81,6 +81,23 @@ const page = await context.newPage();
 await page.goto(url, { waitUntil: "networkidle", timeout: 60000 });
 await page.waitForSelector(selector, { state: "visible", timeout: 30000 });
 
+// Quiet chrome for archive plates: dismiss cookie / promo overlays when present.
+for (const label of ["Refuser", "Fermer", "Accept", "Refuse", "Close"]) {
+  const btn = page.getByRole("button", { name: label }).first();
+  if (await btn.isVisible().catch(() => false)) {
+    await btn.click({ timeout: 1500 }).catch(() => {});
+  }
+}
+await page.addStyleTag({
+  content: `
+    [class*="cookie"], [id*="cookie"], [class*="consent"],
+    [class*="chat"], [class*="intercom"], [class*="crisp"] {
+      display: none !important; visibility: hidden !important;
+    }
+  `,
+});
+await page.waitForTimeout(300);
+
 const target = page.locator(selector).first();
 await target.scrollIntoViewIfNeeded();
 await page.waitForTimeout(500);

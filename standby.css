@@ -1072,13 +1072,267 @@ body.standby::before {
   text-wrap: balance;
 }
 
-.work-lede {
-  margin: 0 0 2.35rem;
-  max-width: 42ch;
+.work-category {
+  margin-top: 2.75rem;
+}
+
+.work-category:first-of-type {
+  margin-top: 0.55rem;
+}
+
+.work-category .work-group-label {
+  margin: 0 0 1.1rem;
+  max-width: none;
+}
+
+.work-category .work-strip {
+  margin-bottom: 0;
+}
+
+.work-all {
+  margin: 2.5rem 0 0;
+}
+
+.work-catalog {
+  padding: 2.5rem 0 4.5rem;
+  border-bottom: none;
+}
+
+.work-catalog-back {
+  margin: 0 0 0.85rem;
+}
+
+.work-catalog-back .hit {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
   color: var(--muted);
-  font-size: 1.28rem;
-  line-height: 1.55;
-  text-wrap: pretty;
+  text-decoration: none;
+}
+
+.work-catalog-back .hit:hover {
+  color: var(--fg-bright);
+}
+
+.work-catalog-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(12rem, 22rem);
+  gap: 1rem 1.75rem;
+  align-items: end;
+  margin-bottom: 0.25rem;
+}
+
+.work-catalog-fox {
+  margin: 0;
+  width: 100%;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.work-catalog-fox img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: saturate(1.06) contrast(1.04) brightness(1.02);
+}
+
+.work-catalog-head .section-title {
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0;
+  align-self: end;
+  padding-bottom: 0.15rem;
+}
+
+.work-catalog .work-category {
+  margin-top: 2.5rem;
+}
+
+.work-catalog .work-category:first-of-type {
+  margin-top: 1.1rem;
+}
+
+.work-card-link:not(a) {
+  cursor: default;
+}
+
+.work-index {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 2.5rem;
+  row-gap: 2.25rem;
+}
+
+.work-group {
+  min-width: 0;
+}
+
+.work-group-label {
+  margin: 0 0 0.7rem;
+  font-family: var(--font-hand);
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  color: var(--accent-mist);
+  text-transform: none;
+  text-wrap: balance;
+}
+
+.work-catalog .work-group-label {
+  max-width: none;
+  margin-bottom: 0.85rem;
+}
+
+/* Left-rail hover TOC — Framer ScrollIndicator idea, standby tokens */
+.page-toc {
+  position: fixed;
+  z-index: 44;
+  top: 50%;
+  left: 0.6rem;
+  transform: translateY(-50%);
+  display: none;
+  /* Trap zone: keep :hover alive across marks + labels */
+  padding: 1.5rem 15rem 1.5rem 0.75rem;
+}
+
+@media (pointer: fine) and (min-width: 1100px) {
+  .page-toc {
+    display: block;
+  }
+}
+
+.page-toc-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page-toc-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 2.15rem;
+  padding: 0.55rem 0;
+  color: var(--muted);
+  text-decoration: none;
+  outline: none;
+  isolation: isolate;
+}
+
+/* Per-row hit pad — covers tick + label column */
+.page-toc-link::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  left: -0.55rem;
+  width: 15rem;
+}
+
+.page-toc-mark {
+  position: relative;
+  z-index: 1;
+  display: block;
+  height: 2px;
+  border-radius: 1px;
+  transition-property: width, background-color;
+  transition-duration: 200ms;
+  transition-timing-function: var(--ease);
+}
+
+.page-toc-link--section .page-toc-mark {
+  width: 1.35rem;
+  background: color-mix(in srgb, var(--fox) 72%, transparent);
+}
+
+.page-toc-link--sub .page-toc-mark {
+  width: 0.85rem;
+  margin-left: 0.55rem;
+  background: color-mix(in srgb, var(--accent-mist) 70%, transparent);
+}
+
+.page-toc-link--section.is-active .page-toc-mark,
+.page-toc-link--section[aria-current="true"] .page-toc-mark {
+  width: 2.35rem;
+  background: var(--fox);
+}
+
+.page-toc-link--sub.is-active .page-toc-mark,
+.page-toc-link--sub[aria-current="true"] .page-toc-mark {
+  width: 1.85rem;
+  background: var(--accent-mist);
+}
+
+.page-toc-label {
+  position: absolute;
+  z-index: 1;
+  left: 2.7rem;
+  top: 50%;
+  transform: translateY(-50%) translateX(-0.35rem);
+  max-width: 14rem;
+  padding: 0.2rem 0.15rem;
+  font-family: var(--font-hand);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  background: none;
+  border: none;
+  opacity: 0;
+  pointer-events: none;
+  transition-property: opacity, transform;
+  transition-duration: 180ms;
+  transition-timing-function: var(--ease);
+}
+
+.page-toc-link--sub .page-toc-label {
+  left: 3.15rem;
+}
+
+.page-toc-link--section .page-toc-label {
+  font-size: 1.65rem;
+  color: var(--fox);
+}
+
+.page-toc-link--sub .page-toc-label {
+  font-size: 1.4rem;
+  color: var(--accent-mist);
+}
+
+.page-toc:hover .page-toc-label,
+.page-toc:focus-within .page-toc-label {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-50%) translateX(0);
+}
+
+.page-toc-link--section:hover .page-toc-mark,
+.page-toc-link--section:focus-visible .page-toc-mark {
+  width: 1.85rem;
+  background: var(--fox);
+}
+
+.page-toc-link--sub:hover .page-toc-mark,
+.page-toc-link--sub:focus-visible .page-toc-mark {
+  width: 1.35rem;
+  background: var(--accent-mist);
+}
+
+.page-toc-link:focus-visible .page-toc-label {
+  outline: 2px solid rgba(61, 122, 126, 0.65);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-toc-mark,
+  .page-toc-label {
+    transition: none;
+  }
 }
 
 .cta {
@@ -1181,6 +1435,8 @@ body.standby::before {
 .work-strip {
   /* Full-bleed sheet: track spans the viewport, plates still line up with the text column */
   --bleed: calc((100vw - var(--page-inline)) / 2);
+  /* Drop-shadow on grove cards needs room inside the scrollport (overflow clips filters). */
+  --shadow-pad: 1.5rem;
   position: relative;
   margin-inline: calc(-1 * var(--bleed));
 }
@@ -1191,12 +1447,15 @@ body.standby::before {
   gap: clamp(1.5rem, 3.5vw, 3rem);
   width: 100%;
   margin: 0;
-  padding: 0 var(--bleed) 0.5rem;
+  padding:
+    var(--shadow-pad)
+    max(var(--bleed), var(--shadow-pad))
+    calc(var(--shadow-pad) + 0.75rem);
   list-style: none;
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x proximity;
-  scroll-padding-inline-start: var(--bleed);
+  scroll-padding-inline: max(var(--bleed), var(--shadow-pad));
   scrollbar-width: none;
   cursor: grab;
 }
@@ -1508,31 +1767,6 @@ body.standby::before {
 .work-card:focus-within h3,
 .work-card.is-live h3 {
   color: var(--fg-bright);
-}
-
-/* Quiet typed catalog under the featured plates — body evidence, not a second strip */
-.work-index {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 2.5rem;
-  row-gap: 2rem;
-  margin-top: 3.5rem;
-  padding-top: 0.25rem;
-}
-
-.work-group {
-  min-width: 0;
-}
-
-.work-group-label {
-  margin: 0 0 0.7rem;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  line-height: 1.3;
-  color: var(--accent-mist);
-  text-transform: lowercase;
 }
 
 .work-names {
@@ -2152,6 +2386,27 @@ body.standby::before {
     font-size: 20px;
   }
 
+  .work-catalog-head {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    align-items: start;
+  }
+
+  .work-catalog-fox,
+  .work-catalog-head .section-title {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .work-catalog-fox {
+    width: min(22rem, 100%);
+    order: -1;
+  }
+
+  .work-catalog-head .section-title {
+    order: 0;
+  }
+
   .mast {
     grid-template-columns: minmax(0, auto) minmax(0, 1fr) auto;
     gap: 0.35rem;
@@ -2243,8 +2498,12 @@ body.standby::before {
     margin-bottom: 0.7rem;
   }
 
-  .work-lede {
-    margin-bottom: 1.85rem;
+  .work-category {
+    margin-top: 2.25rem;
+  }
+
+  .work-category:first-of-type {
+    margin-top: 0.45rem;
   }
 
   .work-card {
@@ -2259,14 +2518,13 @@ body.standby::before {
     font-size: 1.25rem;
   }
 
-  .work-index {
-    grid-template-columns: 1fr;
-    row-gap: 1.65rem;
-    margin-top: 2.75rem;
-  }
-
   .work-names li {
     font-size: 0.98rem;
+  }
+
+  .work-index {
+    grid-template-columns: 1fr;
+    row-gap: 1.75rem;
   }
 
   .foot-close {
