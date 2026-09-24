@@ -53,6 +53,19 @@ export const cases = [
     gif: "./media/work/ghizou.gif?v=1",
     poster: "./media/work/ghizou-poster.webp?v=1",
   },
+  {
+    slug: "profit-flow",
+    title: "Profit Flow Academy",
+    line: "Side project: landing for trading mentorship.",
+    body: [
+      "A public face for Profit Flow Academy — mentorship that aims at getting traders funded.",
+      "The plate is the brand mark and the line people land on first.",
+    ],
+    group: "Side projects",
+    gif: "./media/work/profit-flow.gif?v=1",
+    poster: "./media/work/profit-flow-poster.webp?v=1",
+    live: "https://profit-flow-academy.vercel.app",
+  },
 ];
 
 export function findCase(slug) {
