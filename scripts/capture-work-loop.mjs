@@ -9,8 +9,6 @@
  * --true keeps brand colors (passes --true to make-work-gif.sh).
  *
  * Examples:
- *   node scripts/capture-work-loop.mjs http://127.0.0.1:5173/ phikra-landing 'img.brand-logo__img'
- *   node scripts/capture-work-loop.mjs --true http://127.0.0.1:8788/tools/phikra-mark.html phikra '#plate'
  *
  * Writes media/work/_raw/<slug>.mp4 then media/work/<slug>.gif + poster.
  */

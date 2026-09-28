@@ -10,8 +10,6 @@
 # --true keeps source colors (no desat grade). Use for brand marks / logos.
 #
 # Examples:
-#   ./scripts/make-work-gif.sh ~/rec/hamssah.mp4 hamssah
-#   ./scripts/make-work-gif.sh --true media/work/_raw/phikra.mp4 phikra
 #
 # Writes:
 #   media/work/<slug>.gif
